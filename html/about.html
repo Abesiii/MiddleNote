@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>About page</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <link rel="stylesheet" href="./css/style_about.css">
+
+
+
+  <script>
+  $(document).ready(function () {
+      $("img").on('click', function()
+    {
+      var img = $(this);
+
+      if(img.css('opacity') === '1')
+      {
+        img.css({
+          'opacity': '0.5'
+        });
+      }
+      else
+      {
+        img.css({
+          'opacity': '1'
+        });
+      }
+    });
+  });
+  </script>
+
+
+  <style>
+
+  </style>
+
+</head>
+<body>
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+  <!-- 상단 메뉴 -->
+  <div class="container-fluid" id="header">
+    <div id="logo">
+      <a href="index.html">
+        <img src="./img/logo.jpg" alt="logo">
+      </a>
+    </div>
+
+    <div id="menubar" >
+      <ul>
+        <li><a href="index.html"> HOME </a></li>
+        <li><a href="eshop.html"> ESHOP </a></li>
+        <li><a href="regist.html"> Trade-Regist </a></li>
+        <li><a href="about.html" style="color:#C7C7C7"> ABOUT </a></li>
+        <!-- <li><a href="Member-login.html"> LOG IN </a></li> -->
+        <li><a href="Mypage.html"> <span class="glyphicon glyphicon-user"></span></a></li>
+      </ul>
+        <!-- <a href="Member-login.html" style="float:right;"> LOG IN </a> -->
+    </div>
+  </div>
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+
+
+  <div class="container-fluid text-center bg-0">
+
+    <div class="row">
+        <div class="col-sm-6">
+          <h1 style="padding-top:200px;">MIDDLENOTE <span style="color:#f4511e; font-weight:bold;">신뢰성 있는</span> <br> 향수 중고거래 플렛폼입니다.</h1>
+        </div>
+        <div class="col-sm-6">
+          <img src="./img/about/img1.jpg" width="500px" height ="600px" class="sa sa-up">
+        </div>
+      </div>
+
+  </div>
+
+
+  <!--  -->
+
+  <div class="container-fluid text-center bg-1">
+    <h2>Team MIDDLENOTE</h2>
+    <p>click the image</p>
+    <div class="row" style="padding-top:50px;">
+        <div class="col-sm-4 sa sa-up" >
+            <img src="./img/kwon.jpg" id="img_1" alt="kwon" width="350" height="350" class="img-circle" data-toggle="collapse" data-target="#demo1">
+            <h3>권성민</h3>
+            <p></p>
+
+            <div class="collapse" id="demo1">
+              <div class="card card-body">
+                <p class="glyphicon glyphicon-map-marker"> Cheongju, South Korea</p><br>
+                <p class="glyphicon glyphicon-user">  https://github.com/kwonja</p>
+                <p class="glyphicon glyphicon-envelope"> kwonja@gmail.com</p><br>
+
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 sa sa-up" data-sa-delay="300">
+          <img src="./img/jong.jpg" id="img_2" alt="jong" width="350" height="350" class="img-circle" data-toggle="collapse" data-target="#demo2">
+          <h3>정종현</h3>
+          <p></p>
+
+          <div class="collapse" id="demo2">
+            <div class="card card-body">
+              <p class="glyphicon glyphicon-map-marker"> Cheongju, South Korea</p><br>
+              <p class="glyphicon glyphicon-user">  https://github.com/jong-jh</p>
+              <p class="glyphicon glyphicon-envelope"> rhfksl0115@gmail.com</p><br>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 sa sa-up" data-sa-delay="600">
+          <img src="./img/son.jpg" id="img_3" alt="son" width="350" height="350" class="img-circle" data-toggle="collapse" data-target="#demo3">
+          <h3>손영재</h3>
+          <p></p>
+
+          <div class="collapse text-left" id="demo3">
+            <div class="card card-body">
+              <p class="glyphicon glyphicon-map-marker"> Cheongju, South Korea</p><br>
+              <p class="glyphicon glyphicon-user">  https://github.com/youngjaeee</p>
+              <p class="glyphicon glyphicon-envelope"> youngjaeee@chungbuk.ac.kr</p><br>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+  </div>
+
+  <div class="container-fluid text-center bg-2">
+
+    <a href="index.html" class="btn btn-default btn-lg" role="button" style="margin-top:500px">Go home</a>
+
+  </div>
+
+
+  <script>
+  const saDefaultMargin = 300;
+    let saTriggerMargin = 0;
+    let saTriggerHeight = 0;
+    const saElementList = document.querySelectorAll('.sa');
+
+    const saFunc = function() {
+      for (const element of saElementList) {
+        if (!element.classList.contains('show')) {
+          if (element.dataset.saMargin) {
+            saTriggerMargin = parseInt(element.dataset.saMargin);
+          } else {
+            saTriggerMargin = saDefaultMargin;
+          }
+
+          if (element.dataset.saTrigger) {
+            saTriggerHeight = document.querySelector(element.dataset.saTrigger).getBoundingClientRect().top + saTriggerMargin;
+          } else {
+            saTriggerHeight = element.getBoundingClientRect().top + saTriggerMargin;
+          }
+
+          if (window.innerHeight > saTriggerHeight) {
+            let delay = (element.dataset.saDelay) ? element.dataset.saDelay : 0;
+            setTimeout(function() {
+              element.classList.add('show');
+            }, delay);
+          }
+        }
+      }
+    }
+    window.addEventListener('load', saFunc);
+    window.addEventListener('scroll', saFunc);
+  </script>
+
+
+
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+<!-- 하단바 -->
+  <div id="footer">
+
+    <div id="footerL">
+      <p>© 2022  <a href="">IN GOLD WE TRUST PARIS</a></p>
+      <p><a href="">NEWS</a></p>
+      <p><a href="">LEGALS</a></p>
+      <p><a href="">SHIPPING & RETURNS</a></p>
+      <a href=""><img src="./img/insta.jpg" alt="instagram" width="12px" height="12px"></a>
+      <a href=""><img src="./img/facebook.jpg" alt="facebook" width="12px" height="12px"></a>
+    </div>
+
+    <div id=footerR>
+      <input type="text" placeholder="ENTER EMAIL">
+      <input type="button" value="JOIN">
+    </div>
+
+</div>
+
+
+
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+</body>
+</html>

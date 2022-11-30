@@ -1,0 +1,141 @@
+
+
+
+/************************************************/
+/*메뉴바 css*/
+#header{
+  width:1000px;
+  margin: auto;
+  padding-top: 30px;
+}
+#logo{
+  float: left;
+}
+#menubar{
+  float: right;
+}
+ul {
+    text-align: center;
+}
+ul li {
+    font-size: 15px;
+    display: inline;
+}
+ul li a {
+    color: black;
+    text-decoration: none;
+    padding: 0 10px;
+    font-weight: bold;
+    line-height: 31px;
+    transition: 0.3s;
+}
+ul li a:hover {
+    color: #C7C7C7;
+}
+/************************************************/
+
+
+/************************************************/
+/*하단 css*/
+#footer{
+  height: 50px;
+  clear: both;
+  position: :absolute;
+  bottom:0px;
+
+  width:1000px;
+  margin: auto;
+
+}
+#footerL{
+  margin-top:15px;
+  font-size:10px;
+  float:left;
+}
+#footerL p{
+  display:inline;
+}
+#footerL a {
+    color: black;
+    text-decoration: none;
+    padding: 0 10px;
+    transition: 0.3s;
+}
+#footerL a:hover {
+    color: #C7C7C7;
+}
+#footerR{
+  margin-top:7px;
+  float: right;
+}
+/************************************************/
+.container-fluid{
+  padding:70px 20px 70px 20px;
+  background-color:white;
+}
+
+.bg-0{
+  /* padding:300px 40px 300px 40px; */
+  /* border:1px solid black; */
+}
+
+.bg-0 .glyphicon{
+  font-size: 70px;
+  color: #f4511e;
+  margin: 20px;
+}
+
+.bg-1{
+  background-color:#F7FBFC;
+  transition: background-color 0.8s;
+}
+
+.bg-1 p{
+  margin:10px 0px 10px 0px;
+  font-size: 20px;
+}
+
+.bg-1 img{
+  margin-bottom:50px;
+  opacity: 0.3;
+  transition: 0.3s;
+  border: none;
+}
+.bg-1 img:hover{
+  opacity:0.99;
+  border: solid 2px #C7C7C7;
+}
+
+.bg-2{
+  /* background-color:#D6E6F2; */
+  height: 100vh;
+  background-repeat : no-repeat;
+  background-size : cover;
+  background-image: url("../img/about/img2.jpg");
+}
+
+.card-body{
+  font-size:20px;
+  padding:30px;
+    text-align: left;
+  /* border: solid 1px #C7C7C7; */
+}
+.card-body p{
+  padding-left: 120px;
+}
+
+/* Scroll Animation (sa, 스크롤 애니메이션) */
+.sa {
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+/* 아래에서 위로 페이드 인 */
+.sa-up {
+  transform: translate(0, 100px);
+}
+
+.sa.show {
+  opacity: 1;
+  transform: none;
+}

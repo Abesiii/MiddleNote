@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <link rel="stylesheet" href="./css/regist.css">
+    <script type="text/javascript" src="./js/regist.js"></script>
+  <title>Trade-Regist</title>
+
+
+</head>
+<body>
+    <div class="container" id="header">
+      <div id="logo">
+        <a href="index.html">
+          <img src="./img/logo.jpg" alt="logo">
+        </a>
+      </div>
+
+      <div id="menubar" >
+        <ul>
+          <li><a href="index.html"> HOME </a></li>
+          <li><a href="eshop.html"> ESHOP </a></li>
+          <li><a href="regist.html" style="color:#C7C7C7"> Trade-Regist </a></li>
+          <li><a href="about.html"> ABOUT </a></li>
+          <!-- <li><a href="Member-login.html"> LOG IN </a></li> -->
+          <li><a href="#Mypage.html"> <span class="glyphicon glyphicon-user"></span></a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  <form action="form-inline">
+    <div class="container form-group">
+
+      <div class="text-left" style="padding:30px 0px 30px 0px">
+        <h2>Trade-Regist</h2>
+
+
+        <div class="row" id="regist-img" style="padding:30px 0px 30px 0px; border-top:3px solid black; border-bottom:0.5px solid #C7C7C7;">
+          <div class="col-sm-3">
+            <h3>Image</h3>
+          </div>
+          <div class="col-sm-9">
+            <div class="upload-box">
+              <div id="drop-file" class="drag-file">
+                <img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image">
+                <p class="message">Drag files to upload</p>
+              </div>
+
+
+			  <input type="file" onchange="readFile(this)">
+			<script type="text/javascript">
+				function readFile(FILE_ELEMENT){
+
+					var path = (window.URL || window.webkitURL).createObjectURL(FILE_ELEMENT);
+					console.log('path', path);
+				}
+
+
+			</script>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row" style="padding:30px 0px 30px 0px; border-bottom:0.5px solid #C7C7C7;">
+          <div class="col-sm-3">
+            <h3>Title</h3>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="regist-title" placeholder="Input Title" name="title" style="height:50px; font-size:20px;">
+          </div>
+        </div>
+
+        <div class="row text-center" id="regist-cate" style="padding:30px 0px 30px 0px; border-bottom:0.5px solid #C7C7C7;">
+          <div class="col-sm-3 text-left">
+            <h3>Categories</h3>
+          </div>
+          <div class="col-sm-9">
+            <div class="row">
+              <div class="col-sm-6">
+                <ul class="list-group">
+                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate1" data-toggle="collapse" data-target="#cate1">For Femme</li>
+                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate2" data-toggle="collapse" data-target="#cate2">For Homme</li>
+                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate3" data-toggle="collapse" data-target="#cate3">Eau de Toilete</li>
+                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate4" data-toggle="collapse" data-target="#cate4">Eau de Cologne</li>
+                </ul>
+              </div>
+
+              <div class="col-sm-6">
+                <ul class="list-group collapse" id="cate1">
+                  <li class="list-group-item" id="cate1-1" onclick="showCate1(this)">Bvlgari</li>
+                  <li class="list-group-item" id="cate1-2" onclick="showCate1(this)">Jo Malone</li>
+                  <li class="list-group-item" id="cate1-3" onclick="showCate1(this)">Calvin Klein</li>
+                </ul>
+
+                <ul class="list-group collapse" id="cate2">
+                  <li class="list-group-item" id="cate2-1" onclick="showCate2(this)">Chanel</li>
+                  <li class="list-group-item" id="cate2-2" onclick="showCate2(this)">Christian Dior</li>
+                  <li class="list-group-item" id="cate2-3" onclick="showCate2(this)">Burberry</li>
+                  <li class="list-group-item" id="cate2-4" onclick="showCate2(this)">Versace</li>
+                </ul>
+
+                <ul class="list-group collapse" id="cate3">
+                  <li class="list-group-item" id="cate3-1" onclick="showCate3(this)">Cartier</li>
+                  <li class="list-group-item" id="cate3-2" onclick="showCate3(this)">Montblanc</li>
+                  <li class="list-group-item" id="cate3-3" onclick="showCate3(this)">YvesSaintLaurent</li>
+                  <li class="list-group-item" id="cate3-4" onclick="showCate3(this)">Ralph Lauren</li>
+                </ul>
+
+                <ul class="list-group collapse" id="cate4">
+                  <li class="list-group-item" id="cate4-1" onclick="showCate4(this)">Bottega Veneta</li>
+                  <li class="list-group-item" id="cate4-2" onclick="showCate4(this)">Louis Vuitton</li>
+                  <li class="list-group-item" id="cate4-3" onclick="showCate4(this)">Hermes</li>
+                  <li class="list-group-item" id="cate4-4" onclick="showCate4(this)">Salvatore Ferragamo</li>
+                </ul>
+              </div>
+            </div>
+            <p class="text-left">Selected Category : &nbsp</p> <p id="selectedCate"><b></b></p>
+
+          </div>
+        </div>
+
+        <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
+          <div class="col-sm-3">
+            <h3>Price</h3>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="regist-price" placeholder="Input Only Number" name="price" onkeyup="inputNumberFormat(this)" style="height:50px; font-size:20px;">
+
+          </div>
+        </div>
+
+        <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
+          <div class="col-sm-3">
+            <h3>Description</h3>
+
+          </div>
+          <div class="col-sm-9">
+              <textarea rows="6" style="height:200px; font-size:20px;" class="form-control" id="regist-description" placeholder="Input Prodcut Detail" name="description"></textarea>
+          </div>
+        </div>
+
+        <div class="row" style="padding:30px 0px 30px 0px; border-bottom:0.5px solid #C7C7C7;">
+          <div class="col-sm-3">
+            <h3>Location</h3>
+            <p><span class="glyphicon glyphicon-warning-sign"></span> Input Road name address</p>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="regist-location" placeholder="Input Location" name="title" style="height:50px; font-size:20px;">
+          </div>
+        </div>
+
+
+
+        <div class="row" style="padding:30px 0px 30px 0px">
+        <div class="col-sm-12 text-right">
+            <a href="eshop.html" class="btn btn-danger btn-lg" onclick="regist()" role="button">Regist</a>
+        </div>
+      </div>
+
+      </div>
+
+    </div>
+  </form>
+
+    <div id="footer">
+      <div id="footerL">
+        <p>© 2022  <a href="">IN GOLD WE TRUST PARIS</a></p>
+        <p><a href="">NEWS</a></p>
+        <p><a href="">LEGALS</a></p>
+        <p><a href="">SHIPPING & RETURNS</a></p>
+        <a href=""><img src="./img/insta.jpg" alt="instagram" width="12px" height="12px"></a>
+        <a href=""><img src="./img/facebook.jpg" alt="facebook" width="12px" height="12px"></a>
+      </div>
+
+      <div id=footerR>
+        <input type="text" placeholder="ENTER EMAIL">
+        <input type="button" value="JOIN">
+      </div>
+
+    </div>
+
+</body>
+</html>

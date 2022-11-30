@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/Sungmin.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Document</title>
+    <style>
+</style>
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+          <a href="index.html">
+            <img src="img/logo.jpg" alt="logo">
+          </a>
+        </div>
+        <!-- <div id="menubar" >
+          <ul>
+            <li><a href="index.html" style="color:#C7C7C7"> HOME </a></li>
+            <li><a href="eshop.html"> ESHOP </a></li>
+            <li><a href="regist.html"> Trade-Regist </a></li>
+            <li><a href="About.html"> ABOUT </a></li>
+            <li><a href="Member-login.html"> LOG IN </a></li>
+            <li><a href="#Mypage.html"> <span class="glyphicon glyphicon-user"></span></a></li>
+          </ul>
+        </div> -->
+      </div>
+      <br><br><br>
+    <div class ="container">
+        <main>
+            <div><h1>LOGIN</h1></div>
+            <!-- <div class="align-member">
+                <a href="Member-login.html">Member</a>
+            </div>
+            <div class="align-nomemeber">
+                <a href="No-Member-login.html">No-Member</a>
+            </div> -->
+            <form class="login">
+            <div id=signin>
+              <form id="loginForm" action="/login" method="post">
+                <input id="userId" name="userId" type="text" placeholder="ID" autofocus><br>
+                <input id="password" name="password" type="password" placeholder="PASSWORD"><br>
+              </form>
+              <button class="login-btn" onclick="memberLogin()">LOGIN</button><br><br>
+              <div class="align-left">
+                <a href="join_agree.html">Join</a>
+              </div>
+              <div class="align-right">
+                <a href="#">ID*Password Find</a>
+              </div>
+            </div>
+            </form>
+            <hr>
+            <p id="easy-login">More Simple login</p>
+
+            <!-- <div id="naver"><img id="naver_logo" src="./img/naver.png" alt="네이버로고" width="40"><a id="naverIdLogin_loginButton" href="javascript:void(0)">Naver Login</a></div>
+            <div id="google"><img id="google_logo" src="./img/google.png" alt="구글로고" width="40" style="margin-right: 20px;"><a href="">Google Login</a></div>
+            <div id="kakao"><img id="kakao_logo" src="./img/kakao.png" alt="카카오로고" width="40"style="margin-right: 20px;"><a href="">Kakao Login</a></div> -->
+        </main>
+    </div>
+    <!-- <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"> //이게 위에 있어야한다</script>
+    <script src="./js/Sungmin.js"></script> -->   <!--성민.js 나중에 지우기-->
+    <br><br>
+    <div id="footer">
+        <div id="footerL">
+          <p>© 2022  <a href="">IN GOLD WE TRUST PARIS</a></p>
+          <p><a href="">NEWS</a></p>
+          <p><a href="">LEGALS</a></p>
+          <p><a href="">SHIPPING & RETURNS</a></p>
+          <a href=""><img src="img/insta.jpg" alt="instagram" width="12px" height="12px"></a>
+          <a href=""><img src="img/facebook.jpg" alt="facebook" width="12px" height="12px"></a>
+        </div>
+
+        
+        <div id=footerR>
+          <input type="text" placeholder="ENTER EMAIL">
+          <input type="button" value="JOIN">
+        </div>
+
+      </div>
+
+      <script>
+        function memberLogin(){
+          var userId = document.getElementById('userId').value;
+          var password = document.getElementById('password').value;
+          var sendData = {'userId' : userId, 'password' : password};
+          sendData = JSON.stringify(sendData);
+
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', 'http://localhost:3000/login');
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send(sendData);
+
+          xhr.addEventListener('load', function(){
+            var result = JSON.parse(xhr.responseText);        //response된 값
+            console.log(result);
+          })
+        }
+      </script>
+</body>
+</html>

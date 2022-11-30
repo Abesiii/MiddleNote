@@ -1,0 +1,183 @@
+@font-face {
+    font-family: 'Gotham';
+    src: url('../font/Gotham-Bold.woff2') format('woff2'),
+        url('../font/Gotham-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('../font/Gotham-Black.woff2') format('woff2'),
+        url('../font/Gotham-Black.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Spoqa Han Sans Neo';
+    src: url('../font/SpoqaHanSansNeo-Bold.woff2') format('woff2'),
+        url('../font/SpoqaHanSansNeo-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Spoqa Han Sans Neo';
+    src: url('../font/SpoqaHanSansNeo-Medium.woff2') format('woff2'),
+        url('../font/SpoqaHanSansNeo-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+div{
+    text-align: center;
+}
+*{
+    font-family: 'Gotham','Spoqa Han Sans Neo';
+    color:#666  ;
+    font-size: 1em;
+    line-height: 1.5;
+}
+*::selection{
+    background-color: blue;
+    color: white;
+}
+h1{
+    font-size: 50px;
+}
+#email, #password{
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: -1px 10px;
+    width: 300px;
+    padding : 10px;
+}
+#name, #number{
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 10px 10px;
+    width: 300px;
+    padding : 10px;
+}
+.login-checkbox{
+width: 300px;
+text-align: center;
+padding-right: 190px;
+margin: 20px auto;
+}
+#signin button[type=button]
+{
+border-radius: 5px;
+width: 320px;
+border: none;
+letter-spacing: .5em;
+font-size: 1.2em;
+background-color:#000808;
+color: white;
+height: 40px;
+}
+.align-left{
+display: inline-block;
+margin :1px auto;
+padding-right: 100px;
+}
+.align-right{
+display: inline-block;
+margin :1px auto;
+padding-left: 10px;
+}
+.align-member{
+    display: inline-block;
+    margin :1px auto;
+    margin-right: 70px;
+    }
+    .align-nomemeber{
+    display: inline-block;
+    margin :1px auto;
+    margin-bottom: 20px;
+    }
+hr{
+border: black 1px dotted;
+width: 320px;
+text-align: center;
+}
+#naver{
+    border-radius: 5px;
+    width: 320px;
+    border: none;
+    background-color:#03C75A;
+    height: 40px;
+    margin: 10px auto;
+}
+#naver a{
+float: left;
+color: white;
+letter-spacing: .5em;
+font-size: 1.2em;
+text-decoration: none;
+margin : auto;
+padding-top: 7px;
+}
+#naver_logo{
+    float: left;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+#google{
+    border-radius: 5px;
+    width: 320px;
+    border: none;
+    background-color: #4285F4;
+    height: 40px;
+    margin: 10px auto;
+}
+#google a{
+float: left;
+color: white;
+letter-spacing: .5em;
+font-size: 1.1em;
+text-decoration: none;
+margin : auto;
+padding-top: 7px;
+}
+#google_logo{
+    float: left;
+    margin-right: 30px;
+    margin-left: 20px;
+}
+#kakao{
+    border-radius: 5px;
+    width: 320px;
+    border: none;
+    background-color:#FEE500;
+    height: 40px;
+    margin: 10px auto;
+}
+#kakao a{
+float: left;
+color: #000000 85%;
+letter-spacing: .5em;
+font-size: 1.2em;
+text-decoration: none;
+margin : auto;
+padding-top: 7px;
+}
+#kakao_logo{
+    float: left;
+    margin-right: 30px;
+    margin-left: 20px;
+}
+#frame div{
+    text-align: left;
+}
+#frame{
+width: 510px;
+border: 1px solid #444;
+margin: 0 auto;
+}
+#agree{
+    margin-left: 4px;
+}

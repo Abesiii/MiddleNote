@@ -1,0 +1,119 @@
+#regist-cate p{
+  display:inline;
+  float:left;
+  font-size:20px;
+  color:red;
+}
+
+.container{
+  width:1000px;
+}
+
+.upload-box {
+  width: calc(50% - 15px);
+  box-sizing: border-box;
+  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.upload-box .drag-file {
+  width: 100%;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px dashed #dbdbdb;
+}
+.upload-box .drag-file.highlight {
+  border: 3px dashed red;
+}
+.upload-box .drag-file .image {
+  width: 40px;
+}
+.upload-box .drag-file .message {
+  margin-bottom: 0;
+}
+
+
+
+.list-group-item{
+   font-size:20px;
+}
+
+.list-group-item:hover{
+  background-color:#f5f5f5;
+}
+
+#header{
+  width:1000px;
+  margin: auto;
+  padding-top: 30px;
+}
+#logo{
+  float: left;
+}
+#menubar{
+  float: right;
+}
+ul {
+    text-align: center;
+}
+ul li {
+    font-size: 15px;
+    display: inline;
+}
+ul li a {
+    color: black;
+    text-decoration: none;
+    padding: 0 10px;
+    font-weight: bold;
+    line-height: 31px;
+    transition: 0.3s;
+}
+ul li a:hover {
+    color: #C7C7C7;
+}
+#video{
+  /* border: 1px solid black; */
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:1000px;
+  margin: auto;
+}
+#footer{
+  height: 50px;
+  clear: both;
+  position: : absolute;
+  bottom : 0px;
+
+  width : 1000px;
+  margin : auto;
+
+}
+#footerL{
+  margin-top:15px;
+  font-size:10px;
+  float:left;
+}
+#footerL p{
+  display:inline;
+}
+#footerL a {
+    color: black;
+    text-decoration: none;
+    padding: 0 10px;
+    transition: 0.3s;
+}
+#footerL a:hover {
+    color: #C7C7C7;
+}
+
+#footerR{
+  margin-top:7px;
+  float: right;
+}
