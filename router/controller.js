@@ -8,10 +8,12 @@ var path = require('path');         //상대경로로 편리하게 이동할 수
 var main = require('./main/main');
 var join = require('./join/join');
 var login = require('./login/login');
+var product = require('./product/product');
 
 router.use('/main', main);
 router.use('/join', join);
 router.use('/login', login);
+router.use('/product', product);
 
 router.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '../html/index.html'));
