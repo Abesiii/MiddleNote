@@ -62,29 +62,46 @@ router.get('/', function(req, res){
 
 router.post('/create', function(req, res){ //product 조회
     var productData = req.body;      //회원가입한 user의 데이터(Object type)
-    var productId = "'" + productData.productId + "'";
     var userId = "'" + productData.userId + "'";
     var productName = "'" + productData.productName + "'";
     var title = "'" + productData.title + "'";
-    var originalPrice = "'" + productData.originalPrice + "'";
     var price = "'" + productData.price + "'";
     var categoryId = "'" + productData.categoryId + "'";
     var volume = "'" + productData.volume + "'";
     var description = "'" + productData.description + "'";
-    var postTime = "'" + productData.postTime + "'";
+    var postTime = "'" + getPostTime() + "'";
     var statusId = "'" + productData.statusId + "'";
-    var photoLink = "'" + productData.photoLink + "'";    
+    var photoLink = "'" + productData.photoLink + "'";   
     
     
-    var query = connection.query(`insert into product(userId, productName, title, originalPrice, price, categoryId, volume, description, postTime, statusId, photoLink) values(${userId}, ${productName}, ${title}, ${originalPrice}, ${price}, ${categoryId}, ${volume}, ${description}, ${postTime}}, ${statusId}, ${photoLink});`, function(err, rows){
+    
+    
+    
+    var query = connection.query(`insert into product(userId, productName, title, price,
+       categoryId, volume, description, postTime, statusId, photoLink) 
+       values(${userId}, ${productName}, ${title}, ${price}, ${categoryId}, ${volume}, ${description}, ${postTime}, ${statusId}, ${photoLink});`, function(err, rows){
         if(err) throw err;
         else{
-          console.log(`${rows} inserted`);    
-          res.sendFile(path.join(__dirname, '../../html/join.html'));
+          res.json({message: "200"})
         }
       })
 
   })
 
+function getPostTime(){
+var date_ob = new Date();
+var day = ("0" + date_ob.getDate()).slice(-2);
+var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+var year = date_ob.getFullYear();
+   
+var date = year + "-" + month + "-" + day;
+    
+var hours = date_ob.getHours();
+var minutes = date_ob.getMinutes();
+var seconds = date_ob.getSeconds();
+  
+var dateTime = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+return dateTime;
 
+}
 module.exports = router;

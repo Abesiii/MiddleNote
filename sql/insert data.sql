@@ -33,7 +33,7 @@ CREATE TABLE notice (
    );
     
 CREATE TABLE tradeStatus (
-   statusId INT,
+    statusId INT NOT NULL,
     statusName VARCHAR(45),
     CONSTRAINT PK_tradeId PRIMARY KEY (statusId)
     );
@@ -49,8 +49,8 @@ CREATE TABLE product (
     volume VARCHAR(45),
     description TEXT,
     postTime DATETIME,
-    statusId INT,
-    photoLink INT,
+    statusId INT NOT NULL,
+    photoLink VARCHAR(45),
     CONSTRAINT PK_productId PRIMARY KEY (productId),
     CONSTRAINT FK_productUserId FOREIGN KEY (userId) REFERENCES User(id),
     CONSTRAINT FK_productCategoryId FOREIGN KEY (categoryId) REFERENCES Category(categoryId),
@@ -132,17 +132,17 @@ VALUES(1, 'kksshh0612', '51332', '김성호', '휴학예정자', '청주시', '�
 
 
 
-INSERT INTO product (productId, userId, productName, title, originalPrice,
+INSERT INTO product (userId, productName, title,
 price, categoryId, volume, description, postTime, statusId, photoLink)
-VALUES(1,1, '불가리 뿌르 옴므 오 드 뚜왈렛', '쓰던거 팔아요',  95000,
-60000, 1, '50ml', '개봉한지 일주일됐고 한두번밖에 안뿌려 봤어요','2022-11-27 23:07:10', 1, NULL),
-(2,2, '불가리 뿌르 옴므 오 드 뚜왈렛 스프레이', '남성용 향수 팝니다',  127820,
-84125, 1, '100ml', '시원한 향이고 남성적인 향이에요 선물받은거팔아요','2022-11-25 12:15:55', 1, NULL),
-(3,3, '불가리 맨 테라 에센스 오 드 퍼퓸', '싸게 팔아요',  107800,
-80000, 1, '100ml', '개봉 안했습니다 받은지 2주 됐어요','2022-11-29 09:02:10', 1, NULL),
-(4,4, '맨 우드 에센스 오 드 퍼퓸', '향수 팔아요~',  98260,
-43000, 1, '50ml', '절반정도 썼습니다','2022-11-15 14:54:00', 1, NULL),
-(5,5, '아쿠아 뿌르 옴므 오 드 뚜왈렛', '사주실 분 있나요?',  84600,
-67000, 1, '100ml', '미개봉 상품입니다 시원한 향 좋아하시는분께 좋을듯 해요','2022-10-21 23:07:10', 1, NULL),
-(6,6, '레젬메 팔카 오 드 퍼퓸', '쓰던거 팔아요',  210000,
-140000, 1, '10ml', '특별한 매력이 깃든 우드를 휘감은 짙고 화려한 우디 블랙 머스크 팝니다','2022-11-24 21:17:10', 1, NULL);
+VALUES(1, '불가리 뿌르 옴므 오 드 뚜왈렛', '쓰던거 팔아요',  95000,
+1, '50ml', '개봉한지 일주일됐고 한두번밖에 안뿌려 봤어요','2022-11-27 23:07:10', 1, NULL),
+(2, '불가리 뿌르 옴므 오 드 뚜왈렛 스프레이', '남성용 향수 팝니다',  127820,
+ 1, '100ml', '시원한 향이고 남성적인 향이에요 선물받은거팔아요','2022-11-25 12:15:55', 1, NULL),
+(3, '불가리 맨 테라 에센스 오 드 퍼퓸', '싸게 팔아요',  107800,
+ 1, '100ml', '개봉 안했습니다 받은지 2주 됐어요','2022-11-29 09:02:10', 1, NULL),
+(4, '맨 우드 에센스 오 드 퍼퓸', '향수 팔아요~',  98260,
+ 1, '50ml', '절반정도 썼습니다','2022-11-15 14:54:00', 1, NULL),
+(5, '아쿠아 뿌르 옴므 오 드 뚜왈렛', '사주실 분 있나요?',  84600,
+ 1, '100ml', '미개봉 상품입니다 시원한 향 좋아하시는분께 좋을듯 해요','2022-10-21 23:07:10', 1, NULL),
+(6, '레젬메 팔카 오 드 퍼퓸', '쓰던거 팔아요',  210000,
+ 1, '10ml', '특별한 매력이 깃든 우드를 휘감은 짙고 화려한 우디 블랙 머스크 팝니다','2022-11-24 21:17:10', 1, NULL);
