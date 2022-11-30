@@ -59,7 +59,7 @@ function showCate4(cate){
   content.innerHTML = "<b>" + cate1.innerHTML+"<b>" +" > " + "<b>" +cate.innerHTML+"</b>";
 
 }
-
+/*
 function regist(){
 
 	totalitem = totalitem + 1;
@@ -91,13 +91,24 @@ function regist(){
 
    alert("등록이 완료되었습니다.\n메인페이지로 이동합니다")
 }
+*/
+function regist(){
+  var title = document.getElementById("regist-title").value;
+	var cate = document.getElementById("selectedCate").innerHTML;
+  var price = document.getElementById("regist-price").value;
+	var description = document.getElementById('regist-description').value;
+  var location = document.getElementById('regist-location').value;
 
-//정보 받아올 땐 해당 html 에서 이렇게 하면 됨.
-// <script>
-// var lastData;
-// if(localStorage.getItem('title')){
-//   lastData = localStorage.getItem('title');
-//
-//   document.getElementById("dataaaa").innerHTML = lastData;
-// }
-// </script>
+  
+      var sendData = {'userId' : 1, 'productName' : "password", 'title' : title, 'price' : price, 
+      'categoryId' : 1, 'volume' : "gdf", 'descrption' : description, 'postTime' : '2022-11-11 11:04:20', 
+      'statusId' : 1, 'photoLink' : 'sadf'};
+
+      sendData = JSON.stringify(sendData);    //ajax로 서버에 보내기 위해 문자열을 json으로 저장. 
+      var xhr = new XMLHttpRequest();     //ajax로 브라우저와 서버가 상호작용하기 위한 객체 
+      xhr.open('POST', 'http://localhost:3000/product/create');     //post 형식으로 join.js 호출
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(sendData);
+  
+}
+

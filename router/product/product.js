@@ -62,6 +62,7 @@ router.get('/', function(req, res){
 
 router.post('/create', function(req, res){ //product 조회
     var productData = req.body;      //회원가입한 user의 데이터(Object type)
+    console.log(productData);
     var userId = "'" + productData.userId + "'";
     var productName = "'" + productData.productName + "'";
     var title = "'" + productData.title + "'";
@@ -69,7 +70,7 @@ router.post('/create', function(req, res){ //product 조회
     var categoryId = "'" + productData.categoryId + "'";
     var volume = "'" + productData.volume + "'";
     var description = "'" + productData.description + "'";
-    var postTime = "'" + getPostTime() + "'";
+    var postTime = "'" + productData.postTime + "'";
     var statusId = "'" + productData.statusId + "'";
     var photoLink = "'" + productData.photoLink + "'";   
     

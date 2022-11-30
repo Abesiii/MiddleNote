@@ -4,7 +4,7 @@ USE middlenote;
 
 
 CREATE TABLE user (
-   id INT,
+    id INT NOT NULL AUTO_INCREMENT,
     userId VARCHAR(45),
     password VARCHAR(45),
     userName VARCHAR(45),
