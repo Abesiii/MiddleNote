@@ -30,7 +30,7 @@ router.get('/', function(req, res){
 
 
 
-router.get('/', function(req, res){ //상세 product조회
+router.get('/', function(req, res){ //전체 product조회
 
 
   
@@ -41,9 +41,10 @@ router.get('/', function(req, res){ //상세 product조회
   AND P.userId=U.id
   ORDER BY P.postTime ASC`;   //글에 필요한 정보를 조회하는 쿼리*/
 
-  var sql1= `SELECT P.productId, P.productName, P.price, T.statusName, P.photoLink  
- FROM product as P, tradestatus as T
- WHERE P.statusId=T.statusId
+  var sql1= `SELECT P.productId, P.productName, P.price, T.statusName, P.photoLink,
+  C.categoryName, C.brandName  
+ FROM product as P, tradestatus as T, category as C
+ WHERE P.statusId=T.statusId  AND P.categoryId=C.categoryId
  ORDER BY P.productId ASC`;
   
 
@@ -94,7 +95,7 @@ router.get('/:brandName', function(req, res){ //브랜드 별 product조회
  })
 
 
-router.get('/detail/:productId', function(req, res){ //product 목록 조회 
+router.get('/detail/:productId', function(req, res){ //상세 product 조회 
 
   var productId=req.params.productId;
   
@@ -121,54 +122,6 @@ router.get('/detail/:productId', function(req, res){ //product 목록 조회
 
 
 
-router.post('/create', function(req, res){ //product 조회
-    var productData = req.body;      //회원가입한 user의 데이터(Object type)
-    console.log(productData);
-    var userId = "'" + productData.userId + "'";
-    var productName = "'" + productData.productName + "'";
-    var price = "'" + productData.price + "'";
-    //var categoryId = "'" + productData.categoryId + "'";
-    var volume = "'" + productData.volume + "'";
-    var description = "'" + productData.description + "'";
-    var postTime = "'" + productData.postTime + "'";
-    var statusId = "'" + productData.statusId + "'";
-    var photoLink = "'" + productData.photoLink + "'"; 
-    var categoryName =productData.categoryName;
-    var brandName =productData.brandName;
-
-    
-    var sql1 = 'SELECT categoryId FROM category where categoryName=? AND brandName=?';  //글의 categoryId찾는 쿼리
-    
-
-    connection.query(sql1, [categoryName, brandName], function(err, rows, field){
-      if(err) throw err;
-      else{
-        if(rows.length){      //일치하는 카테고리 id가 있을때
-
-          var categoryId="'"+rows[0].categoryId+"'";
-          console.log(categoryId);
-
-          var sql2 = `insert into product(userId, productName, price,  
-            categoryId, volume, description, postTime, statusId, photoLink) 
-            values(${userId}, ${productName}, ${price}, ${categoryId},
-             ${volume}, ${description}, ${postTime}, ${statusId}, ${photoLink});` //글 작성하는 쿼리
-
-          connection.query(sql2, function(err,rows){
-            if(err) throw err;
-            else{
-              res.json({message: "200"});
-            }
-          })
-
-      
-        }
-        else{
-          res.json({message: "400"});
-        }
-      }
-
-    })
-  })
 
 
 module.exports = router;

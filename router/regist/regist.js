@@ -17,69 +17,13 @@ connection.connect();       //mysql 연동
 
 
 
-router.get('/', function(req, res){ //상세 product조회
+router.get('/', function(req, res){ //글 작성 페이지 조회
     res.render('regist');
 })
 
-router.get('/:brandName', function(req, res){ //브랜드 별 product조회
 
-
-  var brandName=req.params.brandName;
-
-  
-  
- 
-  var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
-  C.brandName, T.statusName, P.photoLink
- FROM product as P, category as C, tradestatus as T
- WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
- AND C.brandName=?`;
-   
- 
-   connection.query(sql1,[brandName], function(err, rows){
-     if(err) throw err;
-     else{
-       if(rows.length){      
-           res.render('product', { data : rows});
-       }
-       else{
-        res.render('product', { data : rows});
-       }
-     }
- 
-   })
- })
-
-
-router.get('/detail/:productId', function(req, res){ //product 목록 조회 
-
-  var productId=req.params.productId;
-  
-   var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
-  C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname  
-  FROM product as P, category as C, tradestatus as T, user as U
-  WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
-  AND P.userId=U.id AND P.productId=${productId}`;   //글에 필요한 정보를 조회하는 쿼리
-  
-
-  connection.query(sql1, function(err, rows){
-    if(err) throw err;
-    else{
-      if(rows.length){      
-          res.render('product_detail', {data : rows});
-      }
-      else{
-        res.json({message: "400"});
-      }
-    }
-
-  })
-})
-
-
-
-router.post('/create', function(req, res){ //product 조회
-    var productData = req.body;      //회원가입한 user의 데이터(Object type)
+router.post('/create', function(req, res){ //글 작성 
+    var productData = req.body;    
     console.log(productData);
     var userId = "'" + productData.userId + "'";
     var productName = "'" + productData.productName + "'";

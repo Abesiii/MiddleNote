@@ -114,7 +114,7 @@ function regist(){
 
       sendData = JSON.stringify(sendData);    //ajax로 서버에 보내기 위해 문자열을 json으로 저장. 
       var xhr = new XMLHttpRequest();     //ajax로 브라우저와 서버가 상호작용하기 위한 객체 
-      xhr.open('POST', 'http://localhost:3000/product/create');     //post 형식으로 join.js 호출
+      xhr.open('POST', 'http://localhost:3000/regist/create');     //post 형식으로 join.js 호출
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(sendData);
   
