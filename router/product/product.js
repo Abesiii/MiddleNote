@@ -29,6 +29,74 @@ router.get('/', function(req, res){
 })*/
 
 
+
+router.get('/', function(req, res){ //상세 product조회
+
+
+  
+ /* var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
+   C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname  
+  FROM product as P, category as C, tradestatus as T, user as U
+  WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
+  AND P.userId=U.id
+  ORDER BY P.postTime ASC`;   //글에 필요한 정보를 조회하는 쿼리*/
+
+  var sql1= `SELECT P.productId, P.productName, P.price, T.statusName, P.photoLink  
+ FROM product as P, tradestatus as T
+ WHERE P.statusId=T.statusId
+ ORDER BY P.productId ASC`;
+  
+
+  connection.query(sql1, function(err, rows){
+    if(err) throw err;
+    else{
+      if(rows.length){      
+          console.log(rows);
+          res.render('product', {title : 'EXPRESS', data : rows});
+          //res.sendFile(path.join(__dirname, '../../html/eshop.html'));
+          
+      }
+      else{
+        res.json({message: "400"});
+      }
+    }
+
+  })
+})
+
+router.get('/:brandName', function(req, res){ //상세 product조회
+
+
+  var brandName=req.params.brandName;
+  
+  
+ 
+  var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
+  C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname  
+ FROM product as P, category as C, tradestatus as T, user as U
+ WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
+ AND P.userId=U.id AND C.brandName=?
+ ORDER BY P.postTime ASC`;
+   
+ 
+   connection.query(sql1,[brandName], function(err, rows){
+     if(err) throw err;
+     else{
+       if(rows.length){      
+           console.log(rows);
+           res.render('product', { data : rows});
+           //res.sendFile(path.join(__dirname, '../../html/eshop.html'));
+           
+       }
+       else{
+        res.render('product', { data : rows});
+       }
+     }
+ 
+   })
+ })
+
+
 router.get('/:productId', function(req, res){ //product 목록 조회 
 
 
@@ -55,37 +123,6 @@ router.get('/:productId', function(req, res){ //product 목록 조회
 
   })
 })
-
-router.get('/', function(req, res){ //상세 product조회
-
-
-  
-  var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
-   C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname  
-  FROM product as P, category as C, tradestatus as T, user as U
-  WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
-  AND P.userId=U.id
-  ORDER BY P.postTime ASC`;   //글에 필요한 정보를 조회하는 쿼리
-  
-
-  connection.query(sql1, function(err, rows){
-    if(err) throw err;
-    else{
-      if(rows.length){      
-          console.log(rows);
-          res.render('product', {title : 'EXPRESS', data : rows});
-          //res.sendFile(path.join(__dirname, '../../html/eshop.html'));
-          
-      }
-      else{
-        res.json({message: "400"});
-      }
-    }
-
-  })
-})
-
-
 
 
 

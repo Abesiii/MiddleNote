@@ -47,7 +47,7 @@ CREATE TABLE product (
     categoryId INT,
     volume VARCHAR(45),
     description TEXT,
-    postTime DATETIME,
+    postTime DATETIME DEFAULT CURRENT_TIMESTAMP,
     statusId INT NOT NULL,
     photoLink VARCHAR(45),
     CONSTRAINT PK_productId PRIMARY KEY (productId),
@@ -144,4 +144,13 @@ VALUES(1, '불가리 뿌르 옴므 오 드 뚜왈렛',  95000,
 (5, '아쿠아 뿌르 옴므 오 드 뚜왈렛',  84600,
  1, '100ml', '미개봉 상품입니다 시원한 향 좋아하시는분께 좋을듯 해요','2022-10-21 23:07:10', 1, NULL),
 (6, '레젬메 팔카 오 드 퍼퓸',  210000,
- 1, '10ml', '특별한 매력이 깃든 우드를 휘감은 짙고 화려한 우디 블랙 머스크 팝니다','2022-11-24 21:17:10', 1, NULL);
+ 1, '10ml', '특별한 매력이 깃든 우드를 휘감은 짙고 화려한 우디 블랙 머스크 팝니다','2022-11-24 21:17:10', 1, NULL),
+ (4, '썬더 롤링 볼트',  456240,
+ 5, '10ml', '특별한 매력이 깃든 우드를 휘감은 짙고 화려한 우디 블랙 머스크 팝니다','2022-11-24 21:17:10', 1, NULL);
+ 
+
+ INSERT INTO product (userId, productName, 
+price, categoryId, volume, description, statusId, photoLink)
+VALUES
+ (4, '썬더 롤링 볼트',  456240,
+ 5, '10ml', '특별한 매력이 깃든 우드를 휘감은 짙고 화려한 우디 블랙 머스크 팝니다', 1, NULL);

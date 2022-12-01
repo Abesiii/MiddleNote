@@ -82,5 +82,17 @@ function movetoDetailDefault(product) {
 	window.location.href=`./product/${productId}`;
 }
 
+function movetoBrandDefault(brand) {
 	
+
+	var brandName=$(brand).context.innerHTML;
+	console.log(brandName);
+
+	//window.location.href=`./product/${brandName}`;
+	window.location.replace(`./product/${brandName}`);
+}
+
+
+
+
 
