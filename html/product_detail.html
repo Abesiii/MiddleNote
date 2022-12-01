@@ -14,7 +14,7 @@
     <link href="./css/sidebars.css" rel="stylesheet">
 	<link href="./css/eshoplist.css" rel="stylesheet">
 	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
-  <!--ë¶€íŠ¸ìŠ¤íŠ¸ë© ì´ë¯¸ì§€ ì¶”ê°€-->
+  <!--ë¶??Š¸?Š¤?Š¸?© ?´ë¯¸ì?? ì¶”ê??-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -45,8 +45,8 @@
       <div id="menubar">
         <ul>
           <li><a href="index.html"> HOME </a></li>
-          <li><a href="eshop.html" style="color:#00ADB5"> ESHOP </a></li>
-          <li><a href="regist.html"> Trade-Regist </a></li>
+          <li><a href="/product" style="color:#00ADB5"> ESHOP </a></li>
+          <li><a href="/regist"> Trade-Regist </a></li>
           <li><a href="About.html"> ABOUT </a></li>
           <li><a href="Mypage.html"> <span class="fa fa-user"></span> </a></li>
         </ul>
@@ -313,10 +313,10 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
 </div>
 
 <script>
-  //ìœ„ë„ ê²½ë„ë¥¼ ë”°ë¥¸ ê±°ë¦¬ ê³„ì‚°
+  //?œ„?„ ê²½ë„ë¥? ?”°ë¥? ê±°ë¦¬ ê³„ì‚°
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   var R = 6371; // Radius of the earth in km
-  var dLat = deg2rad(lat2-lat1);  // ë¼ë””ì•ˆìœ¼ë¡œ ë³€í™˜
+  var dLat = deg2rad(lat2-lat1);  // ?¼?””?•ˆ?œ¼ë¡? ë³??™˜
   var dLon = deg2rad(lon2-lon1); 
   var a = 
     Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -339,7 +339,7 @@ function deg2rad(deg) {
   var deflng=129.0752365;
   var start;
   var end;
-//ì§€ì˜¤ì½”ë“œ API
+//ì§??˜¤ì½”ë“œ API
 var placeSearch, autocomplete, autocomplete2;
   function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
@@ -356,16 +356,16 @@ var placeSearch, autocomplete, autocomplete2;
 function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
-    document.getElementById("lat").value=place.geometry.location.lat();   //ìœ„ë„ë¥¼ ë„˜ê²¨ì¤Œ  valueê°’ìœ¼ë¡œ ë„˜ê²¨ì£¼ëŠ”ê²ƒì„ ì£¼ì˜!
-    document.getElementById("lng").value=place.geometry.location.lng();   //ê²½ë„ë¥¼ ë„˜ê²¨ì¤Œ
+    document.getElementById("lat").value=place.geometry.location.lat();   //?œ„?„ë¥? ?„˜ê²¨ì¤Œ  valueê°’ìœ¼ë¡? ?„˜ê²¨ì£¼?Š”ê²ƒì„ ì£¼ì˜!
+    document.getElementById("lng").value=place.geometry.location.lng();   //ê²½ë„ë¥? ?„˜ê²¨ì¤Œ
 	var place2 = autocomplete2.getPlace();
-    document.getElementById("lat1").value=place2.geometry.location.lat();   //ìœ„ë„ë¥¼ ë„˜ê²¨ì¤Œ  valueê°’ìœ¼ë¡œ ë„˜ê²¨ì£¼ëŠ”ê²ƒì„ ì£¼ì˜!
-    document.getElementById("lng1").value=place2.geometry.location.lng();   //ê²½ë„ë¥¼ ë„˜ê²¨ì¤Œ
+    document.getElementById("lat1").value=place2.geometry.location.lat();   //?œ„?„ë¥? ?„˜ê²¨ì¤Œ  valueê°’ìœ¼ë¡? ?„˜ê²¨ì£¼?Š”ê²ƒì„ ì£¼ì˜!
+    document.getElementById("lng1").value=place2.geometry.location.lng();   //ê²½ë„ë¥? ?„˜ê²¨ì¤Œ
 }
 
 function myMap() {
 
-//ì§€ë„ìƒì„±
+//ì§??„?ƒ?„±
   var mapCanvas = document.getElementById("map");
   var myCenter = new google.maps.LatLng(36.6283, 127.4583);
   var mapOptions = {
@@ -375,7 +375,7 @@ function myMap() {
   var map = new google.maps.Map(mapCanvas, mapOptions);
 
   var markers = [
-new google.maps.LatLng(document.getElementById("lat1").value,document.getElementById("lng1").value),  //ë„ì°©
+new google.maps.LatLng(document.getElementById("lat1").value,document.getElementById("lng1").value),  //?„ì°?
   new google.maps.LatLng(document.getElementById("lat").value,document.getElementById("lng").value),    //ì¶œë°œ
 ];
 
