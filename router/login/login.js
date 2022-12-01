@@ -67,10 +67,7 @@ router.post('/', function(req, res, next){
 })
 
 
-/**
- * @path {GET} http://localhost:3000/
- * @description 요청 데이터 값이 없고 반환 값이 있는 GET Method
- */
+
 
 router.get('/', function(req, res){
   console.log('login.js 실행');

@@ -15,40 +15,8 @@ var connection = mysql.createConnection({     //mysql connection 생성
 });
 connection.connect();       //mysql 연동
 
-router.post('/', function(req, res){
-  var userData = req.body;      //회원가입한 user의 데이터(Object type)
-  if(userData.check == '0'){    //중복확인을 위한 post 요청이면
-    var query = connection.query("select * from user where userId='" + userData.userId + "';", function(err, rows){
-      if(err) throw err;
-      else{
-        if(rows.length){      //일치하는 아이디가 있으면 중복
-          res.json(['yes']);  //josn 데이터 전송
-        }
-        else{                 //일치하는 아이디 없으면 중복 아님.
-          res.json(['no']);   //json 데이터 전송
-        }
-      }
-    })
-  }else if(userData.check == '1'){    //회원가입을 위한 post 요청이면
-    var userId = "'" + userData.userId + "'";
-    var password = "'" + userData.password + "'";
-    var userName = "'" + userData.userName + "'";
-    var nickname = "'" + userData.nickname + "'";
-    var city = "'" + userData.city + "'";
-    var gu = "'" + userData.gu + "'";
-    var dong = "'" + userData.dong + "'";
-    var detailAddress = "'" + userData.detailAddress + "'";
 
-    var query = connection.query(`insert into user(userId, password, userName, nickname, city, gu, dong, detailAddress) values(${userId}, ${password}, ${userName}, ${nickname}, ${city}, ${gu}, ${dong}, ${detailAddress});`, function(err, rows){
-      if(err) throw err;
-      else{
-        console.log(`${rows} inserted`);    
-        res.sendFile(path.join(__dirname, '../../html/join.html'));
-      }
-    })
-  }
-})
-
+/*
 router.get('/', function(req, res){
   console.log('product.js 실행');
   var query = connection.query("select * from product", function(err, rows){
@@ -58,7 +26,85 @@ router.get('/', function(req, res){
     }
   })
   res.sendFile(path.join(__dirname, '../../html/eshop.html'));
+})*/
+
+
+router.get('/', function(req, res){ //product 조회
+  var productData = req.body;      //회원가입한 user의 데이터(Object type)
+ // console.log(productData);
+  var userId = "'" + productData.userId + "'";
+  var productName = "'" + productData.productName + "'";
+  var title = "'" + productData.title + "'";
+  var price = "'" + productData.price + "'";
+  //var categoryId = "'" + productData.categoryId + "'";
+  var volume = "'" + productData.volume + "'";
+  var description = "'" + productData.description + "'";
+  var postTime = "'" + productData.postTime + "'";
+  var statusId = "'" + productData.statusId + "'";
+  var photoLink = "'" + productData.photoLink + "'"; 
+  var categoryName =productData.categoryName;
+  var brandName =productData.brandName;
+
+  
+  var sql1 = `SELECT P.productId, P.userId, P.productName, P.title, P.price, C.categoryName, 
+   C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname  
+  FROM product as P, category as C, tradestatus as T, user as U
+  WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
+  AND P.userId=U.id
+  ORDER BY P.postTime ASC`;   //글에 필요한 정보를 조회하는 쿼리
+  
+
+  connection.query(sql1, function(err, rows){
+    if(err) throw err;
+    else{
+      if(rows.length){      
+          console.log(rows);
+          res.render('product', {title : 'EXPRESS', data : rows});
+      }
+      else{
+        res.json({message: "400"});
+      }
+    }
+
+  })
 })
+
+
+router.post('/test', function(req, res){ //product 조회
+  var productData = req.body;      //회원가입한 user의 데이터(Object type)
+ // console.log(productData);
+  var userId = "'" + productData.userId + "'";
+  var productName = "'" + productData.productName + "'";
+  var title = "'" + productData.title + "'";
+  var price = "'" + productData.price + "'";
+  //var categoryId = "'" + productData.categoryId + "'";
+  var volume = "'" + productData.volume + "'";
+  var description = "'" + productData.description + "'";
+  var postTime = "'" + productData.postTime + "'";
+  var statusId = "'" + productData.statusId + "'";
+  var photoLink = "'" + productData.photoLink + "'"; 
+  var categoryName =productData.categoryName;
+  var brandName =productData.brandName;
+
+  
+  var sql1 = 'SELECT * from product';  //글의 categoryId찾는 쿼리
+  
+
+  connection.query(sql1, function(err, rows){
+    if(err) throw err;
+    else{
+      if(rows.length){      
+          res.json(rows);
+      }
+      else{
+        res.json({message: "400"});
+      }
+    }
+
+  })
+})
+
+
 
 router.post('/create', function(req, res){ //product 조회
     var productData = req.body;      //회원가입한 user의 데이터(Object type)
@@ -108,33 +154,7 @@ router.post('/create', function(req, res){ //product 조회
       }
 
     })
-/*
-   var query= connection.query("select categoryId from category where categoryName='"+ categoryName + "")
-    
-    var query = connection.query(`insert into product(userId, productName, title, price,
-       categoryId, volume, description, postTime, statusId, photoLink) 
-       values(${userId}, ${productName}, ${title}, ${price}, ${categoryId}, ${volume}, ${description}, ${postTime}, ${statusId}, ${photoLink});`, function(err, rows){
-        if(err) throw err;
-        else{
-          res.json({message: "200"})
-        }
-      })*/
   })
 
-function getPostTime(){
-var date_ob = new Date();
-var day = ("0" + date_ob.getDate()).slice(-2);
-var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-var year = date_ob.getFullYear();
-   
-var date = year + "-" + month + "-" + day;
-    
-var hours = date_ob.getHours();
-var minutes = date_ob.getMinutes();
-var seconds = date_ob.getSeconds();
-  
-var dateTime = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
-return dateTime;
 
-}
 module.exports = router;
