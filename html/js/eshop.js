@@ -79,7 +79,12 @@ function movetoDetailDefault(product) {
 	var title = $(product).siblings(".title").text();
 	var price = $(product).siblings(".price").text();
 	var productId = $(product).siblings(".productid").text();
-	window.location.href=`./product/${productId}`;
+
+
+           
+
+	//window.location.href=`./product/detail/${productId}`;
+	window.location.href = `http://localhost:3000/product/detail/${productId}`;
 }
 
 function movetoBrandDefault(brand) {

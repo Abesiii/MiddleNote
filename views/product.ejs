@@ -69,7 +69,7 @@
         <ul>
           <li><a href="index.html" > HOME </a></li>
           <li><a href="/product" style="color:#C7C7C7"> ESHOP </a></li>
-          <li><a href="regist.html"> Trade-Regist </a></li>
+          <li><a href="/regist"> Trade-Regist </a></li>
           <li><a href="about.html"> ABOUT </a></li>
           <!-- <li><a href="#Member-login.html"> LOG IN </a></li> -->
           <li><a href="Mypage.html"> <span class="fa fa-user"></span> </a></li>
@@ -150,7 +150,7 @@
 
 <!-- <div class="flex-shrink-0 p-3" style="height: 5000px; background-color: #EEEEEE;"> -->
   <div class="flex-shrink-0 p-3" style="height: 5000px;">
-    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+    <a href="/product" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <span class="fs-5 fw-semibold">Category</span>
     </a>
     <ul class="list-unstyled ps-0">
@@ -223,10 +223,13 @@
             <a class="btn btn-primary btn-lg" onclick="refresh()" role="button">Refresh<span class="glyphicon glyphicon-refresh"></span></a>
         </div>
       </div>
+      <script>
+        
+      </script>
         <div class="row">
             <% for(var i = 0; i<data.length; i++){ %>
                 <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                    <div class="product"  OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/8084464/pexels-photo-8084464.png?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
+                    <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/8084464/pexels-photo-8084464.png?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
                         <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                             <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
                             <li class="icon mx-3"><span class="far fa-heart"></span></li>
