@@ -98,7 +98,6 @@ function regist(){
   var cate1 = document.getElementById("Cate1");
   var userId=1;
   var productName=document.getElementById("regist-productname").value;
-  var title = document.getElementById("regist-title").value;
   var price = document.getElementById("regist-price").value;
 	var categoryName=mainCategory;
   var brandName=subCategory;
@@ -109,7 +108,7 @@ function regist(){
 
 
   
-      var sendData = {'userId' : userId, 'productName' : productName, 'title' : title, 'price' : price, 
+      var sendData = {'userId' : userId, 'productName' : productName, 'price' : price, 
       'categoryId' : 1, 'volume' : volume, 'description' : description, 'postTime' : postTime, 
       'statusId' : statusId, 'photoLink' : 'sadf', 'categoryName' : categoryName, 'brandName' : brandName};
 

@@ -220,114 +220,35 @@
 		<div class="container">
 		<div class="row" style="padding:30px 0px 30px 0px">
         <div class="col-sm-12 text-right">
-            <table>
-                <th>index</th>
-                <th>제목</th>
-                <th>상품이름</th>
-                <th>가격</th>
-                <th>카테고리</th>
-                <th>브랜드</th>
-                <th>용량</th>
-
-            <% for(var i = 0; i<10; i++){ %>
-                <tr>
-                    <td><%= i %></td>
-                    <td><%= data[i].title %></td>
-                    <td><%= data[i].productName %></td>
-                    <td><%= data[i].price %></td>
-                    <td><%= data[i].categoryName %></td>
-                    <td><%= data[i].brandName %></td>
-                    <td><%= data[i].volume %></td>
-                </tr>
-            <% } %>
-            </table>
-    
             <a class="btn btn-primary btn-lg" onclick="refresh()" role="button">Refresh<span class="glyphicon glyphicon-refresh"></span></a>
         </div>
       </div>
         <div class="row">
-            <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                <div class="product"  OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/8084464/pexels-photo-8084464.png?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                    <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                        <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                        <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                        <li class="icon"><span class="fas fa-shopping-bag"></span></li>
-                    </ul>
+            <% for(var i = 0; i<data.length; i++){ %>
+                <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
+                    <div class="product"  OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/8084464/pexels-photo-8084464.png?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
+                        <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+                            <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
+                            <li class="icon mx-3"><span class="far fa-heart"></span></li>
+                            <li class="icon"><span class="fas fa-shopping-bag"></span></li>
+                        </ul>
+                    </div>
+                   <% if (data[i].statusName=='PROGRESS') { %>
+                    <div class="tag bg-green"> <%= data[i].statusName %> </div>
+                <%}%>
+                <% if(data[i].statusName=='COMPLETE') { %>
+                    <div class="tag bg-red"> <%= data[i].statusName %> </div>
+                <%}%>
+                    
+                    <div class="title pt-4 pb-1"> <%= data[i].productName %> </div>
+                    <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
+                    <div class="price"> <%= data[i].price %>원 </div>
+                    <div class="uesrid" style="display: none;"><%= data[i].userId %> </div>
+                    <div class="productid" style="display: none;"><%= data[i].productId %> </div>
                 </div>
-                <div class="tag bg-red">sale</div>
-                <div class="title pt-4 pb-1">Jo Malone</div>
-                <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                <div class="price">$ 60.0</div>
-            </div>
-            <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/755992/pexels-photo-755992.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                    <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                        <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                        <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                        <li class="icon"><span class="fas fa-shopping-bag"></span></li>
-                    </ul>
-                </div>
-                <div class="tag bg-black">out of stock</div>
-                <div class="title pt-4 pb-1">Coco Chanel</div>
-                <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                <div class="price">$ 55.0</div>
-            </div>
-            <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/1961795/pexels-photo-1961795.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                    <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                        <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                        <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                        <li class="icon"><span class="fas fa-shopping-bag"></span></li>
-                    </ul>
-                </div>
-                <div class="title pt-4 pb-1">Dolce&Gabbana</div>
-                <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                <div class="price">$ 70.0</div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/1830450/pexels-photo-1830450.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                    <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                        <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                        <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                        <li class="icon"><span class="fas fa-shopping-bag"></span></li>
-                    </ul>
-                </div>
-                <div class="tag bg-red">sale</div>
-                <div class="title pt-4 pb-1">Victorias Secret</div>
-                <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                <div class="price">$ 60.0</div>
-            </div>
-            <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/724635/pexels-photo-724635.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                    <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                        <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                        <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                        <li class="icon"><span class="fas fa-shopping-bag"></span></li>
-                    </ul>
-                </div>
-                <div class="tag bg-black">out of stock</div>
-                <div class="title pt-4 pb-1">Escada</div>
-                <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                <div class="price">$ 55.0</div>
-            </div>
-            <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/2922276/pexels-photo-2922276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                    <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                        <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                        <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                        <li class="icon"><span class="fas fa-shopping-bag"></span></li>
-                    </ul>
-                </div>
-                <div class="title pt-4 pb-1">Givenchy</div>
-                <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                <div class="price">$ 70.0</div>
-            </div>
-        </div>
-
-		
+          
+            <% } %>
+           
 		
 		
 		

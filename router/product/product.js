@@ -30,23 +30,10 @@ router.get('/', function(req, res){
 
 
 router.get('/', function(req, res){ //product 조회
-  var productData = req.body;      //회원가입한 user의 데이터(Object type)
- // console.log(productData);
-  var userId = "'" + productData.userId + "'";
-  var productName = "'" + productData.productName + "'";
-  var title = "'" + productData.title + "'";
-  var price = "'" + productData.price + "'";
-  //var categoryId = "'" + productData.categoryId + "'";
-  var volume = "'" + productData.volume + "'";
-  var description = "'" + productData.description + "'";
-  var postTime = "'" + productData.postTime + "'";
-  var statusId = "'" + productData.statusId + "'";
-  var photoLink = "'" + productData.photoLink + "'"; 
-  var categoryName =productData.categoryName;
-  var brandName =productData.brandName;
+
 
   
-  var sql1 = `SELECT P.productId, P.userId, P.productName, P.title, P.price, C.categoryName, 
+  var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
    C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname  
   FROM product as P, category as C, tradestatus as T, user as U
   WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
@@ -70,39 +57,6 @@ router.get('/', function(req, res){ //product 조회
 })
 
 
-router.post('/test', function(req, res){ //product 조회
-  var productData = req.body;      //회원가입한 user의 데이터(Object type)
- // console.log(productData);
-  var userId = "'" + productData.userId + "'";
-  var productName = "'" + productData.productName + "'";
-  var title = "'" + productData.title + "'";
-  var price = "'" + productData.price + "'";
-  //var categoryId = "'" + productData.categoryId + "'";
-  var volume = "'" + productData.volume + "'";
-  var description = "'" + productData.description + "'";
-  var postTime = "'" + productData.postTime + "'";
-  var statusId = "'" + productData.statusId + "'";
-  var photoLink = "'" + productData.photoLink + "'"; 
-  var categoryName =productData.categoryName;
-  var brandName =productData.brandName;
-
-  
-  var sql1 = 'SELECT * from product';  //글의 categoryId찾는 쿼리
-  
-
-  connection.query(sql1, function(err, rows){
-    if(err) throw err;
-    else{
-      if(rows.length){      
-          res.json(rows);
-      }
-      else{
-        res.json({message: "400"});
-      }
-    }
-
-  })
-})
 
 
 
@@ -111,7 +65,6 @@ router.post('/create', function(req, res){ //product 조회
     console.log(productData);
     var userId = "'" + productData.userId + "'";
     var productName = "'" + productData.productName + "'";
-    var title = "'" + productData.title + "'";
     var price = "'" + productData.price + "'";
     //var categoryId = "'" + productData.categoryId + "'";
     var volume = "'" + productData.volume + "'";
@@ -134,10 +87,10 @@ router.post('/create', function(req, res){ //product 조회
           var categoryId="'"+rows[0].categoryId+"'";
           console.log(categoryId);
 
-          var sql2 = `insert into product(userId, productName, title, price,  
+          var sql2 = `insert into product(userId, productName, price,  
             categoryId, volume, description, postTime, statusId, photoLink) 
-            values(${userId}, ${productName}, ${title}, 
-            ${price}, ${categoryId}, ${volume}, ${description}, ${postTime}, ${statusId}, ${photoLink});` //글 작성하는 쿼리
+            values(${userId}, ${productName}, ${price}, ${categoryId},
+             ${volume}, ${description}, ${postTime}, ${statusId}, ${photoLink});` //글 작성하는 쿼리
 
           connection.query(sql2, function(err,rows){
             if(err) throw err;
