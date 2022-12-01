@@ -15,8 +15,10 @@ var connection = mysql.createConnection({     //mysql connection 생성
 });
 connection.connect();       //mysql 연동
 
+
+
 router.post('/', function(req, res){
-  var userData = req.body;      //회원가입한 user의 데이터(Object type)
+  var userData = req.body;      //회원가입한 user의 데이터(Object type)   
   if(userData.check == '0'){    //중복확인을 위한 post 요청이면
     var query = connection.query("select * from user where userId='" + userData.userId + "';", function(err, rows){
       if(err) throw err;
@@ -48,6 +50,8 @@ router.post('/', function(req, res){
     })
   }
 })
+
+
 
 router.get('/', function(req, res){
   console.log('join.js 실행');

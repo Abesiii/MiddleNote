@@ -67,16 +67,49 @@ router.post('/create', function(req, res){ //product 조회
     var productName = "'" + productData.productName + "'";
     var title = "'" + productData.title + "'";
     var price = "'" + productData.price + "'";
-    var categoryId = "'" + productData.categoryId + "'";
+    //var categoryId = "'" + productData.categoryId + "'";
     var volume = "'" + productData.volume + "'";
     var description = "'" + productData.description + "'";
     var postTime = "'" + productData.postTime + "'";
     var statusId = "'" + productData.statusId + "'";
-    var photoLink = "'" + productData.photoLink + "'";   
+    var photoLink = "'" + productData.photoLink + "'"; 
+    var categoryName =productData.categoryName;
+    var brandName =productData.brandName;
+
     
+    var sql1 = 'SELECT categoryId FROM category where categoryName=? AND brandName=?';  //글의 categoryId찾는 쿼리
     
-    
-    
+
+    connection.query(sql1, [categoryName, brandName], function(err, rows, field){
+      if(err) throw err;
+      else{
+        if(rows.length){      //일치하는 카테고리 id가 있을때
+
+          var categoryId="'"+rows[0].categoryId+"'";
+          console.log(categoryId);
+
+          var sql2 = `insert into product(userId, productName, title, price,  
+            categoryId, volume, description, postTime, statusId, photoLink) 
+            values(${userId}, ${productName}, ${title}, 
+            ${price}, ${categoryId}, ${volume}, ${description}, ${postTime}, ${statusId}, ${photoLink});` //글 작성하는 쿼리
+
+          connection.query(sql2, function(err,rows){
+            if(err) throw err;
+            else{
+              res.json({message: "200"});
+            }
+          })
+
+      
+        }
+        else{
+          res.json({message: "400"});
+        }
+      }
+
+    })
+/*
+   var query= connection.query("select categoryId from category where categoryName='"+ categoryName + "")
     
     var query = connection.query(`insert into product(userId, productName, title, price,
        categoryId, volume, description, postTime, statusId, photoLink) 
@@ -85,8 +118,7 @@ router.post('/create', function(req, res){ //product 조회
         else{
           res.json({message: "200"})
         }
-      })
-
+      })*/
   })
 
 function getPostTime(){

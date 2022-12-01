@@ -10,13 +10,46 @@ var join = require('./join/join');
 var login = require('./login/login');
 var product = require('./product/product');
 
+
+
+
 router.use('/main', main);
 router.use('/join', join);
 router.use('/login', login);
 router.use('/product', product);
-
 router.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '../html/index.html'));
 })
 
 module.exports = router;
+
+
+
+
+
+
+/**
+ * @swagger
+ *  /product/create:
+ *    post:
+ *      tags:
+ *      - product
+ *      description: 글 작성
+ *      produces:
+ *      - application/json
+ *      parameters:
+ *        - in: query
+ *          name: category
+ *          required: true
+ *          schema:
+ *            type: integer
+ *            description: 카테고리
+ *      responses:
+ *       200:
+ *        description: 글 작성 성공
+ */
+
+
+
+
+

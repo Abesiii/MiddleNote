@@ -6,12 +6,39 @@ var passport = require('passport');
 var localStratege = require('passport-local').Strategy;
 var session = require('express-session');
 var flash = require('connect-flash');
+const { swaggerUi, specs } = require('./modules/swagger');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
+
+
+/**
+ * @swagger
+ *  /product:
+ *    get:
+ *      tags:
+ *      - product
+ *      description: 모든 제품 조회
+ *      produces:
+ *      - application/json
+ *      parameters:
+ *        - in: query
+ *          name: category
+ *          required: false
+ *          schema:
+ *            type: integer
+ *            description: 카테고리
+ *      responses:
+ *       200:
+ *        description: 제품 조회 성공
+ */
 
 var port = 3000;
 app.listen(3000, function(){
   // console.log(`${port}포트로 서버 시작`);
   console.log('3000포트로 서버 시작');
 })
+
+//app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(express.static('html'));      //html이 static 디렉토리 
 app.use(bodyParser.json());
@@ -27,3 +54,4 @@ app.use(passport.session());
 app.use(flash());
 
 app.use(router);      //라우터. index.js가 모든 라우팅을 컨트롤함. 
+

@@ -70,6 +70,16 @@
           </div>
         </div>
 
+        <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
+          <div class="col-sm-3">
+            <h3>Product Name</h3>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="regist-productname" placeholder="Input Product Name" name="productname" style="height:50px; font-size:20px;">
+
+          </div>
+        </div>
+
         <div class="row" style="padding:30px 0px 30px 0px; border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3">
             <h3>Title</h3>
@@ -79,6 +89,8 @@
           </div>
         </div>
 
+        
+
         <div class="row text-center" id="regist-cate" style="padding:30px 0px 30px 0px; border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3 text-left">
             <h3>Categories</h3>
@@ -87,8 +99,8 @@
             <div class="row">
               <div class="col-sm-6">
                 <ul class="list-group">
-                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate1" data-toggle="collapse" data-target="#cate1">For Femme</li>
-                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate2" data-toggle="collapse" data-target="#cate2">For Homme</li>
+                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate1" data-toggle="collapse" data-target="#cate1">For Homme</li>
+                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate2" data-toggle="collapse" data-target="#cate2">For Femme</li>
                   <li class="list-group-item cate" onclick="showCategory(this)" id="Cate3" data-toggle="collapse" data-target="#cate3">Eau de Toilete</li>
                   <li class="list-group-item cate" onclick="showCategory(this)" id="Cate4" data-toggle="collapse" data-target="#cate4">Eau de Cologne</li>
                 </ul>
@@ -129,14 +141,28 @@
         </div>
 
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
+          <div class="col-sm-6">
           <div class="col-sm-3">
             <h3>Price</h3>
           </div>
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="regist-price" placeholder="Input Only Number" name="price" onkeyup="inputNumberFormat(this)" style="height:50px; font-size:20px;">
+            <input type="text" class="form-control" id="regist-price" placeholder="Input Only Number" name="price" style="height:50px; font-size:20px;">
 
           </div>
+          </div>
+          <div class="col-sm-6">
+          <div class="col-sm-3">
+            <h3>Volume</h3>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="regist-volume" placeholder="Input volume ex: (50ml)" name="price" style="height:50px; font-size:20px;">
+
+          </div>
+
         </div>
+        </div>
+
+        
 
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3">
@@ -144,25 +170,17 @@
 
           </div>
           <div class="col-sm-9">
-              <textarea rows="6" style="height:200px; font-size:20px;" class="form-control" id="regist-description" placeholder="Input Prodcut Detail" name="description"></textarea>
+              <textarea rows="6" style="height:200px; font-size:20px;" class="form-control" id="regist-description" placeholder="Input Product Detail" name="description"></textarea>
           </div>
         </div>
 
-        <div class="row" style="padding:30px 0px 30px 0px; border-bottom:0.5px solid #C7C7C7;">
-          <div class="col-sm-3">
-            <h3>Location</h3>
-            <p><span class="glyphicon glyphicon-warning-sign"></span> Input Road name address</p>
-          </div>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="regist-location" placeholder="Input Location" name="title" style="height:50px; font-size:20px;">
-          </div>
-        </div>
+     
 
 
 
         <div class="row" style="padding:30px 0px 30px 0px">
         <div class="col-sm-12 text-right">
-            <a href="eshop.html" class="btn btn-danger btn-lg" onclick="regist2()" role="button">Regist</a>
+            <a href="eshop.html" class="btn btn-danger btn-lg" onclick="regist()" role="button">Regist</a>
         </div>
       </div>
 
