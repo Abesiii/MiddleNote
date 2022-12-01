@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Product Card/Page</title>
-    <link rel="stylesheet" href="./css/productdetailstyle.css">
+    <link rel="stylesheet" href="../css/productdetailstyle.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/sidebars.css" rel="stylesheet">
-    <link href="./css/eshoplist.css" rel="stylesheet">
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
-
-    <script src="js/jquery.cycle2.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/sidebars.css" rel="stylesheet">
+	<link href="../css/eshoplist.css" rel="stylesheet">
+	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
+  <!--부트스트랩 이미지 추가-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 #header{
     width:1000px;
@@ -28,31 +31,6 @@
   #menubar{
     float: right;
   }
-  
-  * {
-	background-color: white;
-  }
-  
-  body {
-	background-color: white;
-  }
-  
-  #leftbannerdiv {
-  background-color: #ffffff;
-  }
-  
-  .card {
-  background-color: #ffffff;
-  }
-  
-  .card-wrapper {
-  background-color: #ffffff;
-  }
-  
-  .container {
-    background-color: #ffffff;
-  }
-  
 </style>
   </head>
   <body>
@@ -60,18 +38,16 @@
     <div id="header">
       <div id="logo">
         <a href="index.html">
-          <img src="./img/logo.jpg" alt="logo">
-
+          <img src="../img/logo.png" alt="logo">
         </a>
       </div>
 
       <div id="menubar">
         <ul>
-          <li><a href="index.html" > HOME </a></li>
-          <li><a href="/product" style="color:#C7C7C7"> ESHOP </a></li>
+          <li><a href="index.html"> HOME </a></li>
+          <li><a href="eshop.html" style="color:#00ADB5"> ESHOP </a></li>
           <li><a href="regist.html"> Trade-Regist </a></li>
-          <li><a href="about.html"> ABOUT </a></li>
-          <!-- <li><a href="#Member-login.html"> LOG IN </a></li> -->
+          <li><a href="About.html"> ABOUT </a></li>
           <li><a href="Mypage.html"> <span class="fa fa-user"></span> </a></li>
         </ul>
       </div>
@@ -139,6 +115,7 @@
   </symbol>
 </svg>
 
+
 <div class="container-fluid" style="width: 80%;">
 <div class="row">
 <div class="col-1">
@@ -148,8 +125,7 @@
 
 
 
-<!-- <div class="flex-shrink-0 p-3" style="height: 5000px; background-color: #EEEEEE;"> -->
-  <div class="flex-shrink-0 p-3" style="height: 5000px;">
+  <div class="flex-shrink-0 p-3" style="width: 280px; height: 5000px;">
     <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <span class="fs-5 fw-semibold">Category</span>
     </a>
@@ -158,9 +134,9 @@
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false" style="margin-bottom: 10px;">
           For Homme
         </button>
-        <div class="collapse show" id="home-collapse">
+        <div class="collapse" id="home-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="" class="link-dark rounded">Bvlgari</a></li><br>
+            <li><a href="#" class="link-dark rounded">Bvlgari</a></li><br>
             <li><a href="eshop.html" class="link-dark rounded" style="color:#00ADB5">Jo Malone</a></li><br>
             <li><a href="#" class="link-dark rounded">Calvin Klein</a></li><br>
           </ul>
@@ -214,66 +190,229 @@
 
 </div>
 
-<div class = "card-wrapper col-8">
-  <div class = "card">
-<!--    <div class="container bg-white"> -->
-		<div class="container">
-		<div class="row" style="padding:30px 0px 30px 0px">
-        <div class="col-sm-12 text-right">
-            <a class="btn btn-primary btn-lg" onclick="refresh()" role="button">Refresh<span class="glyphicon glyphicon-refresh"></span></a>
+
+
+    <div class = "card-wrapper col-8">
+      <div class = "card">
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+              <img src = "https://loremflickr.com/900/900/jomalone?random=1">
+              <img src = "https://loremflickr.com/900/900/jomalone?random=2">
+			  <img src = "https://loremflickr.com/900/900/jomalone?random=3">
+			  <img src = "https://loremflickr.com/900/900/jomalone?random=4">
+            </div>
+          </div>
+          <div class = "img-select">
+            <div class = "img-item">
+              <a href = "#" data-id = "1">
+              <img src = "../img/detail/bvl1.png" alt = "BVL POUR HOMME">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "2">
+                <img src = "../img/detail/bvl2.png" alt = "BVL POUR HOMME">
+              </a>
+            </div>
+			<div class = "img-item">
+              <a href = "#" data-id = "3">
+                <img src = "../img/detail/bvl4.png" alt = "BVL POUR HOMME">
+              </a>
+            </div>
+			<div class = "img-item">
+              <a href = "#" data-id = "4">
+                <img src = "../img/detail/bvl3.png" alt = "BVL LOGO" width="100%;">
+              </a>
+            </div>
+          </div>
+        </div>
+
+<script>
+        var options = {
+    width: 400, // required
+    zoomPosition: 'right'
+    // more options here
+};
+new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
+</script>
+
+        <!-- card right -->
+        <div class = "product-content">
+          <h2 class = "product-title">BVLGARI POUR HOMME AU DE TOILLETTE</h2>
+          <a href = "https://www.bulgari.com/ko-kr/83110.html" class = "product-link">Visit BVL official site</a>
+
+
+          <div class = "product-price">
+            <p class = "new-price">Discounted Price: <span>$249.00 (5%)</span></p>
+          </div>
+
+          <div class = "product-detail" style="text-align: right;">
+            <h2>about this item: </h2>
+            <p>Bulgari pour Homme is comfortable and refreshing, the perfect fragrance for men who wish to subtly exalt their personality. </p>
+            <p>The sleek and understated design of the bottle expresses a refined idea of luxury, prestige and masculine elegance.</p>
+            <ul>
+              <li>Volume: 1.7 fl. oz.</li><br>
+              <li>Available: <span>in stock</span></li><br>
+              <li>Category: <span>For Homme, Bvlgari</span></li><br>
+              <li>Shipping Area: <span>Cheongju, Chungcheongbuk-do, South Korea.</span></li><br>
+              <li>Membership Benefit: <span>Free shipping for Chungbuk Nat'l Univ. students</span></li>
+            </ul>
+          </div>
+
+       
+		  
+		  	  <div class ="container-fluid" id="Location">
+            <br>
+            <div class="row" style="padding-left: 0px; font-weight: bold;">
+              <div class="col-sm-4" id="text" style="padding-left: 10px;"> &nbsp;Start Location<span class="glyphicon glyphicon-map-marker"></span>
+              </div>
+              <div class="col-sm-4" id="text" style="padding-left: 10px;"> &nbsp; Destination Location<span class="glyphicon glyphicon-map-marker"></span>
+              </div>
+            </div>
+        
+          <form class="row" style="padding-left: 0px; ">
+          <div class="col-sm-4">
+          <input id="departurepoint" type="text" class="form-control" placeholder="Input start Location">
+          </div>
+          <div class="col-sm-4">
+            <input id="arrivalpoint" type="text" class="form-control" placeholder="Input destination Location">
+            </div>
+            <div class="col-sm-4">
+            <button class="btn btn-primary btn" type="button" onclick="myMap();">Find</button>
+                </div>
+          </form>
+        
+          <div class="row" style="font-weight: bold;">
+            <div class="col-sm-4">
+            Distance <span class="glyphicon glyphicon-plane"></span> <input id="distance" type="text" class="form-control" style="visibility: hidden;"placeholder="distance">
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-sm-3" style="visibility: hidden;">
+              <input class="field" id="lat" />
+            <input class="field" id="lat1" />
+          </div>
+          <div class="col-sm-3" style="visibility: hidden;">
+            <input class="field" id="lng" />
+          <input class="field" id="lng1" /></div>
+          </form>
+          <div id="map" style="width:100%; height: 480px"></div>
+        </div>
+        
+                </div>
+
         </div>
       </div>
-        <div class="row">
-            <% for(var i = 0; i<data.length; i++){ %>
-                <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                    <div class="product"  OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/8084464/pexels-photo-8084464.png?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                        <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                            <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                            <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                            <li class="icon"><span class="fas fa-shopping-bag"></span></li>
-                        </ul>
-                    </div>
-                   <% if (data[i].statusName=='PROGRESS') { %>
-                    <div class="tag bg-green"> <%= data[i].statusName %> </div>
-                <%}%>
-                <% if(data[i].statusName=='COMPLETE') { %>
-                    <div class="tag bg-red"> <%= data[i].statusName %> </div>
-                <%}%>
-                    
-                    <div class="title pt-4 pb-1"> <%= data[i].productName %> </div>
-                    <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                    <div class="price"> <%= data[i].price %>원 </div>
-                    <div class="uesrid" style="display: none;"><%= data[i].userId %> </div>
-                    <div class="productid" style="display: none;"><%= data[i].productId %> </div>
-                </div>
-          
-            <% } %>
-           
-		
-		
-		
-		
-		
-		
-		        <div class="row" id="thirdrow">
-
-        </div>
-		
-		
-		
-		
-		
-		
-		
-		
-
     </div>
-  </div>
-</div>
-</div>
+	
+	
+	</div>
+	
+
 </div>
 
+<script>
+  //위도 경도를 따른 거리 계산
+  function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // 라디안으로 변환
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
 
-    <script src="./js/eshop.js"></script>
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+</script>
+
+    <script src="../js/productdetail.js"></script>
+	<script>
+  var deflat=35.1799528;
+  var deflng=129.0752365;
+  var start;
+  var end;
+//지오코드 API
+var placeSearch, autocomplete, autocomplete2;
+  function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+	autocomplete = new google.maps.places.Autocomplete(
+                                      (document.getElementById('arrivalpoint')),{types: ['geocode']});
+	autocomplete2 = new google.maps.places.Autocomplete(
+                                      (document.getElementById('departurepoint')),{types: ['geocode']});
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocomplete.addListener('place_changed', fillInAddress);
+  autocomplete2.addListener('place_changed', fillInAddress);
+}
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+    document.getElementById("lat").value=place.geometry.location.lat();   //위도를 넘겨줌  value값으로 넘겨주는것을 주의!
+    document.getElementById("lng").value=place.geometry.location.lng();   //경도를 넘겨줌
+	var place2 = autocomplete2.getPlace();
+    document.getElementById("lat1").value=place2.geometry.location.lat();   //위도를 넘겨줌  value값으로 넘겨주는것을 주의!
+    document.getElementById("lng1").value=place2.geometry.location.lng();   //경도를 넘겨줌
+}
+
+function myMap() {
+
+//지도생성
+  var mapCanvas = document.getElementById("map");
+  var myCenter = new google.maps.LatLng(36.6283, 127.4583);
+  var mapOptions = {
+    center: myCenter,
+      zoom: 7
+  };
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+
+  var markers = [
+new google.maps.LatLng(document.getElementById("lat1").value,document.getElementById("lng1").value),  //도착
+  new google.maps.LatLng(document.getElementById("lat").value,document.getElementById("lng").value),    //출발
+];
+
+var marker, i;
+
+for(i = 0; i < markers.length; i++){
+marker = new google.maps.Marker({
+  position: markers[i],
+  map: map
+  });
+
+  var position = [
+    ['Buyer(Departure)'],
+    ['Seller(Destination)'],
+  ];
+  var infowindow = new google.maps.InfoWindow({
+  content:
+  "<span><strong>"+position[i]+"</strong></span>"
+  });
+  infowindow.open(map,marker);
+}
+var myPath = new google.maps.Polyline({
+  path: [markers[0],markers[1]],
+  strokeColor: "#0000FF",
+  strokeOpacity: 0.8,
+  strokeWeight: 2
+});
+myPath.setMap(map);
+ //거리계산
+ document.getElementById("distance").style.visibility="visible";
+  document.getElementById("distance").value=
+  document.getElementById("distance").value= "Approx.  "+Math.round(getDistanceFromLatLonInKm(document.getElementById("lat1").value,document.getElementById("lng1").value,
+  document.getElementById("lat").value,document.getElementById("lng").value))+'Km'
+}
+myMap();
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=mykey&libraries=places&callback=initAutocomplete" async defer></script>
+   <script src="../js/productdetailnew.js"></script>
   </body>
 </html>

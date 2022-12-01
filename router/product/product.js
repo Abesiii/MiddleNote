@@ -29,7 +29,34 @@ router.get('/', function(req, res){
 })*/
 
 
-router.get('/', function(req, res){ //product 조회
+router.get('/:productId', function(req, res){ //product 목록 조회 
+
+
+  
+  var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
+   C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname  
+  FROM product as P, category as C, tradestatus as T, user as U
+  WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
+  AND P.userId=U.id
+  ORDER BY P.postTime ASC`;   //글에 필요한 정보를 조회하는 쿼리
+  
+
+  connection.query(sql1, function(err, rows){
+    if(err) throw err;
+    else{
+      if(rows.length){      
+          console.log(rows);
+          res.render('product_detail', {title : 'EXPRESS', data : rows});
+      }
+      else{
+        res.json({message: "400"});
+      }
+    }
+
+  })
+})
+
+router.get('/', function(req, res){ //상세 product조회
 
 
   
@@ -47,6 +74,8 @@ router.get('/', function(req, res){ //product 조회
       if(rows.length){      
           console.log(rows);
           res.render('product', {title : 'EXPRESS', data : rows});
+          //res.sendFile(path.join(__dirname, '../../html/eshop.html'));
+          
       }
       else{
         res.json({message: "400"});

@@ -61,7 +61,7 @@ $(document).ready(function() {
 });
 
 
-
+/*
 function movetoDetailDefault(product) {
 	
 	var jquerythis = $(product);
@@ -70,5 +70,17 @@ function movetoDetailDefault(product) {
 	var price = $(product).siblings(".price").text();
 	window.location.href='./product_detail.html?title=' + title + '&price=' + price;
 }
+*/
+
+function movetoDetailDefault(product) {
+	
+	var jquerythis = $(product);
+	
+	var title = $(product).siblings(".title").text();
+	var price = $(product).siblings(".price").text();
+	var productId = $(product).siblings(".productid").text();
+	window.location.href=`./product/${productId}`;
+}
+
 	
 
