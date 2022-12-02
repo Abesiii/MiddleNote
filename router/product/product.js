@@ -104,15 +104,39 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   FROM product as P, category as C, tradestatus as T, user as U
   WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
   AND P.userId=U.id AND P.productId=${productId}`;   //글에 필요한 정보를 조회하는 쿼리
-  
- 
 
-  connection.query(sql1, function(err, rows){
+
+  var sql2 = `SELECT  P.productId, C.commentTime, C.commentContent, C.userId, U.nickname
+  FROM product as P, comment as C, user as U
+  where P.productId=C.ProductId AND C.userId=U.id
+  AND P.productId=${productId}`;   //해당 글에 달린 댓글 정보 조회 
+  
+  
+
+  connection.query(sql1, function(err, data1){
     if(err) throw err;
     else{
-      if(rows.length){      
-        console.log(rows);
-          res.render('product_detail', {data : rows});
+      if(data1.length){      
+        connection.query(sql2, function(err,data2){
+          if(err) throw err;
+          else{
+            if(data2.length){
+              for(var i=0; i<data2.length; i++){
+                var dateString=getDate(data2[i].commentTime);     //datetime 파싱
+                var timeString=getTime(data2[i].commentTime);
+                data2[i].dateString = dateString;
+                data2[i].timeString=timeString;
+                console.log(data2[i]);
+              }
+
+         
+              res.render('product_detail', {data : data1, comment: data2});
+            }
+            else{
+              res.render('product_detail', {data : data1, comment : data2});
+            }
+          }
+        })
       }
       else{
         res.json({message: "400"});
@@ -123,7 +147,26 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
 })
 
 
+function getDate(today){
 
+var year = today.getFullYear();
+var month = ('0' + (today.getMonth() + 1)).slice(-2);
+var day = ('0' + today.getDate()).slice(-2);
+
+var dateString = year + '-' + month  + '-' + day;
+return dateString;
+}
+
+
+function getTime(today){
+
+var hours = ('0' + today.getHours()).slice(-2); 
+var minutes = ('0' + today.getMinutes()).slice(-2);
+var seconds = ('0' + today.getSeconds()).slice(-2); 
+
+var timeString = hours + ':' + minutes  + ':' + seconds;
+return timeString;
+}
 
 
 module.exports = router;

@@ -76,7 +76,7 @@ CREATE TABLE promise (
     );
     
 CREATE TABLE comment (
-   commentTime DATETIME,
+   commentTime DATETIME DEFAULT CURRENT_TIMESTAMP,
     userId INT,
     productId INT,
     commentContent VARCHAR(300),
@@ -112,7 +112,10 @@ VALUES(1, 'For Homme', 'Bvlgari' ),
 (9, 'Eau de Toilete', 'Montblanc'),
 (10, 'Eau de Toilete', 'YvesSaintLaur'),
 (11, 'Eau de Toilete', 'Ralph Lauren'),
-(12, 'Eau de Cologne', 'Bottega');
+(12, 'Eau de Cologne', 'Bottega Veneta'),
+(13, 'Eau de Cologne', 'Louis Vuitton'),
+(14, 'Eau de Cologne', 'Hermes'),
+(15, 'Eau de Cologne', 'Salvatore Ferragamo');
 
 
 INSERT INTO tradestatus
@@ -132,25 +135,29 @@ VALUES(1, 'kksshh0612', '51332', '김성호', '휴학예정자', '청주시', '�
 
 
 INSERT INTO product (userId, productName, 
-price, categoryId, volume, description, postTime, statusId, photoLink)
-VALUES(1, '불가리 뿌르 옴므 오 드 뚜왈렛',  95000,
-1, '50ml', '개봉한지 일주일됐고 한두번밖에 안뿌려 봤어요','2022-11-27 23:07:10', 1, NULL),
-(2, '뿌르 옴므 오 드 뚜왈렛 스프레이',  127820,
- 1, '100ml', '시원한 향이고 남성적인 향이에요 선물받은거팔아요','2022-11-25 12:15:55', 1, NULL),
-(3, '불가리 맨 테라 에센스 오 드 퍼퓸',  107800,
- 1, '100ml', '개봉 안했습니다 받은지 2주 됐어요','2022-11-29 09:02:10', 1, NULL),
-(4, '맨 우드 에센스 오 드 퍼퓸',  98260,
- 1, '50ml', '절반정도 썼습니다','2022-11-15 14:54:00', 1, NULL),
-(5, '아쿠아 뿌르 옴므 오 드 뚜왈렛',  84600,
- 1, '100ml', '미개봉 상품입니다 시원한 향 좋아하시는분께 좋을듯 해요','2022-10-21 23:07:10', 1, NULL),
-(6, '레젬메 팔카 오 드 퍼퓸',  210000,
- 1, '10ml', '특별한 매력이 깃든 우드를 휘감은 짙고 화려한 우디 블랙 머스크 팝니다','2022-11-24 21:17:10', 1, NULL),
- (4, '썬더 롤링 볼트',  456240,
- 5, '10ml', '특별한 매력이 깃든 우드를 휘감은 짙고 화려한 우디 블랙 머스크 팝니다','2022-11-24 21:17:10', 1, NULL);
- 
-
- INSERT INTO product (userId, productName, 
 price, categoryId, volume, description, statusId, photoLink)
-VALUES
+VALUES(1, '불가리 뿌르 옴므 오 드 뚜왈렛',  95000,
+1, '50ml', '개봉한지 일주일됐고 한두번밖에 안뿌려 봤어요', 1, NULL),
+(2, '뿌르 옴므 오 드 뚜왈렛 스프레이',  127820,
+ 1, '100ml', '시원한 향이고 남성적인 향이에요 선물받은거팔아요', 1, NULL),
+(3, '불가리 맨 테라 에센스 오 드 퍼퓸',  107800,
+ 1, '100ml', '개봉 안했습니다 받은지 2주 됐어요', 1, NULL),
+(4, '맨 우드 에센스 오 드 퍼퓸',  98260,
+ 1, '50ml', '절반정도 썼습니다', 1, NULL),
+(5, '아쿠아 뿌르 옴므 오 드 뚜왈렛',  84600,
+ 1, '100ml', '미개봉 상품입니다 시원한 향 좋아하시는분께 좋을듯 해요', 1, NULL),
+(6, '레젬메 팔카 오 드 퍼퓸',  210000,
+ 1, '10ml', '특별한 매력이 깃든 우드를 휘감은 짙고 화려한 우디 블랙 머스크 팝니다', 1, NULL),
  (4, '썬더 롤링 볼트',  456240,
  5, '10ml', '특별한 매력이 깃든 우드를 휘감은 짙고 화려한 우디 블랙 머스크 팝니다', 1, NULL);
+ 
+
+
+INSERT INTO comment(commentTime, userId, productId, commentContent)
+VALUES("2022-12-01 12:21:34",1,1, "이게무슨 일이야 이렇게 좋은 날에"),
+("2022-12-01 12:21:35",2,2, "TEST"),
+("2022-12-01 12:21:36",2,1, "TEST2"),
+("2022-12-01 12:21:37",3,3, "TEST3"),
+("2022-12-01 12:21:38",3,2, "TEST4"),
+("2022-12-01 12:21:39",4,1, "월드컵 1시간 전"),
+("2022-12-01 12:21:40",4,1, "이게무슨일이야이렇게좋은날에");
