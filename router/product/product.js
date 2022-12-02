@@ -52,7 +52,8 @@ router.get('/', function(req, res){ //전체 product조회
     if(err) throw err;
     else{
       if(rows.length){      
-          res.render('product', {title : 'EXPRESS', data : rows});
+        console.log(rows);
+          res.render('product', {title : 'main', data : rows});
           //res.sendFile(path.join(__dirname, '../../html/eshop.html'));
           
       }
@@ -83,7 +84,7 @@ router.get('/:brandName', function(req, res){ //브랜드 별 product조회
      if(err) throw err;
      else{
        if(rows.length){      
-           res.render('product', { data : rows});
+           res.render('product', {title: 'sub', data : rows});
        }
        else{
         res.render('product', { data : rows});
@@ -104,11 +105,13 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
   AND P.userId=U.id AND P.productId=${productId}`;   //글에 필요한 정보를 조회하는 쿼리
   
+ 
 
   connection.query(sql1, function(err, rows){
     if(err) throw err;
     else{
       if(rows.length){      
+        console.log(rows);
           res.render('product_detail', {data : rows});
       }
       else{

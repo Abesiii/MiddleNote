@@ -29,14 +29,14 @@
           <li><a href="/product"> ESHOP </a></li>
           <li><a href="/regist" style="color:#C7C7C7"> Trade-Regist </a></li>
           <li><a href="about.html"> ABOUT </a></li>
-          <li><a href="Member-login.html"> LOG IN </a></li>
+          <!-- <li><a href="Member-login.html"> LOG IN </a></li> -->
           <li><a href="#Mypage.html"> <span class="glyphicon glyphicon-user"></span></a></li>
         </ul>
       </div>
 
     </div>
 
-  <form action="form-inline">
+    <form action="/regist/create" method="POST" enctype="multipart/form-data">
     <div class="container form-group">
 
       <div class="text-left" style="padding:30px 0px 30px 0px">
@@ -50,7 +50,7 @@
           <div class="col-sm-9">
             <div class="upload-box">
               <div id="drop-file" class="drag-file">
-                <img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="?ŒŒ?¼ ?•„?´ì½?" class="image">
+                <img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="íŒŒì¼ ì•„ì´ì½˜" class="image">
                 <p class="message">Drag files to upload</p>
               </div>
 
@@ -67,7 +67,7 @@
             <h3>Product Name</h3>
           </div>
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="regist-productname" placeholder="Input Product Name" name="productname" style="height:50px; font-size:20px;">
+            <input type="text" class="form-control" id="regist-productname" placeholder="Input Product Name" name="productName" style="height:50px; font-size:20px;">
 
           </div>
         </div>
@@ -80,72 +80,85 @@
           <div class="col-sm-3 text-left">
             <h3>Categories</h3>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-3">
             <div class="row">
               <div class="col-sm-6">
-                <ul class="list-group">
-                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate1" data-toggle="collapse" data-target="#cate1">For Homme</li>
-                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate2" data-toggle="collapse" data-target="#cate2">For Femme</li>
-                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate3" data-toggle="collapse" data-target="#cate3">Eau de Toilete</li>
-                  <li class="list-group-item cate" onclick="showCategory(this)" id="Cate4" data-toggle="collapse" data-target="#cate4">Eau de Cologne</li>
-                </ul>
+               
+                  <select name="categoryName">
+                  <option>For Homme</option>
+                  <option>For Femme</option>
+                 <option>de Toilete</option>
+                  <option>Eau de Cologne</option>
+                </select>
+             
               </div>
 
-              <div class="col-sm-6">
-                <ul class="list-group collapse" id="cate1">
-                  <li class="list-group-item" id="cate1-1" onclick="showCate1(this)">Bvlgari</li>
-                  <li class="list-group-item" id="cate1-2" onclick="showCate1(this)">Jo Malone</li>
-                  <li class="list-group-item" id="cate1-3" onclick="showCate1(this)">Calvin Klein</li>
-                </ul>
-
-                <ul class="list-group collapse" id="cate2">
-                  <li class="list-group-item" id="cate2-1" onclick="showCate2(this)">Chanel</li>
-                  <li class="list-group-item" id="cate2-2" onclick="showCate2(this)">Christian Dior</li>
-                  <li class="list-group-item" id="cate2-3" onclick="showCate2(this)">Burberry</li>
-                  <li class="list-group-item" id="cate2-4" onclick="showCate2(this)">Versace</li>
-                </ul>
-
-                <ul class="list-group collapse" id="cate3">
-                  <li class="list-group-item" id="cate3-1" onclick="showCate3(this)">Cartier</li>
-                  <li class="list-group-item" id="cate3-2" onclick="showCate3(this)">Montblanc</li>
-                  <li class="list-group-item" id="cate3-3" onclick="showCate3(this)">YvesSaintLaurent</li>
-                  <li class="list-group-item" id="cate3-4" onclick="showCate3(this)">Ralph Lauren</li>
-                </ul>
-
-                <ul class="list-group collapse" id="cate4">
-                  <li class="list-group-item" id="cate4-1" onclick="showCate4(this)">Bottega Veneta</li>
-                  <li class="list-group-item" id="cate4-2" onclick="showCate4(this)">Louis Vuitton</li>
-                  <li class="list-group-item" id="cate4-3" onclick="showCate4(this)">Hermes</li>
-                  <li class="list-group-item" id="cate4-4" onclick="showCate4(this)">Salvatore Ferragamo</li>
-                </ul>
-              </div>
+            
             </div>
-            <p class="text-left">Selected Category : &nbsp</p> <p id="selectedCate"><b></b></p>
 
           </div>
         </div>
 
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
-          <div class="col-sm-6">
           <div class="col-sm-3">
-            <h3>Price</h3>
-          </div>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="regist-price" placeholder="Input Only Number" name="price" style="height:50px; font-size:20px;">
-
-          </div>
+            <h3>Brand Name</h3>
           </div>
           <div class="col-sm-6">
-          <div class="col-sm-3">
-            <h3>Volume</h3>
-          </div>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="regist-volume" placeholder="Input volume ex: (50ml)" name="price" style="height:50px; font-size:20px;">
+            <div class="col-sm-6">
 
+             
+              <select name="brandName">
+                <optgroup label="For Homme">
+              <li class="list-group-item" id="cate1-1" onclick="showCate1(this)" ><option>Bvlgari</option></li>
+              <li class="list-group-item" id="cate1-2" onclick="showCate1(this)"></li><option>Jo Malone</option></li>
+              <li class="list-group-item" id="cate1-3" onclick="showCate1(this)"><option>Calvin Klein</option</li>
+                </optgroup>
+           
+                <optgroup label="For Femme">
+              <li class="list-group-item" id="cate2-1" onclick="showCate2(this)"><option>Chanel</option></li>
+              <li class="list-group-item" id="cate2-2" onclick="showCate2(this)"><option>Christian Dior</option></li>
+              <li class="list-group-item" id="cate2-3" onclick="showCate2(this)"><option>Burberry</option></li>
+              <li class="list-group-item" id="cate2-4" onclick="showCate2(this)"><option>Versace</option></li>
+                 </optgroup>
+           
+                 <optgroup label="de Toilete">
+              <li class="list-group-item" id="cate3-1" onclick="showCate3(this)"><option>Cartier</option></li>
+              <li class="list-group-item" id="cate3-2" onclick="showCate3(this)"><option>Montblanc</option></li>
+              <li class="list-group-item" id="cate3-3" onclick="showCate3(this)"><option>YvesSaintLaurent</option></li>
+              <li class="list-group-item" id="cate3-4" onclick="showCate3(this)"><option>Ralph Lauren</option></li>
+                 </optgroup>
+
+                 <optgroup label="Eau de Cologne">
+              <li class="list-group-item" id="cate4-1" onclick="showCate4(this)"><option>Bottega Veneta</option></li>
+              <li class="list-group-item" id="cate4-2" onclick="showCate4(this)"><option>Louis Vuitton</option></li>
+              <li class="list-group-item" id="cate4-3" onclick="showCate4(this)"><option>Hermes</option></li>
+              <li class="list-group-item" id="cate4-4" onclick="showCate4(this)"><option>Salvatore Ferragamo</option></li>
+                 </optgroup>
+            </select>
+         
+          </div>
+          </div>
+        </div>
+
+        <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
+            <div class="col-sm-3">
+              <h3>Price</h3>
+            </div>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="regist-price" placeholder="Input only number" name="price" style="height:50px; font-size:20px;">
+  
+            </div>
           </div>
 
-        </div>
-        </div>
+          <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
+            <div class="col-sm-3">
+              <h3>Volume</h3>
+            </div>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="regist-volume" placeholder="Input volume (ex: 50ml)" name="volume" style="height:50px; font-size:20px;">
+  
+            </div>
+          </div>
 
         
 
@@ -164,10 +177,10 @@
 
 
         <div class="row" style="padding:30px 0px 30px 0px">
-        <div class="col-sm-12 text-right">
-            <a href="/product" class="btn btn-danger btn-lg" onclick="regist()" role="button">Regist</a>
-        </div>
-      </div>
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-danger btn-lg" id="btn3">submit</button>
+            </div>
+          </div>
 
       </div>
 

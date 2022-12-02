@@ -106,7 +106,14 @@ function regist(){
 	var description = document.getElementById('regist-description').value;
   var postTime = getPostTime();
   var statusId=1;
-  //var imagefile=document.querySelector("#imagefile");
+
+  let selectFile = document.querySelector("#imagefile").files[0];
+
+      const file = URL.createObjectURL(selectFile);
+
+     // document.querySelector(".uploadImage").src = file;
+
+  //var imagefile = document.querySelector("#imagefile").files[0];
  // console.log(imagefile);
 
 
@@ -115,7 +122,7 @@ function regist(){
       'categoryId' : 1, 'volume' : volume, 'description' : description, 'postTime' : postTime, 
       'statusId' : statusId, 'photoLink' : 'sadf', 'categoryName' : categoryName, 'brandName' : brandName};
 
-      sendData = JSON.stringify(sendData);    //ajax로 서버에 보내기 위해 문자열을 json으로 저장. 
+      sendData = JSON.stringify(sendData, file);    //ajax로 서버에 보내기 위해 문자열을 json으로 저장. 
       var xhr = new XMLHttpRequest();     //ajax로 브라우저와 서버가 상호작용하기 위한 객체 
       xhr.open('POST', 'http://localhost:3000/regist/create');     //post 형식으로 join.js 호출
       xhr.setRequestHeader('Content-Type', 'application/json');
