@@ -55,16 +55,8 @@
               </div>
 
 
-			  <input type="file" onchange="readFile(this)">
-			<script type="text/javascript">
-				function readFile(FILE_ELEMENT){
+			  <input id="imagefile" name="imagefile" type="file">
 
-					var path = (window.URL || window.webkitURL).createObjectURL(FILE_ELEMENT);
-					console.log('path', path);
-				}
-
-
-			</script>
             </div>
 
           </div>

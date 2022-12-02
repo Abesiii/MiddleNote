@@ -14,3 +14,5 @@
 #### npm install mysql : mysql 모듈 설치
 
 #### npm install passport passport-local express-session connnect-flash 
+
+#### npm install --save multer : 사진올리는거

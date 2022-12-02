@@ -52,7 +52,6 @@ router.get('/', function(req, res){ //전체 product조회
     if(err) throw err;
     else{
       if(rows.length){      
-          console.log(rows);
           res.render('product', {title : 'EXPRESS', data : rows});
           //res.sendFile(path.join(__dirname, '../../html/eshop.html'));
           

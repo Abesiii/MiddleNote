@@ -94,6 +94,7 @@ function regist(){
 }
 */
 function regist(){
+  console.log("check");
   var content = document.getElementById("selectedCate");
   var cate1 = document.getElementById("Cate1");
   var userId=1;
@@ -105,6 +106,8 @@ function regist(){
 	var description = document.getElementById('regist-description').value;
   var postTime = getPostTime();
   var statusId=1;
+  //var imagefile=document.querySelector("#imagefile");
+ // console.log(imagefile);
 
 
   
