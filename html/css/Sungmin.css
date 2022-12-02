@@ -48,13 +48,18 @@ div{
 h1{
     font-size: 50px;
 }
-#email, #password{
+#email, #userId, #password{
     border: 1px solid #ccc;
     border-radius: 3px;
     margin: -1px 10px;
     width: 300px;
     padding : 10px;
 }
+#loginBtn{
+    width: 300px;
+    margin: 0 auto;
+}
+
 #name, #number{
     border: 1px solid #ccc;
     border-radius: 3px;

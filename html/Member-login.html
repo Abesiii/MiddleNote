@@ -45,10 +45,11 @@
             <form class="login">
             <div id=signin>
               <form id="loginForm" action="/login" method="post">
-                <input id="userId" name="userId" type="text" placeholder="ID" autofocus><br>
+                <input id="userId" name="userId" type="text" placeholder="ID" autofocus><br><br>
                 <input id="password" name="password" type="password" placeholder="PASSWORD"><br>
               </form>
-              <button class="login-btn" onclick="memberLogin()">LOGIN</button><br><br>
+              <br>
+              <button id="loginBtn" class="login-btn btn btn-primary btn-block" onclick="memberLogin()">LOGIN</button><br><br>
               <div class="align-left">
                 <a href="join_agree.html">Join</a>
               </div>
@@ -58,15 +59,14 @@
             </div>
             </form>
             <hr>
-            <p id="easy-login">More Simple login</p>
 
-            <!-- <div id="naver"><img id="naver_logo" src="./img/naver.png" alt="ë„¤ì´ë²„ë¡œê³ " width="40"><a id="naverIdLogin_loginButton" href="javascript:void(0)">Naver Login</a></div>
-            <div id="google"><img id="google_logo" src="./img/google.png" alt="êµ¬ê¸€ë¡œê³ " width="40" style="margin-right: 20px;"><a href="">Google Login</a></div>
-            <div id="kakao"><img id="kakao_logo" src="./img/kakao.png" alt="ì¹´ì¹´ì˜¤ë¡œê³ " width="40"style="margin-right: 20px;"><a href="">Kakao Login</a></div> -->
+            <!-- <div id="naver"><img id="naver_logo" src="./img/naver.png" alt="?„¤?´ë²„ë¡œê³?" width="40"><a id="naverIdLogin_loginButton" href="javascript:void(0)">Naver Login</a></div>
+            <div id="google"><img id="google_logo" src="./img/google.png" alt="êµ¬ê??ë¡œê³ " width="40" style="margin-right: 20px;"><a href="">Google Login</a></div>
+            <div id="kakao"><img id="kakao_logo" src="./img/kakao.png" alt="ì¹´ì¹´?˜¤ë¡œê³ " width="40"style="margin-right: 20px;"><a href="">Kakao Login</a></div> -->
         </main>
     </div>
-    <!-- <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"> //ì´ê²Œ ìœ„ì— ìˆì–´ì•¼í•œë‹¤</script>
-    <script src="./js/Sungmin.js"></script> -->   <!--ì„±ë¯¼.js ë‚˜ì¤‘ì— ì§€ìš°ê¸°-->
+    <!-- <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"> //?´ê²? ?œ„?— ?ˆ?–´?•¼?•œ?‹¤</script>
+    <script src="./js/Sungmin.js"></script> -->   <!--?„±ë¯?.js ?‚˜ì¤‘ì— ì§??š°ê¸?-->
     <br><br>
     <div id="footer">
         <div id="footerL">
@@ -99,7 +99,7 @@
           xhr.send(sendData);
 
           xhr.addEventListener('load', function(){
-            var result = JSON.parse(xhr.responseText);        //responseëœ ê°’
+            var result = JSON.parse(xhr.responseText);        //response?œ ê°?
             console.log(result);
           })
         }
