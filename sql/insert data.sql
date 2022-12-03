@@ -67,12 +67,13 @@ CREATE TABLE product (
     
     
 CREATE TABLE promise (
-   interestId INT,
-    userId INT,
-    productId INT,
-    CONSTRAINT PK_promise PRIMARY KEY (interestId, productId, userId),
-    CONSTRAINT FK_promiseUserId FOREIGN KEY (userId) REFERENCES User(id),
-    CONSTRAINT FK_promiseProductId FOREIGN KEY (productId) REFERENCES Product(productId)
+    productId INT NOT NULL,
+    sellerId INT NOT NULL,
+    buyerId INT NOT NULL,
+    CONSTRAINT PK_promiseProductId PRIMARY KEY (productId),
+    CONSTRAINT FK_promiseBuyerId FOREIGN KEY (sellerId) REFERENCES user(id),
+    CONSTRAINT FK_promiseSellerId FOREIGN KEY (buyerId) REFERENCES user(id),
+    CONSTRAINT FK_promiseProductId FOREIGN KEY (productId) REFERENCES product(productId)
     );
     
 CREATE TABLE comment (
