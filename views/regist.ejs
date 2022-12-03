@@ -43,6 +43,11 @@
         <h2>Trade-Regist</h2>
 
 
+        
+
+   
+
+
         <div class="row" id="regist-img" style="padding:30px 0px 30px 0px; border-top:3px solid black; border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3">
             <h3>Image</h3>
@@ -50,12 +55,34 @@
           <div class="col-sm-9">
             <div class="upload-box">
               <div id="drop-file" class="drag-file">
-                <img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image">
-                <p class="message">Drag files to upload</p>
+                <img id="post-image" src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image">
+                <p id="message" class="message">Drag files to upload</p>
               </div>
 
+              <br>
+			  <input id="imagefile" name="imagefile" accept="image/*" type="file" onchange="setThumbnail(event);">
 
-			  <input id="imagefile" name="imagefile" type="file">
+        <script>
+          function setThumbnail(event) {
+            var reader = new FileReader();
+    
+            reader.onload = function(event) {
+              var img = document.createElement("img");
+              var postimage=document.getElementById("post-image");
+              var message=document.getElementById("message");
+              img.setAttribute("src", event.target.result);
+              img.setAttribute('width', 345);
+              img.setAttribute('height', 384);
+              postimage.style.display='none';
+              message.style.display='none';
+              document.getElementById("drop-file").appendChild(img);
+            };
+    
+            reader.readAsDataURL(event.target.files[0]);
+          }
+        </script>
+
+  
 
             </div>
 

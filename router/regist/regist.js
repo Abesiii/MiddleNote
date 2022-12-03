@@ -21,17 +21,9 @@ connection.connect();       //mysql 연동
 router.get('/', function(req, res){ //글 작성 페이지 조회
     res.render('regist');
 })
-/*
-app.post(['/upload2', '/upload3'], upload.any(), (req, res) => {
-  console.log(req.body);
-  console.log(req.files);
-  res.send("hello world");
-});*/
 
-router.post('/upload2', upload.single('file3'), function(req, res){
-  console.log(req.file);
-  res.send('Uploaded : '+req.file);
-});
+
+
 
 router.post('/create', upload.single('imagefile'), function(req, res){ //글 작성 
     console.log(req.file);

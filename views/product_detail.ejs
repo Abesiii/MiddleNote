@@ -254,15 +254,16 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
 		  	  
           <hr>
         </div>
-        <form>       
+        <form action="/comment/create" method="POST" enctype="multipart/form-data">     
            <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3">
             <h3>Comment</h3>
 
           </div>
           <div class="col-sm-6">
-              <textarea rows="6" style="height:50px; font-size:20px;" class="form-control" id="comment" placeholder="Input Comment" name="comment"></textarea>
+            <input type="text" class="form-control" id="regist-volume" placeholder="Input volume (ex: 50ml)" name="volume" style="height:50px; font-size:20px;">
           </div>
+          <div name="productId" style="display: none;"><%= data[0].productId %> </div>
           <div class="col-sm-3 ">
             <button class="btn btn-danger btn-lg" id="btn3">submit</button>
         </div>

@@ -60,6 +60,27 @@ function showCate4(cate){
   content.innerHTML = "<b>" + cate1.innerHTML+"<b>" +" > " + "<b>" +cate.innerHTML+"</b>";
 
 }
+
+
+function setThumbnail(event) {
+  var reader = new FileReader();
+
+  reader.onload = function(event) {
+    var img = document.createElement("img");
+    var postimage=document.getElementById("post-image");
+    var message=document.getElementById("message");
+    img.setAttribute("src", event.target.result);
+    img.setAttribute('width', 345);
+    img.setAttribute('height', 384);
+    postimage.style.display='none';
+    message.style.display='none';
+    document.getElementById("drop-file").appendChild(img);
+  };
+
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+
 /*
 function regist(){
 

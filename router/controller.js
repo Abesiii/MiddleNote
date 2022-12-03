@@ -10,6 +10,7 @@ var join = require('./join/join');
 var login = require('./login/login');
 var product = require('./product/product');
 var regist = require('./regist/regist');
+var comment = require('./comment/comment');
 
 
 
@@ -18,6 +19,7 @@ router.use('/join', join);
 router.use('/login', login);
 router.use('/product', product);
 router.use('/regist', regist);
+router.use('/comment', comment);
 router.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '../html/index.html'));
 })
