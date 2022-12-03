@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap');
-
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 * {
     padding: 0;
     margin: 0;
@@ -101,7 +106,8 @@ body {
 }
 
 .container .product-item .title {
-    font-size: 0.95rem;
+    font-family: 'Pretendard-Regular';
+    font-size: 2rem;
     letter-spacing: 0.5px
 }
 
@@ -111,6 +117,8 @@ body {
 }
 
 .container .product-item .price {
+    font-family: 'Pretendard-Regular';
+    font-size: 1.5rem;
     margin-top: 10px;
     margin-bottom: 10px;
     font-weight: 600
