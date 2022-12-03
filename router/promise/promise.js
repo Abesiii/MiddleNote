@@ -39,7 +39,7 @@ var buyerId="'"+promiseData.buyerId +"'";
             res.write("<script>window.location=\"../product\"</script>");
         }
 
-        else{
+        else{   
             console.log("hey");
             connection.query(sql2, function(err2, data2){
                 if(err2) throw err2;
@@ -51,6 +51,68 @@ var buyerId="'"+promiseData.buyerId +"'";
     }
  });
 
+})
+
+
+router.post('/cancel',function(req, res){     //약속 취소
+    var productId="'"+req.body.productId+"'";
+    var statusId=req.body.statusId;
+
+
+    var sql1=`SELECT COUNT(*) AS promiseCount FROM promise WHERE productId=${productId}`;   //삭제할 약속이 존재하는지 조회하는 쿼리
+    var sql3=`DELETE FROM promise WHERE productId=${productId}`;
+
+    connection.query(sql1, function(err1,data1){
+        if(err1) throw err1;
+        else{
+            if(data1[0].promiseCount>0){    //약속이 존재할때
+                if(statusId==1){    //약속이 종료되지 않았을때
+                    connection.query(sql3, function(err2, data2){   //약속을 지운다
+                        if(err2) throw err2;
+                        else{
+                            return res.redirect(`/product/detail/${req.body.productId}`);
+                        }
+                    })
+                }
+                else{   //약속이 종료됐을때
+                    return res.redirect(`/product`);
+                }
+             }
+            else{   //약속이 존재하지 않을때
+                res.write("<script>alert('promise does not exist')</script>");
+                res.write("<script>window.location=\`../product\`</script>");
+            }
+        }
+    })
+
+})
+
+
+
+router.post('/confirm' ,function(req,res){  //약속 확정
+    var productId="'"+req.body.productId+"'";
+    var sql1=`SELECT COUNT(*) AS promiseCount FROM promise WHERE productId=${productId}`;   //약속이 존재하는지 조회하는 쿼리
+    var sql2=`UPDATE product SET statusId=2 
+    WHERE productId=${productId}`;  //글의 거래 상태를 바꾸는 쿼리
+
+    connection.query(sql1, function(err1, data1){
+        if(err1) throw err1;
+        else{
+            if(data1[0].promiseCount>0){    //약속이 존재할 때
+                connection.query(sql2, function(err2, data2){   //글의 거래 상태를 바꾼다
+                    if(err2) throw err2;
+                    else{
+                        return res.redirect(`/product`);
+                    }
+                })
+            }
+            else{   //약속이 존재하지 않을때
+                res.write("<script>alert('promise does not exist')</script>");
+                res.write("<script>window.location=\`../product\`</script>");
+            }
+            
+        }
+    })
 })
 
 

@@ -237,9 +237,39 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
           <div class = "product-detail" style="text-align: left;">
             <h2>about this item: </h2>
             <p><b>Description</b>: <%= data[0].description %>  </p>
-            <p><b>Writer:</b> <%= data[0].nickname %></p>
+            <div class="row">
+              <div class="col-sm-9">
+                <p><b>Writer:</b> <%= data[0].nickname %></p>
+              </div>
+              <div class="col-sm-2">
+                <form action="/promise/cancel" method="POST">
+                <input type="hidden" name="productId" value="<%= data[0].productId %>">
+                <input type="hidden" name="statusId" value="<%= data[0].statusId %>">
+                <button class="btn btn-danger btn-lg" id="btn3">약속 취소</button>
+              </form>
+              </div>
+            </div>
+            
+            
             <p><b>Trade Status</b>: <%= data[0].statusName %></p>
-            <p><b>Post Time:</b> <%= data[0].dateString %> <%= data[0].timeString %> 
+            
+            <div class="row">
+            <div class="col-sm-9">
+              <p><b>Post Time:</b> <%= data[0].dateString %> <%= data[0].timeString %> </p>
+            </div>
+            
+
+            <div class="col-sm-2" style="margin-left:0px;">
+              <form action="/promise/confirm" method="POST">
+              <input type="hidden" name="productId" value="<%= data[0].productId %>">
+              <button class="btn btn-primary btn-lg" id="btn3">약속 확정</button>
+            </form>
+            </div>
+          </div>
+
+
+
+            <br>
             <br>
             <ul>
               <li>Volume: <%= data[0].volume %></li><br>
@@ -268,7 +298,7 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
           <input type="hidden" name="productId" value="<%= data[0].productId %>">
           <input type="hidden" name="userId" value="1">
           <div class="col-sm-3 ">
-            <button class="btn btn-danger btn-lg" id="btn3">submit</button>
+            <button class="btn btn-dark btn-lg" id="btn3">submit</button>
         </div>
         </div>
 

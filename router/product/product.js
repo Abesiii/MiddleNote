@@ -99,7 +99,7 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   var productId=req.params.productId;
   
    var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
-  C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname  
+  C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname, P.statusId  
   FROM product as P, category as C, tradestatus as T, user as U
   WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
   AND P.userId=U.id AND P.productId=${productId}`;   //글에 필요한 정보를 조회하는 쿼리
@@ -132,7 +132,7 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
                 data2[i].timeString=timeString;
               }
 
-         
+   
               res.render('product_detail', {data : data1, comment: data2});
             }
             else{
