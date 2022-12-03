@@ -26,7 +26,7 @@ router.get('/', function(req, res){ //글 작성 페이지 조회
 
 
 router.post('/create', upload.single('imagefile'), function(req, res){ //글 작성 
-    console.log(req.file);
+    //console.log(req.file);
     //console.log(req.body);
     var productData = req.body;    
 
@@ -45,7 +45,6 @@ router.post('/create', upload.single('imagefile'), function(req, res){ //글 작
     var categoryName =productData.categoryName;
     var brandName =productData.brandName;
 
-    console.log(photoLink);
     
     var sql1 = 'SELECT categoryId FROM category where categoryName=? AND brandName=?';  //글의 categoryId찾는 쿼리
     

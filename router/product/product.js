@@ -52,7 +52,6 @@ router.get('/', function(req, res){ //전체 product조회
     if(err) throw err;
     else{
       if(rows.length){      
-        console.log(rows);
           res.render('product', {title : 'main', data : rows});
           //res.sendFile(path.join(__dirname, '../../html/eshop.html'));
           
@@ -126,7 +125,6 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
                 var timeString=getTime(data2[i].commentTime);
                 data2[i].dateString = dateString;
                 data2[i].timeString=timeString;
-                console.log(data2[i]);
               }
 
          

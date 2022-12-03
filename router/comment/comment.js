@@ -22,8 +22,23 @@ connection.connect();       //mysql 연동
 
 router.post('/create', function(req, res){ //상세 product 조회 
 
-  console.log(req.body);
-  res.json({message : "400"});
+
+  var commentData=req.body;
+  var userId="'"+commentData.userId+"'";
+  var commentContent="'"+commentData.commentContent+"'";
+  var productId="'"+commentData.productId+"'";
+
+
+  var sql=`INSERT INTO comment(userId, productId, commentContent)
+  VALUES(${userId}, ${productId}, ${commentContent})`;   //댓글 입력하는 쿼리
+
+  connection.query(sql, function(err, data){
+    if(err) throw err;
+    else{
+      return res.redirect(`/product/detail/${commentData.productId}`);
+    }
+  })
+
 
 })
 
