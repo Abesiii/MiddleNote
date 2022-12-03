@@ -12,6 +12,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/sidebars.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0/all.min.css">
 	<link href="../../css/eshoplist.css" rel="stylesheet">
 	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
   <!--부트스트랩 이미지 추가-->
@@ -36,14 +37,14 @@
   <body>
     <div id="header">
       <div id="logo">
-        <a href="index.html">
+        <a href="/">
           <img src="../../img/logo.png" alt="logo">
         </a>
       </div>
 
       <div id="menubar">
         <ul>
-          <li><a href="/index.html"> HOME </a></li>
+          <li><a href="/"> HOME </a></li>
           <li><a href="/product" style="color:#00ADB5"> ESHOP </a></li>
           <li><a href="/regist"> Trade-Regist </a></li>
           <li><a href="About.html"> ABOUT </a></li>
@@ -233,12 +234,13 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
             <p class = "new-price">Price: <span><%= data[0].price %></span></p>
           </div>
 
-          <div class = "product-detail" style="text-align: right;">
+          <div class = "product-detail" style="text-align: left;">
             <h2>about this item: </h2>
-            <p>description: <%= data[0].description %>  </p>
-            <p>writer: <%= data[0].nickname %></p>
-            <p>tradestatus: <%= data[0].statusName %></p>
-            <p>posttime: <%= data[0].postTime %></p>
+            <p><b>Description</b>: <%= data[0].description %>  </p>
+            <p><b>Writer:</b> <%= data[0].nickname %></p>
+            <p><b>Trade Status</b>: <%= data[0].statusName %></p>
+            <p><b>Post Time:</b> <%= data[0].postTime %></p>
+            <br>
             <ul>
               <li>Volume: <%= data[0].volume %></li><br>
               <li>Available: <span>in stock</span></li><br>
