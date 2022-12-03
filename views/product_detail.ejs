@@ -239,7 +239,7 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
             <p><b>Description</b>: <%= data[0].description %>  </p>
             <p><b>Writer:</b> <%= data[0].nickname %></p>
             <p><b>Trade Status</b>: <%= data[0].statusName %></p>
-            <p><b>Post Time:</b> <%= data[0].postTime %></p>
+            <p><b>Post Time:</b> <%= data[0].dateString %> <%= data[0].timeString %> 
             <br>
             <ul>
               <li>Volume: <%= data[0].volume %></li><br>
