@@ -116,8 +116,13 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
     if(err) throw err;
     else{
       if(data1.length){      
-        connection.query(sql2, function(err,data2){
-          if(err) throw err;
+        var dateString=getDate(data1[0].postTime);     //datetime 파싱
+        var timeString=getTime(data1[0].postTime);
+        data1[0].dateString = dateString;
+        data1[0].timeString=  timeString;
+
+        connection.query(sql2, function(err2,data2){
+          if(err2) throw err2;
           else{
             if(data2.length){
               for(var i=0; i<data2.length; i++){

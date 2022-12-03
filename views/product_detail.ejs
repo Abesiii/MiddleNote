@@ -239,7 +239,7 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
             <p><b>Description</b>: <%= data[0].description %>  </p>
             <p><b>Writer:</b> <%= data[0].nickname %></p>
             <p><b>Trade Status</b>: <%= data[0].statusName %></p>
-            <p><b>Post Time:</b> <%= data[0].postTime %></p>
+            <p><b>Post Time:</b> <%= data[0].dateString %> <%= data[0].timeString %> 
             <br>
             <ul>
               <li>Volume: <%= data[0].volume %></li><br>
@@ -288,8 +288,19 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
               </div>
 
               <div class="col-sm-1"> 
-                <button type="button" class="btn btn-danger">수정</button><br>
+                <button type="button" class="btn btn-danger">수정</button>
               </div>
+
+              <div class="col-sm-1"> 
+                <form action="/promise/create" method="POST">
+                <input type="hidden" name="buyerId" value="<%= comment[i].userId %>">
+                <input type="hidden" name="sellerId" value="<%= data[0].userId %>">
+                <input type="hidden" name="productId" value="<%= comment[i].productId %>">
+                <button class="btn btn-warning">약속 잡기</button>
+              </form>
+              </div>
+
+              
 
             </div>
               <hr>
