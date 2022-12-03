@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
 * {
 	font-family: 'Montserrat', sans-serif
    }
@@ -361,13 +368,14 @@ img{
     font-weight: bolder;
 }
 .product-detail h2{
+    font-family: 'Pretendard-Regular';
     text-transform: capitalize;
     color: #12263a;
     padding-bottom: 0.6rem;
 }
 .product-detail p{
-    font-size: 0.9rem;
-    padding: 0.3rem;
+    font-family: 'Pretendard-Regular';
+    font-size: 1.8rem;
     opacity: 0.8;
 }
 .product-detail ul{
