@@ -99,6 +99,7 @@ router.get('/:brandName', function(req, res){ //브랜드 별 product조회
 
 
 router.get('/detail/:productId', function(req, res){ //상세 product 조회 
+  
 
   var productId=req.params.productId;
   
@@ -114,14 +115,49 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   where P.productId=C.ProductId AND C.userId=U.id
   AND P.productId=${productId};`;   //해당 글에 달린 댓글 정보 조회 
 
+  var sql3= `SELECT P.productId, P.sellerId, P.buyerId, S.nickname AS sellernickname, B.nickname AS buyernickname
+  FROM promise AS P 
+  INNER JOIN user AS S
+  ON P.sellerId=S.id
+  INNER JOIN user AS B
+  ON P.buyerId=B.id
+  WHERE P.productId=${productId}`;    //약속에 대한 정보(구매자, 판매자 닉네임)
 
 
-  connection.query(sql1+sql2, function(err, data, field){
-    console.log(data);
-   /* var sql_data1=data[0];
-    var sql_data2=data[1];
-    console.log(sql_data1);
-    console.log(sql_data2);*/
+
+
+
+  connection.query(sql1+sql2+sql3, function(err, data){
+
+    var sql_data1=data[0];  //글에 대한 정보
+    var sql_data2=data[1];  //댓글에 대한 정보
+    var sql_data3=data[2];  //약속에 대한 정보
+
+    if(sql_data1.length){ //글이 존재
+      var dateString=getDate(sql_data1[0].postTime);     //datetime 파싱
+      var timeString=getTime(sql_data1[0].postTime);
+      sql_data1[0].dateString = dateString;
+      sql_data1[0].timeString=  timeString;
+
+      if(sql_data2.length){ //댓글이 존재할때
+        for(var i=0; i<sql_data2.length; i++){
+          var dateString=getDate(sql_data2[i].commentTime);     //datetime 파싱
+          var timeString=getTime(sql_data2[i].commentTime);
+          sql_data2[i].dateString = dateString;
+          sql_data2[i].timeString=timeString;
+        }
+        res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3});
+
+      }
+
+      else{ //댓글이 존재하지 않을때
+        res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3});
+      }
+      
+    }
+    else{       //글이 존재하지 않을때
+      return res.redirect("/product");
+    }
   })
   
   /*
