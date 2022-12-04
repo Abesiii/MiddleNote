@@ -53,30 +53,15 @@
           <div class="col-sm-3">
             <h3>개인정보 수정</h3>
           </div>
-          <br><br>
           <div class="col-sm-9">
-            <form method="POST" enctype="multipart/form-data"></form>
             <div>
-              <h4> 이름</h4>
-              <div>
-                <input id="userId" name="userId" type="text" value="사용자이름" style=" margin: 0px; height: 40px; padding: 0px;" disabled/>
+              <div class="collapse" id="modifyConfirm">
+                <h4> 본인확인을 위해 비밀번호를 입력해주세요.</h4>
+                <input id="password" name="password" type="password" placeholder="기존 비밀번호 입력" style=" margin: 0px; height: 40px; padding: 0px;">
+                <button type="button" class="btn btn-primary" style="margin-left:10px; margin-bottom:3px; height: 40px;" onclick="location.href='/Mypage_modify.html';">  확인  </button>
+              </div>
             </div>
-              <h4> 닉네임</h4>
-              <div>
-                <input id="userId" name="userId" type="text" value="기존닉네임" style=" margin: 0px; height: 40px; padding: 0px;">
-            </div>
-            <h4> 주소</h4>
-            <div>
-              <input id="city" name="city" type="text" value="기존도시" style="margin: 0px; height: 46px; padding: 0px; margin-bottom: 10px;">
-              <input id="gu" name="gu" type="text" value="기존 구" style="margin: 0px; height: 46px; padding: 0px; margin-bottom: 10px;">
-              <input id="dong" name="dong" type="text" value="기존 동" style="margin: 0px; height: 46px; padding: 0px; margin-bottom: 10px;">
-              <input id="detailAddress" name="detailAddress" type="text" value="기존 세부주소" style="width: 80%; margin: 0px; height: 46px; padding: 0px;"><br>
-            </div>
-            <br>
-            <button class="join1-button btn btn-info btn-lg" type="button" onclick="signUp()">개인정보 수정</button>
-			
-            </div>
-          </form>
+            <button class="join1-button btn btn-info btn-lg" style="margin-top: 10px;" type="button" data-toggle="collapse" data-target="#modifyConfirm" aria-expanded="false"a >개인정보 수정</button>
           </div>
         </div>
 
