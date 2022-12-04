@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!--부트스트립 사용-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        html {
+    overflow: hidden;
+}
+html, body{
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.btn{
+    background-color: #222831;
+    letter-spacing: .5em;
+    font-size: 20px;
+}
+.section
+{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+#section1{
+    background-color:#F9F3EE;
+    text-align: center;
+}
+#section2 {
+    background-color:#F9F3EE;
+}
+#section3 {
+    background-color:#F9F3EE;
+    text-align: right;
+}
+
+#section4 {
+    background-color:#F9F3EE;
+}
+#section5 {
+    text-align: right;
+    background-color:#F9F3EE;
+}
+#section6 {
+    background-color:#F9F3EE;
+    text-align: center;
+}
+#section7 {
+    background-color:#F9F3EE;
+}
+.fimage{
+    display: inline-block;
+    margin-top: 5%;
+    margin-left:-700px;
+    opacity: 0;
+}
+.simage{
+    display: inline-block;
+    margin-right: 0%;
+    opacity: 0;
+}
+.image3{
+    display: inline-block;
+    margin-top: 0%;
+    margin-right: 10%;
+    opacity: 0;
+}
+.image4{
+    display: inline-block;
+    position: absolute;
+    top :50%;
+    left: 8%;
+    transform: translate(0%, -50%);      /*사진 absoulate 가운데 정렬*/
+}
+#message{
+    position : absolute;
+    right: 15%;
+    top: 20%;
+    opacity: 0;
+}
+#message2{
+    position : absolute;
+    right: 15%;
+    top: 20%;
+}
+#message3{
+    position : absolute;
+    right: 15%;
+    top: 20%;
+    transform: rotateY(90deg);
+    transition-duration: 2s;  /* css 변환이 일어날때 발생*/
+}
+#message1{
+    position : absolute;
+    left: -15%;
+    top: 20%;
+    text-align: left;
+
+}
+#message4{
+    position : absolute;
+    left: 15%;
+    top: 24%;
+    text-align: left;
+    opacity: 0;
+
+}
+h1{
+    font-size: 50px;
+}
+#maintitle{
+    display: inline-block;
+    font-size: 0px;
+    margin-top: 20%;
+}
+#lasttitle{
+    display: inline-block;
+    font-size: 100px;
+    margin-top: 20%;
+}
+#arrow{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, 0%);      /*화살표 absoulate 가운데 정렬*/
+    font-size: 50px;
+    animation: arrow 3s infinite;
+    animation-timing-function: linear;
+}
+@keyframes arrow{
+    from{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(40px);
+    }
+    to{
+        transform: translateY(0px);
+    }
+}
+    </style>
+    <title></title>
+</head>
+<body>
+    <div class="section" id="section1">
+        <h1 class ="container-fluid" id="maintitle">HELLO!<br>WE ARE MiddleNote</h1>
+        <p id="arrow">↓</p>
+    </div>
+    <div class="section" id="section2">
+        <img class="fimage" src="./img/perfume.png" width="600px">
+        <div id="message">
+
+            <h1>안정된 향을 남기는 <br>MiddleNote</h1>
+            <span>미들노트와 안정된 거래를  통해<br>친절하고 따듯한 당신의 향기를 남겨요</span><br><br><br>
+        </div>
+        <p id="arrow">↓</p>
+    </div>
+    <div class="section" id="section3">
+        <img class="simage" src="./img/image2.png" width="500px">
+        <div  id="message1">
+            <h1>안쓰는<br>향수 판매는<br>이곳 MiddleNote에서!</h1>
+
+            <span>당신이 아끼던 향수를 중고거래를 통해 판매해보세요!</span><br><br><br>
+            <button class="btn btn-primary btn"type="button" onclick="location.href='html/index.html';">자세히보기</button>
+    </div>
+    <p id="arrow">↓</p>
+    </div>
+    <div class="section" id="section4">
+        <img  class="image4" src="./img/image4.png" width="600px">
+        <div  id="message3">
+            <h1>당신에게<br>제가<br>아끼던<br>향수를 소개합니다!</h1>
+
+            <span>향수를 등록하고, 정품인증을 통해 중고향수상품을 등록합니다.<br>자신이 사용했던 후기를 알려주면 더 좋겠죠?</span><br><br><br>
+            <button class="btn btn-primary btn"type="button" onclick="location.href='html/regist.html';">중고향수등록하기</button> <!-- href 링크를 메인페이지로 연결하면 좋을듯!-->
+        </div>
+        <p id="arrow">↓</p>
+    </div>
+    <div class="section" id="section5">
+        <img class="image3" src="./img/image3.jpg">
+        <div  id="message4">
+            <h1>향수<br>중고거래는<br>미들노트에서!</h1>
+
+            <span>원하는 향수를 체험하고싶을 때는 <br>미들노트를 통해 구매해보세요!</span><br><br><br>
+            <button class="btn btn-primary btn"type="button" onclick="location.href='html/eshop.html';">구매하러가기</button>
+    </div>
+    <p id="arrow">↓</p>
+    </div>
+    <div class="section" id="section6">
+        <h1 class ="container-fluid" id="lasttitle">Start with MiddleNote</h1><br><br><br>
+        <button class="btn btn-primary btn"type="button" onclick="MoveIndex();">CLICK!</button>
+    </div>
+    <!-- <div class="section" id="section7"></div> -->
+</body>
+</html>
+<script>
+    function MoveIndex(){
+        location.href="Member-login.html";
+    }
+</script>
+<script>
+    //화면 스크롤
+    window.addEventListener("wheel", function(e){
+    e.preventDefault();},{passive : false});    //부드럽게 가져오기 위해서 사용
+
+    var mHtml = $("html");
+    var page = 1;
+    $(window).on("wheel", function(e) {
+    if(mHtml.is(":animated")) return;
+    if(e.originalEvent.deltaY > 0) {
+        if(page == 7) return;
+        page++;
+    } else if(e.originalEvent.deltaY < 0) {
+        if(page == 1) return;
+        page--;
+    }
+    var posTop =(page-1) * $(window).height();  //한 화면씩 이동하는것
+    mHtml.animate({scrollTop : posTop},500);
+
+
+    //첫번째 그림 왼쪽에서 오른쪽으로 넘어오게하기
+    $(document).ready(function() {
+    $(window).scroll( function(){
+        $('.fimage').each( function(i){             //사진의 맨 위가 윈도우의 아래에 부딪히게 되면 발생!
+
+                                        //y축 위치(사진의  시작 y축인듯!) + 사진에 대한 내부 크기(패딩,border포함)    /5를 하면 사진을 넘어가는 중간에 발생->더 부드럽게 넘어가는처럼 보인다.
+            var bottom_of_element = $(this).offset().top + $(this).outerHeight()/5;
+            var bottom_of_window = $(window).scrollTop() + $(window).height();  //윈도우 스크롤의 맨 위 값과 해당 화면의 높이 값을 더함--> 화면 아래y축
+            //스크롤을 내리게되면 화면 아래값이 해당 화면에 있는 사진,글 보다 커져서 넘어갈때 animate 효과 발생
+            if( bottom_of_window > bottom_of_element ){
+                $(this).animate({'margin-left':'100px','opacity' :'1'},1000);
+            }
+
+        });
+    });
+});
+})
+//첫번째 문구
+$(document).ready(function() {
+    $('#maintitle').each( function(i){
+                $(this).animate({'font-size':'100px'},1000);
+        });
+});
+//2번째텍스트
+$(document).ready(function() {
+    /* 1 */
+    $(window).scroll( function(){
+        /* 2 */
+        $('#message').each( function(i){
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            /* 3 */
+            if( bottom_of_window > bottom_of_object ){
+                $(this).animate({'opacity':'1'},2000);
+            }
+        });
+    });
+});
+//오른쪽아래에서 올라오기
+$(document).ready(function() {
+   /* 1 */
+   $(window).scroll( function(){
+       /* 2 */
+       $('.simage').each( function(i){
+           var bottom_of_object = $(this).offset().top + $(this).outerHeight()/5;
+           var bottom_of_window = $(window).scrollTop() + $(window).height();
+           /* 3 */
+           if( bottom_of_window > bottom_of_object ){
+              $(this).animate({'margin-top':'5%','margin-right':'10%','opacity' :'1'},1000);
+           }
+       });
+   });
+});
+//오른쪽아래에서 올라오기
+$(document).ready(function() {
+   /* 1 */
+   $(window).scroll( function(){
+       /* 2 */
+       $('.image3').each( function(i){
+           var bottom_of_object = $(this).offset().top + $(this).outerHeight()/5;
+           var bottom_of_window = $(window).scrollTop() + $(window).height();
+           /* 3 */
+           if( bottom_of_window > bottom_of_object ){
+              $(this).animate({'margin-top':'3%','opacity' :'1'},1000);
+           }
+       });
+   });
+});
+//3번째 텍스트
+$(document).ready(function() {
+   /* 1 */
+   $(window).scroll( function(){
+       /* 2 */
+       $('#message1').each( function(i){
+           var bottom_of_object = $(this).offset().top + $(this).outerHeight()/5;
+           var bottom_of_window = $(window).scrollTop() + $(window).height();
+           /* 3 */
+           if( bottom_of_window > bottom_of_object ){
+              $(this).animate({'left':'15%'},1000);
+           }
+       });
+   });
+});
+//4번째 텍스트
+$(document).ready(function() {
+   /* 1 */
+   $(window).scroll( function(){
+       /* 2 */
+       $('#message3').each( function(i){
+           var bottom_of_object = $(this).offset().top + $(this).outerHeight()/5;
+           var bottom_of_window = $(window).scrollTop() + $(window).height();
+           /* 3 */
+           if( bottom_of_window > bottom_of_object ){
+            $('#message3').css({'transform':'rotateY('+0+'deg)'})
+              
+           }
+       });
+   });
+});
+//5번째 텍스트
+$(document).ready(function() {
+   /* 1 */
+   $(window).scroll( function(){
+       /* 2 */
+       $('#message4').each( function(i){
+           var bottom_of_object = $(this).offset().top + $(this).outerHeight()/5;
+           var bottom_of_window = $(window).scrollTop() + $(window).height();
+           /* 3 */
+           if( bottom_of_window > bottom_of_object ){
+            $(this).animate({'top':'20%','opacity' :'1'},1000);
+              
+           }
+       });
+   });
+});
+</script>
+<script>
+    AOS.init(); // 자바스크립트로 init()을 해야 동작한다.
+</script>

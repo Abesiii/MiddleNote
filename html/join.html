@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head><meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--부트스트립 사용-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./css/Sungmin.css">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <title></title>
+        <style>
+        #frame1{
+            width: 400px;
+            margin: 0 auto;
+        }
+        #frame1 div{
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .join1-button
+        {
+        border-radius: 5px;
+        width: 300px;
+        border: none;
+        letter-spacing: .5em;
+        font-size: 1.2em;
+        background-color:#000808;
+        color: white;
+        height: 40px;
+        margin-left: 50px;
+        }
+        .join1-button:active{
+            background-color: blue;
+        color: white;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+              <a href="index.html">
+                <img src="img/logo.jpg" alt="logo">
+              </a>
+            </div>
+            <div id="menubar" >
+              <ul>
+                <li><a href="index.html" style="color:#C7C7C7"> HOME </a></li>
+                <li><a href="/product"> ESHOP </a></li>
+                <li><a href="/regist"> Trade-Regist </a></li>
+                <li><a href="About.html"> ABOUT </a></li>
+                <li><a href="/login"> LOG IN </a></li>
+                <li><a href="Mypage.html"> <span class="glyphicon glyphicon-user"></span></a></li>
+              </ul>
+            </div>
+        
+          </div>
+          <br><br><br>
+
+        <div class="container">
+        <main>
+            <div><h1>JOIN</h1></div>
+            <div>Hello we are MiddleNote</div>
+            <br>
+            <br>
+            <div id="frame1">
+            <form method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="userId" class="after">ID *</label>
+                    <input id="userId" name="userId" type="text" style="width: 98%; margin: 0px; height: 46px; padding: 0px;">
+                    <button class = "btn btn-info" style="margin-top: 5px; margin-left: 315px;" onclick="checkDuplicate()">중복확인</button>
+                </div>
+                <div>
+                    <label for="password" class="after">PASSWORD *</label>
+                    <input id="password" name="password" type="password" style="width: 98%; margin: 0px; height: 46px; padding: 0px;">
+                </div>
+                <div>
+                    <label for="passwordCheck" class="after">PASSWORD CHECK *</label>
+                    <input id="passwordCheck" name="passwordCheck" type="password" style="width: 98%; margin: 0px; height: 46px; padding: 0px;">
+                </div>
+                <div>
+                    <label for="userName" class="after">NAME *</label>
+                    <input id="userName" name="userName" type="text"  style="width: 98%; margin: 0px; height: 46px; padding: 0px;">
+                </div>
+                <div>
+                    <label for="nickname" class="after">NICK NAME *</label><br>
+                    <input id="nickname" name="nickname" type="text" style="width: 98%; margin: 0px; height: 46px; padding: 0px;">
+                </div>
+                <div>
+                    <label class="after" >ADDRESS *</label><br>
+                    <input id="city" name="city" type="text" placeholder="시" style="width: 32%; margin: 0px; height: 46px; padding: 0px; margin-bottom: 10px;">
+                    <input id="gu" name="gu" type="text" placeholder="구" style="width: 32%; margin: 0px; height: 46px; padding: 0px; margin-bottom: 10px;">
+                    <input id="dong" name="dong" type="text" placeholder="동" style="width: 32%; margin: 0px; height: 46px; padding: 0px; margin-bottom: 10px;">
+                    <input id="detailAddress" name="detailAddress" type="text" placeholder="세부 주소" style="width: 98%; margin: 0px; height: 46px; padding: 0px;"><br>
+                </div>
+                <div>
+                    <button class="join1-button" type="button" onclick="signUp()">SIGN UP</button>
+                </div>
+            </form>
+        </div>
+        </main>
+    </div>
+    <div id="footer">
+        <div id="footerL">
+          <p>© 2022  <a href="">IN GOLD WE TRUST PARIS</a></p>
+          <p><a href="">NEWS</a></p>
+          <p><a href="">LEGALS</a></p>
+          <p><a href="">SHIPPING & RETURNS</a></p>
+          <a href=""><img src="img/insta.jpg" alt="instagram" width="12px" height="12px"></a>
+          <a href=""><img src="img/facebook.jpg" alt="facebook" width="12px" height="12px"></a>
+        </div>
+        <!-- <div id=footerR>
+          <input type="text" placeholder="ENTER EMAIL">
+          <input type="button" value="JOIN">
+        </div> -->
+
+      </div>
+      <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+      <script>
+
+        function checkDuplicate(){
+            var userId = $('#userId').val();
+            var sendData = {'check' : '0', 'userId' : userId};
+
+            sendData = JSON.stringify(sendData);    //ajax로 서버에 보내기 위해 문자열을 json으로 저장. 
+            var xhr = new XMLHttpRequest();     //ajax로 브라우저와 서버가 상호작용하기 위한 객체 
+            xhr.open('POST', 'http://localhost:3000/join');     //post 형식으로 join.js 호출
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(sendData);
+
+            xhr.addEventListener('load', function(){
+                var result = JSON.parse(xhr.responseText);      //response된 값
+                if(result == 'yes'){       //중복이면
+                    alert("아이디 중복. 다른 아이디를 입력하세요");
+                }else{                                  //중복이 아니면
+                    alert("아이디 사용 가능");
+                }
+            })
+        }
+
+        function signUp(){
+            var userId = $('#userId').val();
+            var password = $('#password').val();
+            var passwordCheck = $('#passwordCheck').val();
+            var userName = $('#userName').val();
+            var nickname = $('#nickname').val();
+            var city = $('#city').val();
+            var gu = $('#gu').val();
+            var dong = $('#dong').val();
+            var detailAddress = $('#detailAddress').val();
+            console.log(password);
+            console.log(passwordCheck);
+            //비밀번호와 비밀번호 확인이 불일치하면
+            if(password !== passwordCheck){     
+                alert("비밀번호가 일치하지 않습니다");
+            }
+            else{
+                var sendData = {'check' : '1', 'userId' : userId, 'password' : password, 'userName' : userName, 'nickname' : nickname, 'city' : city, 'gu' : gu, 'dong' : dong, 'detailAddress' : detailAddress};
+
+                sendData = JSON.stringify(sendData);    //ajax로 서버에 보내기 위해 문자열을 json으로 저장. 
+                var xhr = new XMLHttpRequest();     //ajax로 브라우저와 서버가 상호작용하기 위한 객체 
+                xhr.open('POST', 'http://localhost:3000/join');     //post 형식으로 join.js 호출
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(sendData);
+            }
+        }
+    </script>
+    </body> 
+</html>
