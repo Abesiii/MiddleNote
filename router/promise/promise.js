@@ -34,15 +34,23 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
     WHERE PM.buyerId=${userId} AND PD.statusId=2;`;    //내가 구매한 제품의 이름과 가격을 전달해주는 쿼리
 
 
-    connection.query(sql1+sql2, function(err, data){
+    var sql3=`SELECT PD.productId, PD.productName, PD.price,Pd.photoLink
+    FROM promise as PM 
+    INNER JOIN product AS PD
+    ON PM.productId=PD.productId
+    WHERE (PM.buyerId=${userId} OR PM.sellerId=${userId}) AND PD.statusId=1;`
+
+
+    connection.query(sql1+sql2+sql3, function(err, data){
         if(err) throw err;
 
         var sql_data1=data[0];  //판매 목록 정보
         var sql_data2=data[1];  //구매 목록 정보
+        var sql_data3=data[2];  //약속 목록 정보
 
-        console.log(sql_data1);
+        console.log(sql_data3);
 
-        res.render('mypage', {sell: sql_data1, buy: sql_data2});
+        res.render('mypage', {sell: sql_data1, buy: sql_data2, promise:sql_data3});
        
 
     })
