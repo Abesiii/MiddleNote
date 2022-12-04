@@ -34,13 +34,11 @@ var buyerId="'"+promiseData.buyerId +"'";
     if(err) throw err;
     else{
         if(data.length){    //이미 약속이 존재할때
-            console.log("jey");
             res.write("<script>alert('You already have a promise')</script>");
             res.write("<script>window.location=\"../product\"</script>");
         }
 
         else{   
-            console.log("hey");
             connection.query(sql2, function(err2, data2){
                 if(err2) throw err2;
                 else{
