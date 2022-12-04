@@ -40,7 +40,7 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
         var sql_data1=data[0];  //판매 목록 정보
         var sql_data2=data[1];  //구매 목록 정보
 
-
+        console.log(sql_data1);
 
         res.render('mypage', {sell: sql_data1, buy: sql_data2});
        
