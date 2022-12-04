@@ -5,15 +5,19 @@ var path = require('path');         //상대경로로 편리하게 이동할 수
 var mysql = require('mysql');
 
 
+
 /* 데이터베이스 세팅 */
+
 var connection = mysql.createConnection({     //mysql connection 생성 
   host : 'localhost',
   port : 3306,
   user : 'root',
   password : 'root',
-  database : 'middlenote'        //데이터베이스 이름
+  database : 'middlenote',        //데이터베이스 이름
+  multipleStatements: true
 });
 connection.connect();       //mysql 연동
+
 
 
 /*
@@ -102,15 +106,25 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname, P.statusId  
   FROM product as P, category as C, tradestatus as T, user as U
   WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
-  AND P.userId=U.id AND P.productId=${productId}`;   //글에 필요한 정보를 조회하는 쿼리
+  AND P.userId=U.id AND P.productId=${productId};`;   //글에 필요한 정보를 조회하는 쿼리
 
 
   var sql2 = `SELECT  P.productId, C.commentTime, C.commentContent, C.userId, U.nickname
   FROM product as P, comment as C, user as U
   where P.productId=C.ProductId AND C.userId=U.id
-  AND P.productId=${productId}`;   //해당 글에 달린 댓글 정보 조회 
+  AND P.productId=${productId};`;   //해당 글에 달린 댓글 정보 조회 
+
+
+
+  connection.query(sql1+sql2, function(err, data, field){
+    console.log(data);
+   /* var sql_data1=data[0];
+    var sql_data2=data[1];
+    console.log(sql_data1);
+    console.log(sql_data2);*/
+  })
   
-  
+  /*
 
   connection.query(sql1, function(err, data1){
     if(err) throw err;
@@ -146,7 +160,7 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
       }
     }
 
-  })
+  })*/
 })
 
 
