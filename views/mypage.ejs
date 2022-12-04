@@ -39,7 +39,7 @@
           <li><a href="/regist" style="color:#C7C7C7"> Trade-Regist </a></li>
           <li><a href="about.html"> ABOUT </a></li>
           <li><a href="/login"> LOG IN </a></li>
-          <li><a href="Mypage.html"> <span class="glyphicon glyphicon-user"></span></a></li>
+          <li><a href="/promise"> <span class="glyphicon glyphicon-user"></span></a></li>
         </ul>
       </div>
 
@@ -411,6 +411,7 @@
                                 <div class="title pt-4 pb-1"><%= sell[i].productName %></div>
                                 <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
                                 <div class="price"><%= sell[i].price %>원</div>
+                                <div class="productid"  style="display: none;"><%= sell[i].productId %> </div>
                             </div>
 
                         <% } else { %>
@@ -420,11 +421,15 @@
                                 <div class="title pt-4 pb-1"><%= sell[i].productName %></div>
                                 <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
                                 <div class="price"><%= sell[i].price %>원</div>
+                                <div class="productid"  style="display: none;"><%= sell[i].productId %> </div>
                             </div>
+               
                         <% } %>
+                      
+                        
                         <% } %>
                             
-                      
+                        
 
                    
                     </div>
@@ -520,7 +525,6 @@
                     <div class="row">
                     
                     <% for(var i = 0; i<buy.length; i++){ %>
-
                         <% if (buy[i].photoLink=='undefined' || buy[i].photoLink==null) { %> 
 
                             <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
@@ -529,6 +533,7 @@
                                 <div class="title pt-4 pb-1"><%= buy[i].productName %></div>
                                 <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
                                 <div class="price"><%= buy[i].price %>원</div>
+                                <div class="productid"  style="display: none;"><%= buy[i].productId %> </div>
                             </div>
 
                         <% } else { %>
@@ -538,6 +543,7 @@
                                 <div class="title pt-4 pb-1"><%= buy[i].productName %></div>
                                 <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
                                 <div class="price"><%= buy[i].price %>원</div>
+                                <div class="productid"  style="display: none;"><%= buy[i].productId %> </div>
                             </div>
                         <% } %>
                         <% } %>
@@ -638,7 +644,7 @@
                     <div class="row">
                     
                     <% for(var i = 0; i<promise.length; i++){ %>
-
+          
                         <% if (promise[i].photoLink=='undefined' || promise[i].photoLink==null) { %> 
 
                             <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
@@ -647,6 +653,7 @@
                                 <div class="title pt-4 pb-1"><%= promise[i].productName %></div>
                                 <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
                                 <div class="price"><%= promise[i].price %>원</div>
+                                <div class="productid"  style="display: none;"><%= promise[i].productId %> </div>
                             </div>
 
                         <% } else { %>
@@ -656,6 +663,7 @@
                                 <div class="title pt-4 pb-1"><%= promise[i].productName %></div>
                                 <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
                                 <div class="price"><%= promise[i].price %>원</div>
+                                <div class="productid"  style="display: none;"><%= promise[i].productId %> </div>
                             </div>
                         <% } %>
                         <% } %>

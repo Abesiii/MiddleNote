@@ -20,14 +20,14 @@ connection.connect();       //mysql 연동
 router.get('/',function(req,res){   //임시로 마이페이지 조회
                                     //판매목록, 구매목록, 약속목록 데이터 전달해줌
     var userId=1;
-    var sql1=`SELECT PD.productName, PD.price,PD.photoLink
+    var sql1=`SELECT PD.productName, PD.price,PD.photoLink,PM.productId
     FROM promise as PM 
     INNER JOIN product AS PD
     ON PM.productId=PD.productId
     WHERE PM.sellerId=${userId} AND PD.statusId=2;`; //내가 판매한 제품의 이름과 가격을 전달해주는 쿼리
 
 
-    var sql2=`SELECT PD.productName, PD.price,Pd.photoLink
+    var sql2=`SELECT PD.productName, PD.price,Pd.photoLink,PM.productId
     FROM promise as PM 
     INNER JOIN product AS PD
     ON PM.productId=PD.productId
@@ -38,7 +38,7 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
     FROM promise as PM 
     INNER JOIN product AS PD
     ON PM.productId=PD.productId
-    WHERE (PM.buyerId=${userId} OR PM.sellerId=${userId}) AND PD.statusId=1;`
+    WHERE (PM.buyerId=${userId} OR PM.sellerId=${userId}) AND PD.statusId=1;`   //약속 목록 정보 조회 쿼리
 
 
     connection.query(sql1+sql2+sql3, function(err, data){
@@ -48,17 +48,11 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
         var sql_data2=data[1];  //구매 목록 정보
         var sql_data3=data[2];  //약속 목록 정보
 
-        console.log(sql_data3);
 
         res.render('mypage', {sell: sql_data1, buy: sql_data2, promise:sql_data3});
        
 
     })
-
-})
-
-router.post('/', function(req,res){ //진행중인 약속만 조회
-
 
 })
 

@@ -102,6 +102,7 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   
 
   var productId=req.params.productId;
+  var loginUserId=1;
   
    var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
   C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname, P.statusId  
@@ -148,12 +149,12 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
           sql_data2[i].dateString = dateString;
           sql_data2[i].timeString=timeString;
         }
-        res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3});
+        res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3, loginUserId: loginUserId });
 
       }
 
       else{ //댓글이 존재하지 않을때
-        res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3});
+        res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3, loginUserId: loginUserId});
       }
       
     }

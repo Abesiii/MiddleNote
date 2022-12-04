@@ -80,7 +80,6 @@ function movetoDetailDefault(product) {
 	var price = $(product).siblings(".price").text();
 	var productId = $(product).siblings(".productid").text();
 
-
            
 
 	//window.location.href=`./product/detail/${productId}`;
