@@ -11,11 +11,48 @@ var connection = mysql.createConnection({     //mysql connection 생성
   port : 3306,
   user : 'root',
   password : 'root',
-  database : 'middlenote'        //데이터베이스 이름
+  database : 'middlenote',        //데이터베이스 이름
+  multipleStatements: true
 });
 connection.connect();       //mysql 연동
 
 
+router.get('/',function(req,res){   //임시로 마이페이지 조회
+                                    //판매목록, 구매목록, 약속목록 데이터 전달해줌
+    var userId=1;
+    var sql1=`SELECT PD.productName, PD.price,PD.photoLink
+    FROM promise as PM 
+    INNER JOIN product AS PD
+    ON PM.productId=PD.productId
+    WHERE PM.sellerId=${userId} AND PD.statusId=2;`; //내가 판매한 제품의 이름과 가격을 전달해주는 쿼리
+
+
+    var sql2=`SELECT PD.productName, PD.price,Pd.photoLink
+    FROM promise as PM 
+    INNER JOIN product AS PD
+    ON PM.productId=PD.productId
+    WHERE PM.buyerId=${userId} AND PD.statusId=2;`;    //내가 구매한 제품의 이름과 가격을 전달해주는 쿼리
+
+
+    connection.query(sql1+sql2, function(err, data){
+        if(err) throw err;
+
+        var sql_data1=data[0];  //판매 목록 정보
+        var sql_data2=data[1];  //구매 목록 정보
+
+
+
+        res.render('mypage', {sell: sql_data1, buy: sql_data2});
+       
+
+    })
+
+})
+
+router.post('/', function(req,res){ //진행중인 약속만 조회
+
+
+})
 
 
 
@@ -112,6 +149,19 @@ router.post('/confirm' ,function(req,res){  //약속 확정
         }
     })
 })
+
+
+router.post('/buy', function(req,res){  //구매목록 조회
+//userid
+})
+
+router.post('/sell', function(req,res){ //판매목록 조회
+
+})
+
+
+//약속진행중
+//약속완료 -> 구매, 판매
 
 
 

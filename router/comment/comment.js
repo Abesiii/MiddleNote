@@ -20,7 +20,7 @@ connection.connect();       //mysql 연동
 
 
 
-router.post('/create', function(req, res){ //상세 product 조회 
+router.post('/create', function(req, res){ //댓글 작성성
 
 
   var commentData=req.body;

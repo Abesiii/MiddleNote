@@ -49,7 +49,7 @@ router.get('/', function(req, res){ //전체 product조회
   C.categoryName, C.brandName  
  FROM product as P, tradestatus as T, category as C
  WHERE P.statusId=T.statusId  AND P.categoryId=C.categoryId
- ORDER BY P.productId ASC`;
+ ORDER BY P.productId ASC`;   //글 전체 목록을 조회하는 쿼리
   
 
   connection.query(sql1, function(err, rows){
@@ -80,7 +80,7 @@ router.get('/:brandName', function(req, res){ //브랜드 별 product조회
   C.brandName, T.statusName, P.photoLink
  FROM product as P, category as C, tradestatus as T
  WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
- AND C.brandName=?`;
+ AND C.brandName=?`;    //브랜드 별로 제품을 조회하는 쿼리
    
  
    connection.query(sql1,[brandName], function(err, rows){
@@ -128,6 +128,8 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
 
 
   connection.query(sql1+sql2+sql3, function(err, data){
+
+    if(err) throw err;
 
     var sql_data1=data[0];  //글에 대한 정보
     var sql_data2=data[1];  //댓글에 대한 정보
