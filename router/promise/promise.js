@@ -20,10 +20,9 @@ connection.connect();       //mysql 연동
 router.get('/',function(req,res){   //임시로 마이페이지 조회
                                     //판매목록, 구매목록, 약속목록 데이터 전달해줌
     var userId=1;
-    var sql1=`SELECT PD.productName, PD.price,PD.photoLink,PM.productId
-    FROM promise as PM 
-    INNER JOIN product AS PD
-    ON PM.productId=PD.productId
+    var sql1=`SELECT productName, price, photoLink,productId, 
+    sellerId, statusId
+    FROM simpleproduct_information
     WHERE PM.sellerId=${userId} AND PD.statusId=2;`; //내가 판매한 제품의 이름과 가격을 전달해주는 쿼리
 
 

@@ -37,19 +37,22 @@ router.get('/', function(req, res){
 router.get('/', function(req, res){ //전체 product조회
 
 
-  
- /* var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
-   C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname  
-  FROM product as P, category as C, tradestatus as T, user as U
-  WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
-  AND P.userId=U.id
-  ORDER BY P.postTime ASC`;   //글에 필요한 정보를 조회하는 쿼리*/
+  /*
 
   var sql1= `SELECT P.productId, P.productName, P.price, T.statusName, P.photoLink,
   C.categoryName, C.brandName  
  FROM product as P, tradestatus as T, category as C
  WHERE P.statusId=T.statusId  AND P.categoryId=C.categoryId
- ORDER BY P.productId ASC`;   //글 전체 목록을 조회하는 쿼리
+ ORDER BY P.productId ASC`;   //글 전체 목록을 조회하는 쿼리*/
+
+
+ var sql1=`SELECT productId, productName, price, statusName, photoLink,
+ categoryName, brandName  
+FROM detailProduct_Information`;    //글 전체 목록을 조회하는 쿼리
+
+
+
+
   
 
   connection.query(sql1, function(err, rows){
@@ -75,13 +78,18 @@ router.get('/:brandName', function(req, res){ //브랜드 별 product조회
 
   
   
- 
+ /*
   var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
   C.brandName, T.statusName, P.photoLink
  FROM product as P, category as C, tradestatus as T
  WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
- AND C.brandName=?`;    //브랜드 별로 제품을 조회하는 쿼리
-   
+ AND C.brandName=?`;    //브랜드 별로 제품을 조회하는 쿼리*/
+
+
+ var sql1=`SELECT productId, userId, productName, price, categoryName, 
+ brandName, statusName, photoLink
+FROM detailProduct_Information
+WHERE brandName=?`
  
    connection.query(sql1,[brandName], function(err, rows){
      if(err) throw err;
@@ -104,17 +112,17 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   var productId=req.params.productId;
   var loginUserId=1;
   
-   var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
-  C.brandName,P.volume, P.description, P.postTime, T.statusName, P.photoLink, U.nickname, P.statusId  
-  FROM product as P, category as C, tradestatus as T, user as U
-  WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
-  AND P.userId=U.id AND P.productId=${productId};`;   //글에 필요한 정보를 조회하는 쿼리
+   var sql1 = `SELECT productId, userId, productName, price, categoryName, 
+   brandName,volume, description, postTime, statusName, photoLink, nickname, statusId  
+   FROM detailProduct_Information
+   WHERE productId=${productId};`;   //글에 필요한 정보를 조회하는 쿼리
 
 
   var sql2 = `SELECT  P.productId, C.commentTime, C.commentContent, C.userId, U.nickname
   FROM product as P, comment as C, user as U
   where P.productId=C.ProductId AND C.userId=U.id
-  AND P.productId=${productId};`;   //해당 글에 달린 댓글 정보 조회 
+  AND P.productId=${productId}
+  ORDER BY C.commentTime DESC;`;   //해당 글에 달린 댓글 정보 조회(최신순) 
 
   var sql3= `SELECT P.productId, P.sellerId, P.buyerId, S.nickname AS sellernickname, B.nickname AS buyernickname
   FROM promise AS P 
