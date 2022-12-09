@@ -79,4 +79,24 @@ router.post('/create', upload.single('imagefile'), function(req, res){ //글 작
   })
 
 
+  router.post('/edit', function(req, res){  //글 수정
+    console.log(req.body);
+    var productId="'"+req.body.productId+"'";
+
+    var sql=`SELECT productName, categoryName, brandName,
+    price, volume, description, photoLink, productId
+    FROM detailproduct_information
+    WHERE productId=${productId}`;
+
+    connection.query(sql, function(err,data){
+      if(err) throw err;
+      else{
+        res.render('regist_edit', {data: data});
+      }
+    })
+
+  
+  })
+
+
 module.exports = router;

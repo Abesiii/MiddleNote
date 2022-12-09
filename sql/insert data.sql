@@ -110,7 +110,7 @@ ORDER BY P.productId ASC;
 
 -- 제품에 대한 간단한 정보를 조회하는 뷰 -- 
 
-CREATE VIEW simpleproduct_information
+CREATE VIEW mypageproduct_information
 AS SELECT PD.productName, PD.price,PD.photoLink,Pd.statusId,
 PM.productId, PM.sellerId, PM.buyerId
 FROM promise as PM 

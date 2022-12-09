@@ -22,18 +22,18 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
     var userId=1;
     var sql1=`SELECT productName, price, photoLink,productId, 
     sellerId, statusId
-    FROM simpleproduct_information
+    FROM mypageproduct_information
     WHERE sellerId=${userId} AND statusId=2;`; //내가 판매한 제품의 이름과 가격을 전달해주는 쿼리
 
 
     var sql2=`SELECT productName, price, photoLink, productId,
     buyerId, statusId
-    FROM simpleproduct_information 
+    FROM mypageproduct_information 
     WHERE buyerId=${userId} AND statusId=2;`;    //내가 구매한 제품의 이름과 가격을 전달해주는 쿼리
    
 
     var sql3=`SELECT productId, productName, price, photoLink
-    FROM simpleproduct_information
+    FROM mypageproduct_information
     WHERE (buyerId=${userId} OR sellerId=${userId}) AND statusId=1;`   //약속 목록 정보 조회 쿼리
 
     var sql4=`SELECT productName, price, photoLink, productId
