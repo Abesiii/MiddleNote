@@ -22,13 +22,19 @@ connection.connect();       //mysql 연동
 
 
 
-router.post('/delete/:productId',function(req,res){
-var productId=req.params.productId;
+router.post('/delete/:productId',function(req,res){   //글 삭제(댓글, 약속 목록 다 사라짐)
+var productId="'"+req.params.productId+"'";
+console.log(productId);
 
+var sql=`DELETE FROM product WHERE productId=${productId}`;
 
+connection.query(sql,function(err,data){
+  if(err) throw err;
+  else{
+    res.write("<script>window.location=\`../../product\`</script>");
+  }
+})
 
-
-res.write("<script>window.location=\`../../product\`</script>");
 })
 
 

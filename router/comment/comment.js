@@ -45,10 +45,10 @@ router.post('/create', function(req, res){ //댓글 작성
 
 router.post('/delete',function(req,res){    //댓글 삭제
   var productId=req.body.productId;
-  console.log(productId);
+ 
   var commentId="'"+req.body.commentId+"'";
 
-  console.log(commentId);
+
 
   var sql=`DELETE FROM comment 
   WHERE commentId=${commentId}`;

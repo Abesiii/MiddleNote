@@ -73,7 +73,7 @@ CREATE TABLE promise (
     CONSTRAINT PK_promiseProductId PRIMARY KEY (productId),
     CONSTRAINT FK_promiseBuyerId FOREIGN KEY (sellerId) REFERENCES user(id),
     CONSTRAINT FK_promiseSellerId FOREIGN KEY (buyerId) REFERENCES user(id),
-    CONSTRAINT FK_promiseProductId FOREIGN KEY (productId) REFERENCES product(productId)
+    CONSTRAINT FK_promiseProductId FOREIGN KEY (productId) REFERENCES product(productId) ON DELETE CASCADE
     );
     
 CREATE TABLE comment (
@@ -84,14 +84,14 @@ CREATE TABLE comment (
     commentContent VARCHAR(300),
     CONSTRAINT PK_commentId PRIMARY KEY (commentId),
     CONSTRAINT FK_commentUserId FOREIGN KEY (userId) REFERENCES User(id),
-    CONSTRAINT FK_commentProductId FOREIGN KEY (productId) REFERENCES Product(productId)
+    CONSTRAINT FK_commentProductId FOREIGN KEY (productId) REFERENCES Product(productId) ON DELETE CASCADE
     );
     
 CREATE TABLE tradeList (
    productId INT,
     userId INT,
     CONSTRAINT PK_tradeListProductId PRIMARY KEY (productId),
-    CONSTRAINT FK_tradeListProductId FOREIGN KEY (productId) REFERENCES Product(productId),
+    CONSTRAINT FK_tradeListProductId FOREIGN KEY (productId) REFERENCES Product(productId) ON DELETE CASCADE,
     CONSTRAINT FK_tradeListUserId FOREIGN KEY (userId) REFERENCES User(id)
     );
     
