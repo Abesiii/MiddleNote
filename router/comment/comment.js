@@ -20,7 +20,7 @@ connection.connect();       //mysql 연동
 
 
 
-router.post('/create', function(req, res){ //댓글 작성성
+router.post('/create', function(req, res){ //댓글 작성
 
 
   var commentData=req.body;
@@ -40,6 +40,25 @@ router.post('/create', function(req, res){ //댓글 작성성
   })
 
 
+})
+
+
+router.post('/delete',function(req,res){    //댓글 삭제
+  var productId=req.body.productId;
+  console.log(productId);
+  var commentId="'"+req.body.commentId+"'";
+
+  console.log(commentId);
+
+  var sql=`DELETE FROM comment 
+  WHERE commentId=${commentId}`;
+
+  connection.query(sql, function(err, data){
+    if(err) throw err;
+    else{
+      return res.redirect(`/product/detail/${productId}`);
+    }
+  })
 })
 
 

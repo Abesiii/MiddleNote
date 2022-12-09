@@ -20,24 +20,15 @@ connection.connect();       //mysql 연동
 
 
 
-/*
-router.get('/', function(req, res){
-  console.log('product.js 실행');
-  var query = connection.query("select * from product", function(err, rows){
-    if(err) throw err;
-    else{
-        console.log(rows);
-    }
-  })
-  res.sendFile(path.join(__dirname, '../../html/eshop.html'));
-})*/
 
 
-router.post('/delete',function(req,res){
-  //console.log("이름은 " + req.query.productId + " 입니다")
- // var productId=req.params.productId;
- console.log(req.query.productId);
- res.send(req.query.productId);
+router.post('/delete/:productId',function(req,res){
+var productId=req.params.productId;
+
+
+
+
+res.write("<script>window.location=\`../../product\`</script>");
 })
 
 
@@ -125,7 +116,7 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
    WHERE productId=${productId};`;   //글에 필요한 정보를 조회하는 쿼리
 
 
-  var sql2 = `SELECT  P.productId, C.commentTime, C.commentContent, C.userId, U.nickname
+  var sql2 = `SELECT  P.productId, C.commentTime, C.commentContent, C.userId, C.commentId, U.nickname
   FROM product as P, comment as C, user as U
   where P.productId=C.ProductId AND C.userId=U.id
   AND P.productId=${productId}
