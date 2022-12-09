@@ -23,32 +23,34 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
     var sql1=`SELECT productName, price, photoLink,productId, 
     sellerId, statusId
     FROM simpleproduct_information
-    WHERE PM.sellerId=${userId} AND PD.statusId=2;`; //내가 판매한 제품의 이름과 가격을 전달해주는 쿼리
+    WHERE sellerId=${userId} AND statusId=2;`; //내가 판매한 제품의 이름과 가격을 전달해주는 쿼리
 
 
-    var sql2=`SELECT PD.productName, PD.price,Pd.photoLink,PM.productId
-    FROM promise as PM 
-    INNER JOIN product AS PD
-    ON PM.productId=PD.productId
-    WHERE PM.buyerId=${userId} AND PD.statusId=2;`;    //내가 구매한 제품의 이름과 가격을 전달해주는 쿼리
+    var sql2=`SELECT productName, price, photoLink, productId,
+    buyerId, statusId
+    FROM simpleproduct_information 
+    WHERE buyerId=${userId} AND statusId=2;`;    //내가 구매한 제품의 이름과 가격을 전달해주는 쿼리
+   
+
+    var sql3=`SELECT productId, productName, price, photoLink
+    FROM simpleproduct_information
+    WHERE (buyerId=${userId} OR sellerId=${userId}) AND statusId=1;`   //약속 목록 정보 조회 쿼리
+
+    var sql4=`SELECT productName, price, photoLink, productId
+    FROM product
+    WHERE userId=${userId};`
 
 
-    var sql3=`SELECT PD.productId, PD.productName, PD.price,Pd.photoLink
-    FROM promise as PM 
-    INNER JOIN product AS PD
-    ON PM.productId=PD.productId
-    WHERE (PM.buyerId=${userId} OR PM.sellerId=${userId}) AND PD.statusId=1;`   //약속 목록 정보 조회 쿼리
-
-
-    connection.query(sql1+sql2+sql3, function(err, data){
+    connection.query(sql1+sql2+sql3+sql4, function(err, data){
         if(err) throw err;
 
         var sql_data1=data[0];  //판매 목록 정보
         var sql_data2=data[1];  //구매 목록 정보
         var sql_data3=data[2];  //약속 목록 정보
+        var sql_data4=data[3];  //작성글 목록 정보
 
 
-        res.render('mypage', {sell: sql_data1, buy: sql_data2, promise:sql_data3});
+        res.render('mypage', {sell: sql_data1, buy: sql_data2, promise:sql_data3, product:sql_data4});
        
 
     })

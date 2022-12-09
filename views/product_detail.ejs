@@ -229,6 +229,23 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
           <h2 class = "product-title"><%= data[0].productName %></h2>
           <a href = "https://www.bulgari.com/ko-kr/83110.html" class = "product-link">Visit BVL official site</a>
 
+          <div class="row">
+
+            <div class="col-sm-2"> 
+              <form action="/promise/create" method="POST">
+                <button class="btn btn-light">글 수정</button>
+              </form>
+            </div>
+
+            <div class="col-sm-2"> 
+              <form action="/product/delete" method="DELETE">
+                <input type="hidden" name="productId" value="<%= data[0].productId %>">
+                <button class="btn btn-light">글 삭제</button>
+              </form>
+            </div>
+
+          </div>
+          
 
           <div class = "product-price">
             <p class = "new-price">Price: <span><%= data[0].price %></span></p>
@@ -317,9 +334,15 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
           <div class="col-sm-3 ">
             <button class="btn btn-dark btn-lg" id="btn3">submit</button>
         </div>
-        </div>
 
+        <div class="col-sm-3">
+          <%= comment.length %>개의 댓글
+        </div>
+        
+        </div>
+        
         </form>
+        
         <% if (comment.length>0) { %>   
         <% for(var i = 0; i<comment.length; i++){ %>
             <%= comment[i].nickname %> <br>

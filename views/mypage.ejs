@@ -140,53 +140,46 @@
                 <div class="container">
                 <div class="row" style="padding:0px 0px 0px 0px">
                   </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                            <div class="product"  OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/8084464/pexels-photo-8084464.png?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
-                            </div>
-                            <div class="title pt-4 pb-1">Jo Malone</div>
-                            <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                            <div class="price">$ 60.0</div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                            <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/755992/pexels-photo-755992.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="title pt-4 pb-1">Coco Chanel</div>
-                            <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                            <div class="price">$ 55.0</div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                            <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/1961795/pexels-photo-1961795.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="title pt-4 pb-1">Dolce&Gabbana</div>
-                            <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                            <div class="price">$ 70.0</div>
-                        </div>
-                    </div>
+
+                  <div class="row">
+                  
+                  <% for(var i = 0; i<product.length; i++){ %>
+
+                      <% if (product[i].photoLink=='undefined' || product[i].photoLink==null) { %> 
+
+                          <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
+                              <div class="product"  OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/8084464/pexels-photo-8084464.png?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
+                              </div>
+                              <div class="title pt-4 pb-1"><%= product[i].productName %></div>
+                              <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
+                              <div class="price"><%= product[i].price %>원</div>
+                              <div class="productid"  style="display: none;"><%= product[i].productId %> </div>
+                          </div>
+
+                      <% } else { %>
+                          <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
+                              <div class="product"  OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="./img/<%= sell[i].photoLink %>" alt="">
+                              </div>
+                              <div class="title pt-4 pb-1"><%= product[i].productName %></div>
+                              <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
+                              <div class="price"><%= product[i].price %>원</div>
+                              <div class="productid"  style="display: none;"><%= product[i].productId %> </div>
+                          </div>
+             
+                      <% } %>
+                    
+                      
+                      <% } %>
+                          
+                      
+
+                 
+                  </div>
+                     
+                     
+               
             
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                            <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/1830450/pexels-photo-1830450.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="title pt-4 pb-1">Victorias Secret</div>
-                            <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                            <div class="price">$ 60.0</div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                            <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/724635/pexels-photo-724635.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="title pt-4 pb-1">Escada</div>
-                            <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                            <div class="price">$ 55.0</div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-                            <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/2922276/pexels-photo-2922276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            </div>
-                            <div class="title pt-4 pb-1">Givenchy</div>
-                            <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
-                            <div class="price">$ 70.0</div>
-                        </div>
-                    </div>
+               
                 </div>
               </div>
             </div>

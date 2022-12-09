@@ -3,7 +3,7 @@ var app = express();
 var router = express.Router();      //라우터
 var path = require('path');         //상대경로로 편리하게 이동할 수 있는 객체
 var mysql = require('mysql');
-
+var url = require('url');
 
 
 /* 데이터베이스 세팅 */
@@ -33,6 +33,13 @@ router.get('/', function(req, res){
 })*/
 
 
+router.post('/delete',function(req,res){
+  //console.log("이름은 " + req.query.productId + " 입니다")
+ // var productId=req.params.productId;
+ console.log(req.query.productId);
+ res.send(req.query.productId);
+})
+
 
 router.get('/', function(req, res){ //전체 product조회
 
@@ -43,7 +50,7 @@ router.get('/', function(req, res){ //전체 product조회
   C.categoryName, C.brandName  
  FROM product as P, tradestatus as T, category as C
  WHERE P.statusId=T.statusId  AND P.categoryId=C.categoryId
- ORDER BY P.productId ASC`;   //글 전체 목록을 조회하는 쿼리*/
+ ORDER BY P.productId ASC`;   //글 전체 목록을 조회하는 쿼리 */
 
 
  var sql1=`SELECT productId, productName, price, statusName, photoLink,
@@ -124,6 +131,7 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   AND P.productId=${productId}
   ORDER BY C.commentTime DESC;`;   //해당 글에 달린 댓글 정보 조회(최신순) 
 
+  
   var sql3= `SELECT P.productId, P.sellerId, P.buyerId, S.nickname AS sellernickname, B.nickname AS buyernickname
   FROM promise AS P 
   INNER JOIN user AS S
@@ -171,44 +179,15 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
     }
   })
   
-  /*
 
-  connection.query(sql1, function(err, data1){
-    if(err) throw err;
-    else{
-      if(data1.length){      
-        var dateString=getDate(data1[0].postTime);     //datetime 파싱
-        var timeString=getTime(data1[0].postTime);
-        data1[0].dateString = dateString;
-        data1[0].timeString=  timeString;
 
-        connection.query(sql2, function(err2,data2){
-          if(err2) throw err2;
-          else{
-            if(data2.length){
-              for(var i=0; i<data2.length; i++){
-                var dateString=getDate(data2[i].commentTime);     //datetime 파싱
-                var timeString=getTime(data2[i].commentTime);
-                data2[i].dateString = dateString;
-                data2[i].timeString=timeString;
-              }
 
-   
-              res.render('product_detail', {data : data1, comment: data2});
-            }
-            else{
-              res.render('product_detail', {data : data1, comment : data2});
-            }
-          }
-        })
-      }
-      else{
-        res.json({message: "400"});
-      }
-    }
-
-  })*/
 })
+
+
+
+
+
 
 
 function getDate(today){
