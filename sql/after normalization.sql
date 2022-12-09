@@ -98,7 +98,7 @@ CREATE TABLE tradeList (
 
 
 -- 글에 필요한 정보를 모두 조회하는 뷰 --    
-CREATE VIEW detailproduct_information
+CREATE VIEW detailProduct_Information
 AS SELECT P.productId,P.productName, P.price, P.userId, P.photoLink, P.volume,
 P.description, P.postTime, P.statusId, P.categoryId, 
 T.statusName, C.categoryName, C.brandName, U.nickname
@@ -110,9 +110,9 @@ ORDER BY P.productId ASC;
 
 -- 제품에 대한 간단한 정보를 조회하는 뷰 -- 
 
-CREATE VIEW simpleproduct_information
+CREATE VIEW simpleProduct_Information
 AS SELECT PD.productName, PD.price,PD.photoLink,Pd.statusId,
-PM.productId, PM.sellerId, PM.buyerId
+PM.productId, PM.sellerId
 FROM promise as PM 
 INNER JOIN product AS PD
 ON PM.productId=PD.productId;

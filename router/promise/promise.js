@@ -11,11 +11,51 @@ var connection = mysql.createConnection({     //mysql connection 생성
   port : 3306,
   user : 'root',
   password : 'root',
-  database : 'middlenote'        //데이터베이스 이름
+  database : 'middlenote',        //데이터베이스 이름
+  multipleStatements: true
 });
 connection.connect();       //mysql 연동
 
 
+router.get('/',function(req,res){   //임시로 마이페이지 조회
+                                    //판매목록, 구매목록, 약속목록 데이터 전달해줌
+    var userId=1;
+    var sql1=`SELECT productName, price, photoLink,productId, 
+    sellerId, statusId
+    FROM simpleproduct_information
+    WHERE sellerId=${userId} AND statusId=2;`; //내가 판매한 제품의 이름과 가격을 전달해주는 쿼리
+
+
+    var sql2=`SELECT productName, price, photoLink, productId,
+    buyerId, statusId
+    FROM simpleproduct_information 
+    WHERE buyerId=${userId} AND statusId=2;`;    //내가 구매한 제품의 이름과 가격을 전달해주는 쿼리
+   
+
+    var sql3=`SELECT productId, productName, price, photoLink
+    FROM simpleproduct_information
+    WHERE (buyerId=${userId} OR sellerId=${userId}) AND statusId=1;`   //약속 목록 정보 조회 쿼리
+
+    var sql4=`SELECT productName, price, photoLink, productId
+    FROM product
+    WHERE userId=${userId};`
+
+
+    connection.query(sql1+sql2+sql3+sql4, function(err, data){
+        if(err) throw err;
+
+        var sql_data1=data[0];  //판매 목록 정보
+        var sql_data2=data[1];  //구매 목록 정보
+        var sql_data3=data[2];  //약속 목록 정보
+        var sql_data4=data[3];  //작성글 목록 정보
+
+
+        res.render('mypage', {sell: sql_data1, buy: sql_data2, promise:sql_data3, product:sql_data4});
+       
+
+    })
+
+})
 
 
 
@@ -34,13 +74,11 @@ var buyerId="'"+promiseData.buyerId +"'";
     if(err) throw err;
     else{
         if(data.length){    //이미 약속이 존재할때
-            console.log("jey");
             res.write("<script>alert('You already have a promise')</script>");
             res.write("<script>window.location=\"../product\"</script>");
         }
 
         else{   
-            console.log("hey");
             connection.query(sql2, function(err2, data2){
                 if(err2) throw err2;
                 else{
@@ -114,6 +152,19 @@ router.post('/confirm' ,function(req,res){  //약속 확정
         }
     })
 })
+
+
+router.post('/buy', function(req,res){  //구매목록 조회
+//userid
+})
+
+router.post('/sell', function(req,res){ //판매목록 조회
+
+})
+
+
+//약속진행중
+//약속완료 -> 구매, 판매
 
 
 

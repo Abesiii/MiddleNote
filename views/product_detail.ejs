@@ -49,7 +49,7 @@
           <li><a href="/regist"> Trade-Regist </a></li>
           <li><a href="About.html"> ABOUT </a></li>
           <li><a href="/Member-login.html">LOG IN</a></li>
-          <li><a href="Mypage.html"> <span class="fa fa-user"></span> </a></li>
+          <li><a href="/promise"> <span class="fa fa-user"></span> </a></li>
         </ul>
       </div>
 
@@ -229,6 +229,23 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
           <h2 class = "product-title"><%= data[0].productName %></h2>
           <a href = "https://www.bulgari.com/ko-kr/83110.html" class = "product-link">Visit BVL official site</a>
 
+          <div class="row">
+
+            <div class="col-sm-2"> 
+              <form action="/promise/create" method="POST">
+                <button class="btn btn-light">글 수정</button>
+              </form>
+            </div>
+
+            <div class="col-sm-2"> 
+              <form action="/product/delete" method="DELETE">
+                <input type="hidden" name="productId" value="<%= data[0].productId %>">
+                <button class="btn btn-light">글 삭제</button>
+              </form>
+            </div>
+
+          </div>
+          
 
           <div class = "product-price">
             <p class = "new-price">Price: <span><%= data[0].price %></span></p>
@@ -250,8 +267,13 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
               </div>
             </div>
             
+            <div class="row">
+              <div class="col-sm-9">
+                <p><b>Trade Status</b>: <%= data[0].statusName %></p>
+              </div>
+            </div>
             
-            <p><b>Trade Status</b>: <%= data[0].statusName %></p>
+     
             
             <div class="row">
             <div class="col-sm-9">
@@ -262,8 +284,20 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
             <div class="col-sm-2" style="margin-left:0px;">
               <form action="/promise/confirm" method="POST">
               <input type="hidden" name="productId" value="<%= data[0].productId %>">
-              <button class="btn btn-primary btn-lg" id="btn3">약속 확정</button>
+              <button class="btn btn-primary btn-lg" id="btn3">거래 확정</button>
             </form>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-9">
+              <% if(promise.length>0 && data[0].statusName=='PROGRESS') {%>
+                <p><b>Promise:</b> 
+                  <%= promise[0].sellernickname %>님과 <%= promise[0].buyernickname %>님이 약속을 진행중입니다 </p>
+                <% } else if(promise.length>0 && data[0].statusName=='COMPLETE'){ %>
+                <p><b>Promise:</b> 
+                    <%= promise[0].sellernickname %>님과 <%= promise[0].buyernickname %>님이 거래를 완료했습니다 </p>
+                  <% } %>
             </div>
           </div>
 
@@ -293,16 +327,22 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
 
           </div>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="regist-volume" placeholder="Input comment" name="commentContent" style="height:50px; font-size:20px;">
+            <input type="text" class="form-control" id="regist-volume" placeholder="Input comment" name="commentContent" style="height:50px; font-size:20px;" autocomplete="off">
           </div>
           <input type="hidden" name="productId" value="<%= data[0].productId %>">
           <input type="hidden" name="userId" value="1">
           <div class="col-sm-3 ">
             <button class="btn btn-dark btn-lg" id="btn3">submit</button>
         </div>
-        </div>
 
+        <div class="col-sm-3">
+          <%= comment.length %>개의 댓글
+        </div>
+        
+        </div>
+        
         </form>
+        
         <% if (comment.length>0) { %>   
         <% for(var i = 0; i<comment.length; i++){ %>
             <%= comment[i].nickname %> <br>
