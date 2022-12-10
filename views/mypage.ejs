@@ -45,11 +45,11 @@
 
     </div>
 
-  <form action="form-inline">
+  <form action="/promise/mypage" method="POST">
     <div class="container form-group">
 
       <div class="text-left" style="padding:30px 0px 30px 0px">
-        <h2>"사용자 이름" 님 환영합니다!</h2>
+        <h2>"<%=product[0].nickname %>"님 환영합니다!</h2>
 
 
         <div class="row" id="regist-img" style="padding:30px 0px 30px 0px; border-top:3px solid black; border-bottom:0.5px solid #C7C7C7;">
@@ -61,13 +61,13 @@
               <div class="collapse" id="modifyConfirm">
                 <h4> 본인확인을 위해 비밀번호를 입력해주세요.</h4>
                 <input id="password" name="password" type="password" placeholder="기존 비밀번호 입력" style=" margin: 0px; height: 40px; padding: 0px;">
-                <button type="button" class="btn btn-primary" style="margin-left:10px; margin-bottom:3px; height: 40px;" onclick="location.href='/Mypage_modify.html';">  확인  </button>
+                <button class="btn btn-primary" style="margin-left:10px; margin-bottom:3px; height: 40px;"> 확인  </button>
               </div>
             </div>
-            <button class="join1-button btn btn-info btn-lg" style="margin-top: 10px;" type="button" data-toggle="collapse" data-target="#modifyConfirm" aria-expanded="false"a >개인정보 수정</button>
+            <button class="join1-button btn btn-info btn-lg" style="margin-top: 10px;" type="button" data-toggle="collapse" data-target="#modifyConfirm" aria-expanded="false">개인정보 수정</button>
           </div>
         </div>
-
+      </form>
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3">
             <h3>작성 글 목록</h3>
@@ -699,7 +699,7 @@
       </div>
 
     </div>
-  </form>
+  
 
     <div id="footer">
       <div id="footerL">

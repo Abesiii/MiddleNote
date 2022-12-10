@@ -36,9 +36,9 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
     FROM mypageproduct_information
     WHERE (buyerId=${userId} OR sellerId=${userId}) AND statusId=1;`   //약속 목록 정보 조회 쿼리
 
-    var sql4=`SELECT productName, price, photoLink, productId
-    FROM product
-    WHERE userId=${userId};`
+    var sql4=`SELECT productName, price, photoLink, productId,nickname
+    FROM detailproduct_information
+    WHERE userId=${userId};`        //작성글 목록 정보
 
 
     connection.query(sql1+sql2+sql3+sql4, function(err, data){
@@ -49,6 +49,9 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
         var sql_data3=data[2];  //약속 목록 정보
         var sql_data4=data[3];  //작성글 목록 정보
         console.log(sql_data1);
+        console.log(sql_data2);
+        console.log(sql_data3);
+        console.log(sql_data4);
 
 
         res.render('mypage', {sell: sql_data1, buy: sql_data2, promise:sql_data3, product:sql_data4});
@@ -155,8 +158,40 @@ router.post('/confirm' ,function(req,res){  //약속 확정
 })
 
 
-router.post('/buy', function(req,res){  //구매목록 조회
-//userid
+router.post('/mypage', function(req,res){  //마이페이지 이동
+var userId="1";
+var sql=`SELECT * FROM user
+WHERE id=${userId}`;
+
+connection.query(sql, function(err,data){
+    res.render('mypage_edit', {user: data});
+})
+})
+
+router.post('/mypageedit', function(req,res){
+    var userData=req.body;
+    var id="'"+userData.id+"'";
+    var nickname="'"+userData.nickname+"'";
+    var password="'"+userData.password+"'";
+    var city="'"+userData.city+"'";
+    var gu="'"+userData.gu+"'";
+    var dong="'"+userData.dong+"'";
+    var detailAddress="'"+userData.detailAddress+"'";
+
+
+    var sql=`UPDATE user SET nickname=${nickname},
+    password=${password}, city=${city},
+    gu=${gu}, dong=${dong}, detailAddress=${detailAddress}
+    WHERE id=${id}`;
+
+
+    connection.query(sql, function(err,data){
+        if(err) throw err;
+        else{
+            res.redirect('/promise');
+        }
+    })
+
 })
 
 router.post('/sell', function(req,res){ //판매목록 조회
