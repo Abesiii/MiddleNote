@@ -24,7 +24,6 @@ connection.connect();       //mysql 연동
 
 router.post('/delete/:productId',function(req,res){   //글 삭제(댓글, 약속 목록 다 사라짐)
 var productId="'"+req.params.productId+"'";
-console.log(productId);
 
 var sql=`DELETE FROM product WHERE productId=${productId}`;
 

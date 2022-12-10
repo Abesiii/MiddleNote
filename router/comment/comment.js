@@ -70,7 +70,6 @@ router.post('/edit/:commentId',function(req,res){ //댓글 수정 페이지로 �
   WHERE commentId=${commentId}`;
 
   connection.query(sql, function(err, data){
-    console.log(data);
     if(err) throw err;
     else{
       res.render('comment_edit', {comment: data});

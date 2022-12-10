@@ -48,10 +48,7 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
         var sql_data2=data[1];  //구매 목록 정보
         var sql_data3=data[2];  //약속 목록 정보
         var sql_data4=data[3];  //작성글 목록 정보
-        console.log(sql_data1);
-        console.log(sql_data2);
-        console.log(sql_data3);
-        console.log(sql_data4);
+     
 
 
         res.render('mypage', {sell: sql_data1, buy: sql_data2, promise:sql_data3, product:sql_data4});

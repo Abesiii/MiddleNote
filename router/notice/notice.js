@@ -29,7 +29,6 @@ router.get('/', function(req,res){
     user AS U ON N.userId=U.id`;
 
     connection.query(sql, function(err, data){
-        console.log(data);
         if(err) throw err;
         else{
             return res.render('notice', {notice: data});
