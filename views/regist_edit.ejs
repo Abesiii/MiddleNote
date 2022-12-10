@@ -55,18 +55,27 @@
           <div class="col-sm-9">
             <div class="upload-box">
               <div id="drop-file" class="drag-file">
-                <img id="post-image" src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image">
+                <img id="post-image" src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image">                              
                 <p id="message" class="message">Drag files to upload</p>
+        
+                <% if (data[0].photoLink=='undefined' || data[0].photoLink==null) { %> 
+                
+                  <% } else{ %>
+                    
+                
               </div>
 
-              <br>
-			  <input id="imagefile" name="imagefile" accept="image/*" type="file" onchange="setThumbnail(event);">
-
-       
+              
+              <script>
+                setPrevThumbnail("../../../img/<%= data[0].photoLink %>");
+              </script>
+            <% } %>
   
-
+            
             </div>
-
+            <br>
+            <input id="imagefile" name="imagefile" accept="image/*" type="file" onchange="setThumbnail(event);">
+            <br>
           </div>
         </div>
 
@@ -78,7 +87,6 @@
             <input type="text" class="form-control" id="regist-productname" 
             placeholder="Input Product Name" name="productName" 
             style="height:50px; font-size:20px;" autocomplete="off" value="<%= data[0].productName %>">
-
           </div>
         </div>
 

@@ -89,7 +89,6 @@ router.post('/create', upload.single('imagefile'), function(req, res){ //글 작
     connection.query(sql, function(err,data){
       if(err) throw err;
       else{
-        console.log(data);
         res.render('regist_edit', {data: data});
       }
     })
@@ -115,8 +114,7 @@ router.post('/create', upload.single('imagefile'), function(req, res){ //글 작
     }
     var categoryName =productData.categoryName;
     var brandName =productData.brandName;
-    console.log(categoryName)
-    console.log(brandName)
+   
 
 
     var sql1 = 'SELECT categoryId FROM category where categoryName=? AND brandName=?';  //글의 categoryId찾는 쿼리
@@ -131,7 +129,8 @@ router.post('/create', upload.single('imagefile'), function(req, res){ //글 작
      
           var sql2=`UPDATE product 
           SET productName=${productName}, price=${price}, 
-          volume=${volume}, description=${description}, categoryId=${categoryId}
+          volume=${volume}, description=${description}, categoryId=${categoryId},
+          photoLink=${photoLink}
           WHERE productId=${productId}`;
 
           connection.query(sql2, function(err,rows){

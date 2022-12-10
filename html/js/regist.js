@@ -69,33 +69,41 @@ function setThumbnail(event) {
     var img = document.createElement("img");
     var postimage=document.getElementById("post-image");
     var message=document.getElementById("message");
+    var thumbnail=document.getElementById("thumbnail");
+
+    if(thumbnail){
+      thumbnail.remove();
+    }
+
     img.setAttribute("src", event.target.result);
     img.setAttribute('width', 345);
     img.setAttribute('height', 384);
+    img.setAttribute("id", "thumbnail");
     postimage.style.display='none';
     message.style.display='none';
+
     document.getElementById("drop-file").appendChild(img);
   };
 
   reader.readAsDataURL(event.target.files[0]);
 }
 
-function setPrevThumbnail(event) {
-  var reader = new FileReader();
+function setPrevThumbnail(path) {
 
-  reader.onload = function(event) {
+
+
     var img = document.createElement("img");
     var postimage=document.getElementById("post-image");
     var message=document.getElementById("message");
-    img.setAttribute("src", event.target.result);
+    console.log(message);
+    img.setAttribute("src",path);
     img.setAttribute('width', 345);
     img.setAttribute('height', 384);
+    img.setAttribute("id", "thumbnail");
     postimage.style.display='none';
     message.style.display='none';
     document.getElementById("drop-file").appendChild(img);
-  };
 
-  reader.readAsDataURL(event.target.files[0]);
 }
 
 
@@ -192,16 +200,16 @@ function getPostTime(){
 
 function categorySelect(categoryName){   
     if(categoryName=="For Homme"){
-      $("#cate1").$prop("selected", true);
+      $("#cate1").prop("selected", true);
     } 
     else if(categoryName=="For Femme"){
-      $("#cate2").$prop("selected", true);
+      $("#cate2").prop("selected", true);
     } 
     else if(categoryName=="Eau de Toilete"){
-      $("#cate3").$prop("selected", true);
+      $("#cate3").prop("selected", true);
     }  
     else if(categoryName=="Eau de Cologne"){
-      $("#cate4").$prop("selected", true);
+      $("#cate4").prop("selected", true);
     }        
   }
 
