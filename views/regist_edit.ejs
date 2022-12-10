@@ -9,8 +9,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <link rel="stylesheet" href="../css/regist.css">
-    <script type="text/javascript" src="../js/regist.js"></script>
+  <link rel="stylesheet" href="../../css/regist.css">
+    <script type="text/javascript" src="../../js/regist.js"></script>
   <title>Trade-Regist</title>
 
 
@@ -19,7 +19,7 @@
     <div class="container" id="header">
       <div id="logo">
         <a href="/">
-          <img src="../img/logo.jpg" alt="logo">
+          <img src="../../img/logo.jpg" alt="logo">
         </a>
       </div>
 
@@ -36,7 +36,7 @@
 
     </div>
 
-    <form action="/regist/create" method="POST" enctype="multipart/form-data">
+    <form action="/regist/edit" method="POST" enctype="multipart/form-data">
     <div class="container form-group">
 
       <div class="text-left" style="padding:30px 0px 30px 0px">
@@ -198,9 +198,7 @@
           <div class="col-sm-9">
               <textarea rows="6" style="height:200px; font-size:20px;" class="form-control" 
               id="regist-description" placeholder="Input Product Detail" 
-              name="description" autocomplete="off">
-              <%= data[0].description %>
-            </textarea>
+              name="description" autocomplete="off"><%= data[0].description %></textarea>
           </div>
         </div>
 
@@ -210,6 +208,7 @@
 
         <div class="row" style="padding:30px 0px 30px 0px">
             <div class="col-sm-12 text-right">
+              <input type="hidden" name="productId" value="<%= data[0].productId %>">
                 <button class="btn btn-danger btn-lg" id="btn3">submit</button>
             </div>
           </div>
@@ -225,8 +224,8 @@
         <p><a href="">NEWS</a></p>
         <p><a href="">LEGALS</a></p>
         <p><a href="">SHIPPING & RETURNS</a></p>
-        <a href=""><img src="../img/insta.jpg" alt="instagram" width="12px" height="12px"></a>
-        <a href=""><img src="../img/facebook.jpg" alt="facebook" width="12px" height="12px"></a>
+        <a href=""><img src="../../img/insta.jpg" alt="instagram" width="12px" height="12px"></a>
+        <a href=""><img src="../../img/facebook.jpg" alt="facebook" width="12px" height="12px"></a>
       </div>
 
       <div id=footerR>

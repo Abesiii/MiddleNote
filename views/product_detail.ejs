@@ -232,8 +232,7 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
           <div class="row">
 
             <div class="col-sm-2"> 
-              <form action="/regist/edit" method="POST">
-                <input type="hidden" name="productId" value="<%= data[0].productId %>">
+              <form action="/regist/edit/<%= data[0].productId %>" method="POST">
                 <button class="btn btn-light">글 수정</button>
               </form>
             </div>

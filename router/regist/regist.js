@@ -29,6 +29,7 @@ router.post('/create', upload.single('imagefile'), function(req, res){ //글 작
     //console.log(req.file);
     //console.log(req.body);
     var productData = req.body;    
+    console.log(productData);
 
     var userId = 1;
     var productName = "'" + productData.productName + "'";
@@ -79,9 +80,8 @@ router.post('/create', upload.single('imagefile'), function(req, res){ //글 작
   })
 
 
-  router.post('/edit', function(req, res){  //글 수정
-    console.log(req.body);
-    var productId="'"+req.body.productId+"'";
+  router.post('/edit/:productId', function(req, res){  //글 수정 페이지로 넘어가기
+    var productId="'"+req.params.productId+"'";
 
     var sql=`SELECT productName, categoryName, brandName,
     price, volume, description, photoLink, productId
@@ -91,12 +91,24 @@ router.post('/create', upload.single('imagefile'), function(req, res){ //글 작
     connection.query(sql, function(err,data){
       if(err) throw err;
       else{
+        console.log(data);
         res.render('regist_edit', {data: data});
       }
     })
 
   
   })
+
+
+  router.post('/edit',upload.single('imagefile'), function(req,res){
+
+    console.log(req.body);
+    console.log("죠랄이죠")
+    
+
+  })
+
+
 
 
 module.exports = router;
