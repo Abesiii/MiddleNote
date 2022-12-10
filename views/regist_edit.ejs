@@ -18,7 +18,7 @@
 <body>
     <div class="container" id="header">
       <div id="logo">
-        <a href="index.html">
+        <a href="/">
           <img src="../img/logo.jpg" alt="logo">
         </a>
       </div>
@@ -82,15 +82,8 @@
           </div>
         </div>
 
-     
 
-        <script>
 
-            $(function(){
-                $("#categoryName").val("3").prop("selected", true);
-            });
-            
-            </script>
 
         
 
@@ -103,10 +96,10 @@
               <div class="col-sm-6">
                
                   <select id="categoryName" name="categoryName">
-                  <option>For Homme</option>
-                  <option>For Femme</option>
+                  <option value="1">For Homme</option>
+                  <option value="2">For Femme</option>
                  <option value="3">Eau de Toilete</option>
-                  <option>Eau de Cologne</option>
+                  <option value="4">Eau de Cologne</option>
                 </select>
              
               </div>
@@ -118,6 +111,12 @@
         </div>
 
         
+        <script>
+          const categoryName="<%= data[0].categoryName %>"
+          categorySelect(categoryName);
+            </script>
+        
+        
 
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3">
@@ -127,38 +126,43 @@
             <div class="col-sm-6">
 
              
-              <select name="brandName">
+              <select id="brandName" name="brandName">
                 <optgroup label="For Homme">
-              <li class="list-group-item" id="cate1-1" onclick="showCate1(this)" ><option>Bvlgari</option></li>
-              <li class="list-group-item" id="cate1-2" onclick="showCate1(this)"></li><option>Jo Malone</option></li>
-              <li class="list-group-item" id="cate1-3" onclick="showCate1(this)"><option>Calvin Klein</option</li>
+                  <option id="cate1-1">Bvlgari</option>
+                  <option id="cate1-2">Jo Malone</option>
+                  <option id="cate1-3">Calvin Klein</option>
                 </optgroup>
            
                 <optgroup label="For Femme">
-              <li class="list-group-item" id="cate2-1" onclick="showCate2(this)"><option>Chanel</option></li>
-              <li class="list-group-item" id="cate2-2" onclick="showCate2(this)"><option>Christian Dior</option></li>
-              <li class="list-group-item" id="cate2-3" onclick="showCate2(this)"><option>Burberry</option></li>
-              <li class="list-group-item" id="cate2-4" onclick="showCate2(this)"><option>Versace</option></li>
+                  <option id="cate2-1">Chanel</option>
+                  <option id="cate2-2">Christian Dior</option>
+                  <option id="cate2-3">Burberry</option>
+                  <option id="cate2-4">Versace</option>
                  </optgroup>
            
                  <optgroup label="Eau de Toilete">
-              <li class="list-group-item" id="cate3-1" onclick="showCate3(this)"><option>Cartier</option></li>
-              <li class="list-group-item" id="cate3-2" onclick="showCate3(this)"><option>Montblanc</option></li>
-              <li class="list-group-item" id="cate3-3" onclick="showCate3(this)"><option>YvesSaintLaurent</option></li>
-              <li class="list-group-item" id="cate3-4" onclick="showCate3(this)"><option>Ralph Lauren</option></li>
+                  <option id="cate3-1">Cartier</option>
+                  <option id="cate3-2">Montblanc</option>
+                  <option id="cate3-3">YvesSaintLaurent</option>
+                  <option id="cate3-4">Ralph Lauren</option>
                  </optgroup>
 
                  <optgroup label="Eau de Cologne">
-              <li class="list-group-item" id="cate4-1" onclick="showCate4(this)"><option>Bottega Veneta</option></li>
-              <li class="list-group-item" id="cate4-2" onclick="showCate4(this)"><option>Louis Vuitton</option></li>
-              <li class="list-group-item" id="cate4-3" onclick="showCate4(this)"><option>Hermes</option></li>
-              <li class="list-group-item" id="cate4-4" onclick="showCate4(this)"><option>Salvatore Ferragamo</option></li>
+                  <option id="cate4-1">Bottega Veneta</option>
+                  <option id="cate4-2">Louis Vuitton</option>
+                  <option id="cate4-3">Hermes</option>
+                  <option id="cate4-4">Salvatore Ferragamo</option>
                  </optgroup>
             </select>
          
           </div>
           </div>
         </div>
+
+        <script>
+          const brandName="<%= data[0].brandName %>"
+          brandSelect(brandName);
+            </script>
 
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
             <div class="col-sm-3">

@@ -169,3 +169,73 @@ function getPostTime(){
   return dateTime;
   
   }
+
+
+function categorySelect(categoryName){   
+    if(categoryName=="For Homme"){
+      $("#categoryName").val("1").prop("selected", true);
+    } 
+    else if(categoryName=="For Femme"){
+      console.log(categoryName);
+      $("#categoryName").val("2").prop("selected", true).change();
+    } 
+    else if(categoryName=="Eau de Toilete"){
+      $("#categoryName").val("3").prop("selected", true);
+    }  
+    else if(categoryName=="Eau de Cologne"){
+      $("#categoryName").val("4").prop("selected", true);
+    }        
+  }
+
+
+
+ function brandSelect(brandName){   
+  console.log(brandName)
+    if(brandName=="Bvlgari"){
+      console.log(check)
+      console.log("hey");
+    } 
+    else if(brandName=="Jo Malone"){
+      $("#cate1-2").prop("selected",true);
+    }
+    else if(brandName=="Calvin Klein"){
+      $("#cate1-3").prop("selected",true);
+    } 
+    else if(brandName=="Chanel"){
+      console.log($("#cate2-1").prop);
+      $("#cate2-1").prop("selected",true);
+    } 
+    else if(brandName=="Christian Dior"){
+      $("#cate2-2").prop("selected",true);
+    }  
+    else if(brandName=="Burberry"){
+      $("#cate2-3").prop("selected",true);
+    } 
+    else if(brandName=="Versace"){
+      $("#cate2-4").prop("selected",true);
+    } 
+    else if(brandName=="Cartier"){
+      $("#cate3-1").prop("selected",true);
+    } 
+    else if(brandName=="Montblanc"){
+      $("#cate3-2").prop("selected",true);
+    } 
+    else if(brandName=="YvesSaintLaur"){
+      $("#cate3-3").prop("selected",true);
+    } 
+    else if(brandName=="Ralph Lauren"){
+      $("#cate3-4").prop("selected",true);
+    } 
+    else if(brandName=="Bottega Veneta"){
+      $("#cate4-1").prop("selected",true);
+    } 
+    else if(brandName=="Louis Vuitton"){
+      $("#cate4-2").prop("selected",true);
+    } 
+    else if(brandName=="Hermes"){
+      $("#cate4-3").prop("selected",true);
+    } 
+    else if(brandName=="Salvatore Ferragamo"){
+      $("#cate4-4").prop("selected",true);
+    } 
+  }
