@@ -25,11 +25,13 @@ CREATE TABLE category (
    );
     
 CREATE TABLE notice (
-   noticeId INT,
+    noticeId INT,
     noticeTitle VARCHAR(45),
     noticeContent VARCHAR(300),
-    noticeTime DATETIME,
-    CONSTRAINT PK_noticeId PRIMARY KEY (noticeId)
+    noticeTime VARCHAR(20),
+    userId INT NOT NULL,
+    CONSTRAINT PK_noticeId PRIMARY KEY (noticeId),
+    CONSTRAINT FK_noticeUserId FOREIGN KEY(userId) REFERENCES user(id)
    );
     
 CREATE TABLE tradeStatus (
@@ -118,6 +120,16 @@ INNER JOIN product AS PD
 ON PM.productId=PD.productId;
 
 
+-- 약속에 대한 자세한 정보 조회하는 뷰 --
+CREATE VIEW detailpromise_information
+AS SELECT P.productId, P.sellerId, P.buyerId, S.nickname AS sellernickname, B.nickname AS buyernickname
+FROM promise AS P 
+INNER JOIN user AS S
+ON P.sellerId=S.id
+INNER JOIN user AS B
+ON P.buyerId=B.id;
+
+
 
 
 INSERT INTO category 
@@ -144,14 +156,17 @@ VALUES(1, 'PROGRESS'),
  
 
  
+INSERT INTO user(userId, password, userName, nickname, city, gu, dong, detailAddress)
+VALUES('kksshh0612', '51332', '김성호', '휴학예정자', '청주시', '서원구', '1순환로 694번길 15', '7층'),
+('youngjaeee', '6sadth2', '손영재', '알코올중독자', '청주시', '서원구', '내수동로 114번길 60', '302호'),
+('sangwoo0795', '5qew2', '임상우', '예술가', '청주시', '흥덕구', '신율로118번길 1', '202호'),
+('leeseunghyun', 'asfdk1', '이승현', '동방귀신', '청주시', '서원구', '내수동로 111번길 70', '504호'),
+('gyub99', 'a142k', '김규빈', '캥거루족', '청주시', '서원구', '외통수로 15번길 1', '102호'),
+('kimminju910', '235azd', '김민주', '와무새', '청주시', '서원구', '장군로 121번길 60', '302호'),
+('kwonja', 'agsgdfd', '권성민', '권자몬', '청주시', '서원구', '장군로 118번길 60', '210호');
+
 INSERT INTO user(id, userId, password, userName, nickname, city, gu, dong, detailAddress)
-VALUES(1, 'kksshh0612', '51332', '김성호', '휴학예정자', '청주시', '서원구', '1순환로 694번길 15', '7층'),
-(2, 'youngjaeee', '6sadth2', '손영재', '알코올중독자', '청주시', '서원구', '내수동로 114번길 60', '302호'),
-(3, 'sangwoo0795', '5qew2', '임상우', '예술가', '청주시', '흥덕구', '신율로118번길 1', '202호'),
-(4, 'leeseunghyun', 'asfdk1', '이승현', '동방귀신', '청주시', '서원구', '내수동로 111번길 70', '504호'),
-(5, 'gyub99', 'a142k', '김규빈', '캥거루족', '청주시', '서원구', '외통수로 15번길 1', '102호'),
-(6, 'kimminju910', '235azd', '김민주', '와무새', '청주시', '서원구', '장군로 121번길 60', '302호'),
-(7, 'kwonja', 'agsgdfd', '권성민', '권자몬', '청주시', '서원구', '장군로 118번길 60', '210호');
+VALUES(999,'admin', 'admin', '관리자', '관리자', '', '', '', '');
 
 
 
@@ -202,3 +217,10 @@ VALUES("2022-12-01 12:21:34",1,2, "저 사고 싶어요"),
 ("2022-12-01 11:23:39",7,3, "살래요"),
 ("2022-12-01 11:25:40",7,4, "데이터베이스시스템 짱!"),
 ("2022-12-01 11:25:40",3,7, "그 향수를 내게 넘겨");
+
+
+INSERT INTO notice
+VALUES(1, '노쇼현상이 많이 발생하고 있습니다. 주의하세요','','2022.12.06',999),
+(2, 'UI 업데이트가 적용되었습니다.','','2022.12.06',999),
+(3, '관리자 모집하고 있습니다.','','2022.12.07',999);
+

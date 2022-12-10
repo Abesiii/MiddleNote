@@ -12,6 +12,7 @@ var product = require('./product/product');
 var regist = require('./regist/regist');
 var comment = require('./comment/comment');
 var promise = require('./promise/promise');
+var notice= require('./notice/notice');
 
 
 
@@ -22,6 +23,9 @@ router.use('/product', product);
 router.use('/regist', regist);
 router.use('/comment', comment);
 router.use('/promise', promise);
+router.use('/notice', notice);
+
+
 router.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '../html/index.html'));
 })

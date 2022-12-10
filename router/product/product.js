@@ -128,14 +128,19 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   AND P.productId=${productId}
   ORDER BY C.commentTime DESC;`;   //해당 글에 달린 댓글 정보 조회(최신순) 
 
-  
+  /*
   var sql3= `SELECT P.productId, P.sellerId, P.buyerId, S.nickname AS sellernickname, B.nickname AS buyernickname
   FROM promise AS P 
   INNER JOIN user AS S
   ON P.sellerId=S.id
   INNER JOIN user AS B
   ON P.buyerId=B.id
-  WHERE P.productId=${productId}`;    //약속에 대한 정보(구매자, 판매자 닉네임)
+  WHERE P.productId=${productId}`;    //약속에 대한 정보(구매자, 판매자 닉네임)*/
+
+
+  var sql3= `SELECT productId, sellerId, buyerId, sellernickname, buyernickname
+  FROM detailpromise_information
+  WHERE productId=${productId}`;    //약속에 대한 정보(구매자, 판매자 닉네임)
 
 
 
