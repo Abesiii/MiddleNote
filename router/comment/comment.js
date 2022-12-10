@@ -61,6 +61,40 @@ router.post('/delete',function(req,res){    //댓글 삭제
   })
 })
 
+router.post('/edit/:commentId',function(req,res){ //댓글 수정 페이지로 넘어가기
+
+  var commentId=req.params.commentId;
+
+  var sql=`SELECT *
+  FROM comment
+  WHERE commentId=${commentId}`;
+
+  connection.query(sql, function(err, data){
+    console.log(data);
+    if(err) throw err;
+    else{
+      res.render('comment_edit', {comment: data});
+    }
+  })
+
+
+})
+
+router.post('/edit',function(req,res){  //댓글 수정
+    var commentId="'"+req.body.commentId+"'";
+    var commentContent="'"+req.body.commentContent+"'";
+    var productId=req.body.productId;
+
+    var sql=`UPDATE comment SET commentContent=${commentContent}
+    WHERE commentId=${commentId}`;
+
+    connection.query(sql,function(err, data){
+      if(err) throw err;
+      else{
+        return res.redirect(`/product/detail/${productId}`);
+      }
+    })
+})
 
 
 

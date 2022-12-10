@@ -360,7 +360,9 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
               </div>
 
               <div class="col-sm-1"> 
-                <button type="button" class="btn btn-danger">수정</button>
+                <form action="/comment/edit/<%= comment[i].commentId %>" method="POST">
+                <button class="btn btn-danger">수정</button>
+                </form>
               </div>
 
               <div class="col-sm-1"> 
