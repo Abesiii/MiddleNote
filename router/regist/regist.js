@@ -26,10 +26,8 @@ router.get('/', function(req, res){ //글 작성 페이지 조회
 
 
 router.post('/create', upload.single('imagefile'), function(req, res){ //글 작성 
-    //console.log(req.file);
-    //console.log(req.body);
     var productData = req.body;    
-    console.log(productData);
+
 
     var userId = 1;
     var productName = "'" + productData.productName + "'";
@@ -100,13 +98,62 @@ router.post('/create', upload.single('imagefile'), function(req, res){ //글 작
   })
 
 
-  router.post('/edit',upload.single('imagefile'), function(req,res){
+  router.post('/edit',upload.single('imagefile'), function(req,res){  //글 수정
 
-    console.log(req.body);
-    console.log("죠랄이죠")
+    var productData=req.body;
+    var productId="'"+productData.productId+"'";
+    var productName = "'" + productData.productName + "'";
+    var price = "'" + productData.price + "'";
+    var volume = "'" + productData.volume + "'";
+    var description = "'" + productData.description + "'";
+
+    if(!req.file){
+      var photoLink=null;
+    } 
+    else{
+      var photoLink = "'"+req.file.filename+"'";
+    }
+    var categoryName =productData.categoryName;
+    var brandName =productData.brandName;
+    console.log(categoryName)
+    console.log(brandName)
+
+
+    var sql1 = 'SELECT categoryId FROM category where categoryName=? AND brandName=?';  //글의 categoryId찾는 쿼리
     
 
+    connection.query(sql1, [categoryName, brandName], function(err, rows, field){
+      if(err) throw err;
+      else{
+        if(rows.length){      //일치하는 카테고리 id가 있을때
+
+          var categoryId="'"+rows[0].categoryId+"'";
+     
+          var sql2=`UPDATE product 
+          SET productName=${productName}, price=${price}, 
+          volume=${volume}, description=${description}, categoryId=${categoryId}
+          WHERE productId=${productId}`;
+
+          connection.query(sql2, function(err,rows){
+            if(err) throw err;
+            else{
+              return res.redirect("/product");
+            }
+          })
+
+      
+        }
+        else{
+          res.json({message: "400"});
+        }
+      }
+
+    })
   })
+
+    
+
+    
 
 
 

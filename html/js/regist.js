@@ -192,17 +192,16 @@ function getPostTime(){
 
 function categorySelect(categoryName){   
     if(categoryName=="For Homme"){
-      $("#categoryName").val("1").prop("selected", true);
+      $("#cate1").$prop("selected", true);
     } 
     else if(categoryName=="For Femme"){
-      console.log(categoryName);
-      $("#categoryName").val("2").prop("selected", true).change();
+      $("#cate2").$prop("selected", true);
     } 
     else if(categoryName=="Eau de Toilete"){
-      $("#categoryName").val("3").prop("selected", true);
+      $("#cate3").$prop("selected", true);
     }  
     else if(categoryName=="Eau de Cologne"){
-      $("#categoryName").val("4").prop("selected", true);
+      $("#cate4").$prop("selected", true);
     }        
   }
 
