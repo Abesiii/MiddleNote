@@ -180,6 +180,26 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
 })
 
 
+router.post('/search',function(req, res){ //검색 결과 조회
+  var searchtext="'%"+req.body.searchtext+"%'";
+  
+  var sql=`SELECT productId, productName, price, statusName, photoLink,
+  categoryName, brandName
+  from detailproduct_information
+  WHERE productName LIKE ${searchtext}`;  //검색 결과 조회하는 쿼리
+
+  connection.query(sql, function(err, data){
+    if(err) throw err;
+    else{
+      if(data.length){
+        res.render('product', {title: 'main0', data : data});
+      }
+    }
+  })
+
+})
+
+
 
 
 

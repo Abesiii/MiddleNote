@@ -96,6 +96,12 @@ router.post('/edit',function(req,res){  //댓글 수정
 })
 
 
+router.post('/search', function(req,res){
+  console.log(req.body)
+  res.sendFile(path.join(__dirname, '../../html/index.html'));
+  console.log("hey");
+})
+
 
 
 module.exports = router;

@@ -5,14 +5,16 @@
     font-weight: 400;
     font-style: normal;
 }
+
+
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body {
-}
+
 
 .container {
     margin: 30px auto
@@ -172,3 +174,4 @@ body {
   .product:hover img {
     transform: scale(1.3);
   }
+
