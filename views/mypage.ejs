@@ -70,7 +70,7 @@
       </form>
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3">
-            <h3>작성 글 목록</h3>
+            <h3>작성 글 <%=product.length %> </h3>
           </div>
 
           <div style="clear:both;"></div>
@@ -144,6 +144,7 @@
                   <div class="row">
                   
                   <% for(var i = 0; i<product.length; i++){ %>
+                    
 
                       <% if (product[i].photoLink=='undefined' || product[i].photoLink==null) { %> 
 
@@ -168,7 +169,7 @@
              
                       <% } %>
                     
-                      
+             
                       <% } %>
                           
                       
@@ -192,7 +193,7 @@
 
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3">
-            <h3>관심 목록</h3>
+            <h3>관심 목록 </h3>
           </div>
 
           <div style="clear:both;"></div>
@@ -321,7 +322,7 @@
 
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
             <div class="col-sm-3">
-              <h3>판매 목록</h3>
+              <h3>판매완료 <%=sell.length %></h3>
             </div>
   
             <div style="clear:both;"></div>
@@ -444,7 +445,7 @@
 
           <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
             <div class="col-sm-3">
-              <h3>구매 목록</h3>
+              <h3>구매완료 <%=buy.length %></h3>
             </div>
   
             <div style="clear:both;"></div>
@@ -563,7 +564,7 @@
 
           <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
             <div class="col-sm-3">
-              <h3>약속 목록</h3>
+              <h3>약속 <%= promise.length %></h3>
             </div>
   
             <div style="clear:both;"></div>

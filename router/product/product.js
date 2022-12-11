@@ -92,7 +92,7 @@ router.get('/:brandName', function(req, res){ //브랜드 별 product조회
  var sql1=`SELECT productId, userId, productName, price, categoryName, 
  brandName, statusName, photoLink
 FROM detailProduct_Information
-WHERE brandName=?`
+WHERE brandName=?`    //브랜드 별로 제품을 조회하는 쿼리
  
    connection.query(sql1,[brandName], function(err, rows){
      if(err) throw err;
