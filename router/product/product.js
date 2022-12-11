@@ -115,8 +115,8 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   var productId=req.params.productId;
   var loginUserId=1;
   
-   var sql1 = `SELECT productId, userId, productName, price, categoryName, 
-   brandName,volume, description, postTime, statusName, photoLink, nickname, statusId  
+   var sql1 = `SELECT productId, userId, productName, price, categoryName, view, 
+   brandName, volume, description, postTime, statusName, photoLink, nickname, statusId  
    FROM detailProduct_Information
    WHERE productId=${productId};`;   //글에 필요한 정보를 조회하는 쿼리
 
@@ -127,32 +127,26 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   AND P.productId=${productId}
   ORDER BY C.commentTime DESC;`;   //해당 글에 달린 댓글 정보 조회(최신순) 
 
-  /*
-  var sql3= `SELECT P.productId, P.sellerId, P.buyerId, S.nickname AS sellernickname, B.nickname AS buyernickname
-  FROM promise AS P 
-  INNER JOIN user AS S
-  ON P.sellerId=S.id
-  INNER JOIN user AS B
-  ON P.buyerId=B.id
-  WHERE P.productId=${productId}`;    //약속에 대한 정보(구매자, 판매자 닉네임)*/
-
 
   var sql3= `SELECT productId, sellerId, buyerId, sellernickname, buyernickname
   FROM detailpromise_information
-  WHERE productId=${productId}`;    //약속에 대한 정보(구매자, 판매자 닉네임)
+  WHERE productId=${productId};`;    //약속에 대한 정보(구매자, 판매자 닉네임)
+
+  var sql4=`UPDATE product SET view=view+1
+  WHERE productID=${productId};`;   //조회수 1증가
 
 
 
 
 
-  connection.query(sql1+sql2+sql3, function(err, data){
+  connection.query(sql1+sql2+sql3+sql4, function(err, data){
 
     if(err) throw err;
 
     var sql_data1=data[0];  //글에 대한 정보
     var sql_data2=data[1];  //댓글에 대한 정보
     var sql_data3=data[2];  //약속에 대한 정보
-
+    console.log(sql_data1);
     if(sql_data1.length){ //글이 존재
       var dateString=getDate(sql_data1[0].postTime);     //datetime 파싱
       var timeString=getTime(sql_data1[0].postTime);

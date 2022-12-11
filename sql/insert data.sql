@@ -52,6 +52,7 @@ CREATE TABLE product (
     postTime DATETIME DEFAULT CURRENT_TIMESTAMP,
     statusId INT NOT NULL,
     photoLink VARCHAR(45),
+    view INT DEFAULT 0,
     CONSTRAINT PK_productId PRIMARY KEY (productId),
     CONSTRAINT FK_productUserId FOREIGN KEY (userId) REFERENCES User(id),
     CONSTRAINT FK_productCategoryId FOREIGN KEY (categoryId) REFERENCES Category(categoryId),
@@ -102,7 +103,7 @@ CREATE TABLE tradeList (
 -- 글에 필요한 정보를 모두 조회하는 뷰 --    
 CREATE VIEW detailproduct_information
 AS SELECT P.productId,P.productName, P.price, P.userId, P.photoLink, P.volume,
-P.description, P.postTime, P.statusId, P.categoryId, 
+P.description, P.postTime, P.statusId, P.categoryId, P.view,
 T.statusName, C.categoryName, C.brandName, U.nickname
 FROM product AS P, tradestatus AS T, category AS C, user AS U
 WHERE P.statusId=T.statusId AND P.categoryId=C.categoryId
