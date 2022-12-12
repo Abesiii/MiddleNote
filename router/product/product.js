@@ -192,7 +192,10 @@ router.post('/search',function(req, res){ //검색 결과 조회
     if(err) throw err;
     else{
       if(data.length){
-        res.render('product', {title: 'main0', data : data});
+        res.render('product', {title: 'main', data : data});
+      }
+      else{
+        res.render('product', {title: 'sub', data : data});
       }
     }
   })
