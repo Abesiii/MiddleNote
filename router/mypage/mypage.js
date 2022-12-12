@@ -189,7 +189,7 @@ router.post('/mypageedit', function(req,res){
     connection.query(sql, function(err,data){
         if(err) throw err;
         else{
-            res.redirect('/promise');
+            res.redirect('/mypage');
         }
     })
 
