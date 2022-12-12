@@ -169,7 +169,7 @@ connection.query(sql, function(err,data){
 })
 })
 
-router.post('/mypageedit', function(req,res){
+router.post('/edit', function(req,res){
     var userData=req.body;
     var id="'"+userData.id+"'";
     var nickname="'"+userData.nickname+"'";
