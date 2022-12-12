@@ -21,12 +21,12 @@ connection.connect();       //mysql 연동
 
 
 
-router.get('/', function(req,res){
+router.get('/', function(req,res){      //공지사항 조회하는 거
     
     var sql=`SELECT N.noticeId, N.noticeTitle, N.noticeContent,
     N.noticeTime, U.nickname
     FROM notice AS N INNER JOIN
-    user AS U ON N.userId=U.id`;
+    user AS U ON N.userId=U.id`;        //공지사항 조회하는 쿼리
 
     connection.query(sql, function(err, data){
         if(err) throw err;

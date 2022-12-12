@@ -7,7 +7,7 @@ var path = require('path');         //상대경로로 편리하게 이동할 수
 
 router.get('/', function(req, res){
   console.log('main.js 실행');
-  res.sendFile(path.join(__dirname, '../../html/main.html'));
+  res.sendFile(path.join(__dirname, '../../html/index.html'));
 })
 
 module.exports = router;

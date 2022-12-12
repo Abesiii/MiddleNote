@@ -51,7 +51,7 @@ router.post('/delete',function(req,res){    //댓글 삭제
 
 
   var sql=`DELETE FROM comment 
-  WHERE commentId=${commentId}`;
+  WHERE commentId=${commentId}`;    //댓글 삭제하는 쿼리
 
   connection.query(sql, function(err, data){
     if(err) throw err;
@@ -67,7 +67,7 @@ router.post('/edit/:commentId',function(req,res){ //댓글 수정 페이지로 �
 
   var sql=`SELECT *
   FROM comment
-  WHERE commentId=${commentId}`;
+  WHERE commentId=${commentId}`;    //해당 댓글 조회하는 쿼리
 
   connection.query(sql, function(err, data){
     if(err) throw err;
@@ -85,7 +85,7 @@ router.post('/edit',function(req,res){  //댓글 수정
     var productId=req.body.productId;
 
     var sql=`UPDATE comment SET commentContent=${commentContent}
-    WHERE commentId=${commentId}`;
+    WHERE commentId=${commentId}`;    //댓글 내용 수정
 
     connection.query(sql,function(err, data){
       if(err) throw err;
@@ -95,12 +95,6 @@ router.post('/edit',function(req,res){  //댓글 수정
     })
 })
 
-
-router.post('/search', function(req,res){
-  console.log(req.body)
-  res.sendFile(path.join(__dirname, '../../html/index.html'));
-  console.log("hey");
-})
 
 
 
