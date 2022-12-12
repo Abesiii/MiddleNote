@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>  <!--추가-->
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/sidebars.css" rel="stylesheet">
@@ -82,13 +81,13 @@
 
       <div id="menubar">
         <ul>
-          <li><a href="/main" style="color:#C7C7C7"> HOME </a></li>
+          <li><a href="/" > HOME </a></li>
           <li><a href="/product"> ESHOP </a></li>
           <li><a href="/regist" > Trade-Regist </a></li>
           <li><a href="about.html"> ABOUT </a></li>
           <li><a href="/notice"> NOTICE </a></li>
           <li><a href="/login"> LOG IN </a></li>
-          <li><a href="/mypage"> <span class="glyphicon glyphicon-user"></span></a></li>
+          <li><a href="/mypage"> <span class="fa fa-user"></span> </a></li>
         </ul>
       </div>
 
@@ -235,7 +234,7 @@
 <!--    <div class="container bg-white"> -->
 		<div class="container">
       <div class="row">
-        <div class="col-sm-7">
+        <div class="col-sm-8">
           <% if (data.length>0) { %>
             <% if (title=='sub') { %>
               <%= data[0].categoryName %> > <%= data[0].brandName %>
@@ -245,7 +244,7 @@
           <% } %>
         </div>
         
-        <div class="col-sm-5">
+        <div class="col-sm-4">
             <form name="myform" action="/product/search" method="POST">
               <input type="text" id="searchtext" name="searchtext">
               <button style="border:none;"><span id="searchicon" class="fa fa-search" onclick="myform.submit()" ></span></button>
@@ -270,7 +269,7 @@
                   <div class="product" OnClick="movetoDetailDefault(this)" style="cursor:pointer;"> <img src="https://images.pexels.com/photos/8084464/pexels-photo-8084464.png?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="">
                       <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                           <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                          <li class="icon mx-3">
+                          <li class="icon mx-3" onclick="addInterestList(this)">
                             <input type="hidden" name="productId" value="<%= data[i].productId %>">
                             <span class="far fa-heart"></span>
                           </li>
