@@ -15,26 +15,9 @@ var connection = mysql.createConnection({     //mysql connection 생성
 connection.connect();       //mysql 연동
 
 router.get('/', function(req, res){
-  console.log('main.js 실행');
-  console.log('유저id : ' + req.user);
-  var userNickname;
-  if(req.user){
-    var query = connection.query("select nickname from user where id=" + req.user + ";", function(err, rows){
-      if(err) return err;
-      else{
-        if(rows[0]){
-          console.log(rows[0].nickname);
-          userNickname = rows[0].nickname;
-          res.render('index.ejs', {user : userNickname});
-        }
-      }
-    })
-  }
-  else{
-    res.render('index.ejs', {user : userNickname});
-  }
-  
-  
+  console.log('admin.js 실행');
+ 
+  res.sendFile(path.join('../../html/admin.html'));
 
   // console.log('유저닉네임 : ' + userNickname);
   

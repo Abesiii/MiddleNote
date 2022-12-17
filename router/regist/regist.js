@@ -11,7 +11,7 @@ var connection = mysql.createConnection({     //mysql connection 생성
   host : 'localhost',
   port : 3306,
   user : 'root',
-  password : 'root',
+  password : 'kksshh1735',
   database : 'middlenote'        //데이터베이스 이름
 });
 connection.connect();       //mysql 연동

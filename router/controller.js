@@ -13,6 +13,7 @@ var regist = require('./regist/regist');
 var comment = require('./comment/comment');
 var mypage = require('./mypage/mypage');
 var notice= require('./notice/notice');
+var admin = require('./admin/admin');
 
 
 
@@ -24,10 +25,12 @@ router.use('/regist', regist);
 router.use('/comment', comment);
 router.use('/mypage', mypage);
 router.use('/notice', notice);
+router.use('/admin', admin);
 
 
 router.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, '../html/index.html'));
+  res.render('index.ejs');
+  // res.sendFile(path.join(__dirname, '../views/index.ejs'));
 })
 
 module.exports = router;

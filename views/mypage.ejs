@@ -39,7 +39,11 @@
           <li><a href="/regist" > Trade-Regist </a></li>
           <li><a href="about.html"> ABOUT </a></li>
           <li><a href="/notice"> NOTICE </a></li>
-          <li><a href="/login"> LOG IN </a></li>
+          <% if(user){ %>
+            <li id="login-link"><b><%= user %></b></li>
+            <% }else{ %>
+            <li id="login-link"><a href="/login/logout"> LOG OUT </a></li>
+            <% } %>
           <li><a href="/mypage"> <span class="glyphicon glyphicon-user"></span></a></li>
         </ul>
       </div>

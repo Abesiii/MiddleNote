@@ -7,49 +7,31 @@
     <link rel="stylesheet" type="text/css" href="./css/Sungmin.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Document</title>
+	  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	
+    <title>Member Login</title>
     <style>
 </style>
 </head>
 <body>
     <div id="header">
         <div id="logo">
-          <a href="index.html">
+          <a href="/main">
             <img src="img/logo.jpg" alt="logo">
           </a>
         </div>
-        <!-- <div id="menubar" >
-          <ul>
-            <li><a href="index.html" style="color:#C7C7C7"> HOME </a></li>
-            <li><a href="eshop.html"> ESHOP </a></li>
-            <li><a href="regist.html"> Trade-Regist </a></li>
-            <li><a href="About.html"> ABOUT </a></li>
-            <li><a href="Member-login.html"> LOG IN </a></li>
-            <li><a href="Mypage.html"> <span class="glyphicon glyphicon-user"></span></a></li>
-          </ul>
-        </div> -->
       </div>
       <br><br><br>
     <div class ="container">
         <main>
             <div><h1>LOGIN</h1></div>
-            <!-- <div class="align-member">
-                <a href="Member-login.html">Member</a>
-            </div>
-            <div class="align-nomemeber">
-                <a href="No-Member-login.html">No-Member</a>
-            </div> -->
-            <form class="login">
             <div id=signin>
               <form id="loginForm" action="/login" method="post">
                 <input id="userId" name="userId" type="text" placeholder="ID" autofocus><br><br>
                 <input id="password" name="password" type="password" placeholder="PASSWORD"><br>
               </form>
               <br>
-              <button id="loginBtn" class="login-btn btn btn-primary btn-block" onclick="memberLogin()">LOGIN</button><br><br>
+              <button id="loginBtn" class="login-btn btn btn-primary btn-block" onclick="memberLogin()">LOGIN</button>
               <div class="align-left">
                 <a href="join_agree.html">Join</a>
               </div>
@@ -57,16 +39,9 @@
                 <a href="#">ID*Password Find</a>
               </div>
             </div>
-            </form>
             <hr>
-
-            <!-- <div id="naver"><img id="naver_logo" src="./img/naver.png" alt="?��?��버로�?" width="40"><a id="naverIdLogin_loginButton" href="javascript:void(0)">Naver Login</a></div>
-            <div id="google"><img id="google_logo" src="./img/google.png" alt="구�??로고" width="40" style="margin-right: 20px;"><a href="">Google Login</a></div>
-            <div id="kakao"><img id="kakao_logo" src="./img/kakao.png" alt="카카?��로고" width="40"style="margin-right: 20px;"><a href="">Kakao Login</a></div> -->
         </main>
     </div>
-    <!-- <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"> //?���? ?��?�� ?��?��?��?��?��</script>
-    <script src="./js/Sungmin.js"></script> -->   <!--?���?.js ?��중에 �??���?-->
     <br><br>
     <div id="footer">
         <div id="footerL">
@@ -86,21 +61,25 @@
 
       </div>
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       <script>
         function memberLogin(){
+          console.log('sdfsfd');
           var userId = document.getElementById('userId').value;
           var password = document.getElementById('password').value;
           var sendData = {'userId' : userId, 'password' : password};
           sendData = JSON.stringify(sendData);
-
+          
           var xhr = new XMLHttpRequest();
           xhr.open('POST', 'http://localhost:3000/login');
           xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.send(sendData);
-
+            
           xhr.addEventListener('load', function(){
-            var result = JSON.parse(xhr.responseText);        //response?�� �?
-            console.log(result);
+            var result = JSON.parse(xhr.responseText);       
+            console.log("ㄷ시 돌아옴");
+            window.location.href="/main";
           })
         }
       </script>

@@ -10,7 +10,7 @@ var connection = mysql.createConnection({     //mysql connection 생성
   host : 'localhost',
   port : 3306,
   user : 'root',
-  password : 'root',
+  password : 'kksshh1735',
   database : 'middlenote',        //데이터베이스 이름
   multipleStatements: true
 });
@@ -40,23 +40,26 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
     FROM detailproduct_information
     WHERE userId=${userId};`        //작성글 목록 정보
 
+    console.log(req.user);
+    var sql5 = `select nickname from user where id=${req.user};`;
 
-    connection.query(sql1+sql2+sql3+sql4, function(err, data){
+
+    connection.query(sql1+sql2+sql3+sql4+sql5, function(err, data){
         if(err) throw err;
 
         var sql_data1=data[0];  //판매 목록 정보
         var sql_data2=data[1];  //구매 목록 정보
         var sql_data3=data[2];  //약속 목록 정보
         var sql_data4=data[3];  //작성글 목록 정보
+        var sql_data5=data[4];  //작성글 목록 정보
 
-        console.log(sql_data1);
-        console.log(sql_data2);
-        console.log(sql_data3);
-        console.log(sql_data4);
+        // console.log(sql_data1);
+        // console.log(sql_data2);
+        // console.log(sql_data3);
+        // console.log(sql_data4);
 
 
-        res.render('mypage', {sell: sql_data1, buy: sql_data2, promise:sql_data3, product:sql_data4});
-       
+        res.render('mypage', {sell: sql_data1, buy: sql_data2, promise:sql_data3, product:sql_data4, user:sql_data5});
 
     })
 
@@ -161,11 +164,11 @@ router.post('/confirm' ,function(req,res){  //약속 확정
 
 router.post('/mypage', function(req,res){  //마이페이지 이동
 var userId="1";
-var sql=`SELECT * FROM user
-WHERE id=${userId}`;
+var sql=`SELECT nickname FROM user WHERE id=${userId}`;
 
 connection.query(sql, function(err,data){
-    res.render('mypage_edit', {user: data});
+    // console.log("여기 " + data);
+    res.render('mypage_edit', {user: data[0].nickname});
 })
 })
 
