@@ -30,7 +30,6 @@ router.use('/admin', admin);
 
 router.get('/', function(req, res){
   res.render('index.ejs');
-  // res.sendFile(path.join(__dirname, '../views/index.ejs'));
 })
 
 module.exports = router;

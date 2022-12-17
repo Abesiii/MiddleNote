@@ -25,6 +25,9 @@
     * {
       font-family: 'Pretendard-Regular';
     }
+    table {
+      text-align: center;
+    }
     </style>
 
 </head>
@@ -38,12 +41,14 @@
 
       <div id="menubar" >
         <ul>
-          <li><a href="/main"> HOME </a></li>
+          <li><a href="/main" style="color:#C7C7C7"> HOME </a></li>
           <li><a href="/product"> ESHOP </a></li>
-          <li><a href="/regist" style="color:#C7C7C7"> Trade-Regist </a></li>
           <li><a href="about.html"> ABOUT </a></li>
-          <li><a href="/login"> LOG IN </a></li>
-          <li><a href="/promise"> <span class="glyphicon glyphicon-user"></span></a></li>
+          <li><a href="/notice"> NOTICE </a></li>
+          <li id="login-link"> <b>관리자</b> </li>
+          <li id="login-link"><a href="/login/logout"> LOG OUT </a></li>
+          
+          <li><a href="/mypage"> <span class="glyphicon glyphicon-user"></span></a></li>
         </ul>
       </div>
 
@@ -52,193 +57,123 @@
     <form action="/regist/create" method="POST" enctype="multipart/form-data">
     <div class="container form-group">
 
-      <div class="text-left" style="padding:30px 0px 30px 0px">
+      <div class="text-left" style="padding:30px 0px 0px 0px">
         <h2>관리 페이지</h2>
-
-
-        
-
-   
-
-
         <div class="row" id="regist-img" style="padding:30px 0px 30px 0px; border-top:3px solid black; border-bottom:0.5px solid #C7C7C7;">
           <h3>도시 별 거래횟수</h3>
           <table class="table table-striped">
             <thead>
-            <th>No.</th>
-            <th>City</th>
-            <th>Number</th>
+            <th class="text-center">City</th>
+            <th class="text-center">Number</th>
           </thead>
             <tr>
-              <td>도시번호</td>
               <td>도시</td>
               <td>거래 횟수</td>
             </tr>
-            <tr>
-              <td>001</td>
-              <td>성남시</td>
-              <td>99</td>
-            </tr>
-            <tr>
-              <td>002</td>
-              <td>청주시</td>
-              <td>88</td>
-            </tr>
-            <tr>
-              <td>003</td>
-              <td>인천시</td>
-              <td>77</td>
-            </tr>
+            <% if(locals.cityTrade){ %>
+            <% for(var i=0; i<cityTrade.length; i++){ %>
+              <tr>
+                <td><%= cityTrade[i].city %></td>
+                <td><%= cityTrade[i].tradecount %></td>
+              </tr>
+            <% }} %>
           </table>
 
           <hr>
-
 
           <h3>회원 별 작성글 갯수</h3>
           <table class="table table-striped">
             <thead>
-            <th>No.</th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Number</th>
+            <th class="text-center">No.</th>
+            <th class="text-center">Nick Name</th>
+            <th class="text-center">Number</th>
           </thead>
             <tr>
               <td class="col-md-2">회원번호</td>
-              <td class="col-md-4">회원 ID</td>
+              <!-- <td class="col-md-4">회원 ID</td> -->
               <td class="col-md-4">회원 이름</td>
               <td>작성글 갯수</td>
             </tr>
-            <tr>
-              <td>001</td>
-              <td>ddori</td>
-              <td>또리</td>
-              <td>6666</td>
-            </tr>
-            <tr>
-              <td>002</td>
-              <td>sangwoo</td>
-              <td>상우</td>
-              <td>5555</td>
-            </tr>
-            <tr>
-              <td>003</td>
-              <td>seongho</td>
-              <td>성호</td>
-              <td>4444</td>
-            </tr>
+            <% if(locals.userProductNum){ %>
+              <% for(var i=0; i<userProductNum.length; i++){ %>
+                <tr>
+                  <td><%= userProductNum[i].userId %></td>
+                  <td><%= userProductNum[i].nickname %></td>
+                  <td><%= userProductNum[i].productcount %></td>
+                </tr>
+              <% }} %>
           </table>
 
           <hr>
-
+          
           <h3>회원 별 댓글 갯수</h3>
           <table class="table table-striped">
             <thead>
-            <th>No.</th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Number</th>
+            <th class="text-center">No.</th>
+            <th class="text-center">Nick Name</th>
+            <th class="text-center">Number</th>
           </thead>
             <tr>
               <td class="col-md-2">회원번호</td>
-              <td class="col-md-4">회원 ID</td>
               <td class="col-md-4">회원 이름</td>
               <td>댓글 갯수</td>
             </tr>
-            <tr>
-              <td>001</td>
-              <td>ddori</td>
-              <td>또리</td>
-              <td>6666</td>
-            </tr>
-            <tr>
-              <td>002</td>
-              <td>sangwoo</td>
-              <td>상우</td>
-              <td>5555</td>
-            </tr>
-            <tr>
-              <td>003</td>
-              <td>seongho</td>
-              <td>성호</td>
-              <td>4444</td>
-            </tr>
+            <% if(locals.userCommentNum){ %>
+              <% for(var i=0; i<userCommentNum.length; i++){ %>
+                <tr>
+                  <td><%= userCommentNum[i].userId %></td>
+                  <td><%= userCommentNum[i].nickname %></td>
+                  <td><%= userCommentNum[i].commentcount %></td>
+                </tr>
+              <% }} %>
           </table>
-  
-
 
           <hr>
-
 
           <h3>최고 판매 고객 Top 10</h3>
           <table class="table table-striped">
             <thead>
-            <th>No.</th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Number</th>
+            <th class="text-center">No.</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Number</th>
           </thead>
             <tr>
               <td class="col-md-2">회원번호</td>
-              <td class="col-md-4">회원 ID</td>
               <td class="col-md-4">회원 이름</td>
               <td>판매 수량</td>
             </tr>
-            <tr>
-              <td>001</td>
-              <td>ddori</td>
-              <td>또리</td>
-              <td>6666</td>
-            </tr>
-            <tr>
-              <td>002</td>
-              <td>sangwoo</td>
-              <td>상우</td>
-              <td>5555</td>
-            </tr>
-            <tr>
-              <td>003</td>
-              <td>seongho</td>
-              <td>성호</td>
-              <td>4444</td>
-            </tr>
+            <% if(locals.recentSellTop){ %>
+              <% for(var i=0; i<recentSellTop.length; i++){ %>
+                <tr>
+                  <td><%= recentSellTop[i].sellerId %></td>
+                  <td><%= recentSellTop[i].nickname %></td>
+                  <td><%= recentSellTop[i].number %></td>
+                </tr>
+              <% }} %>
           </table>
 
-
           <hr>
-
 
           <h3>최고 구매 고객 Top 10</h3>
           <table class="table table-striped">
             <thead>
-            <th>No.</th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Number</th>
+            <th class="text-center">No.</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Number</th>
           </thead>
             <tr>
               <td class="col-md-2">회원번호</td>
-              <td class="col-md-4">회원 ID</td>
               <td class="col-md-4">회원 이름</td>
               <td>구매 수량</td>
             </tr>
-            <tr>
-              <td>001</td>
-              <td>ddori</td>
-              <td>또리</td>
-              <td>6666</td>
-            </tr>
-            <tr>
-              <td>002</td>
-              <td>sangwoo</td>
-              <td>상우</td>
-              <td>5555</td>
-            </tr>
-            <tr>
-              <td>003</td>
-              <td>seongho</td>
-              <td>성호</td>
-              <td>4444</td>
-            </tr>
+            <% if(locals.recentPurchaseTop){ %>
+              <% for(var i=0; i<recentPurchaseTop.length; i++){ %>
+                <tr>
+                  <td><%= recentPurchaseTop[i].buyerId %></td>
+                  <td><%= recentPurchaseTop[i].nickname %></td>
+                  <td><%= recentPurchaseTop[i].number %></td>
+                </tr>
+              <% }} %>
           </table>
 
             </div>
@@ -267,6 +202,5 @@
       </div>
 
     </div>
-
 </body>
 </html>

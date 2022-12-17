@@ -85,10 +85,11 @@ router.get('/', function(req, res){
 
 router.get('/logout', function(req, res){
   console.log('logout실행');
-  req.logout();
-  req.session.save(function(){
-    res.redirect('/main');
-  })
+  req.logout(function(){
+    req.session.save(function(){
+      res.redirect('/main');
+    })
+  });
 })
 
 
