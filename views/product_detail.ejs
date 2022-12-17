@@ -259,7 +259,7 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
                 <p><b>Writer:</b> <%= data[0].nickname %></p>
               </div>
               <div class="col-sm-2">
-                <form action="/promise/cancel" method="POST">
+                <form action="/mypage/cancel" method="POST">
                 <input type="hidden" name="productId" value="<%= data[0].productId %>">
                 <input type="hidden" name="statusId" value="<%= data[0].statusId %>">
                 <button class="btn btn-danger btn-lg" id="btn3">약속 취소</button>
@@ -283,7 +283,7 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
             
 
             <div class="col-sm-2" style="margin-left:0px;">
-              <form action="/promise/confirm" method="POST">
+              <form action="/mypage/confirm" method="POST">
               <input type="hidden" name="productId" value="<%= data[0].productId %>">
               <button class="btn btn-primary btn-lg" id="btn3">거래 확정</button>
             </form>
@@ -368,7 +368,7 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
               </div>
 
               <div class="col-sm-1"> 
-                <form action="/promise/create" method="POST">
+                <form action="/mypage/create" method="POST">
                 <input type="hidden" name="buyerId" value="<%= comment[i].userId %>">
                 <input type="hidden" name="sellerId" value="<%= data[0].userId %>">
                 <input type="hidden" name="productId" value="<%= comment[i].productId %>">

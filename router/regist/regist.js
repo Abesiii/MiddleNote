@@ -11,7 +11,7 @@ var connection = mysql.createConnection({     //mysql connection 생성
   host : 'localhost',
   port : 3306,
   user : 'root',
-  password : 'root',
+  password : 'kksshh1735',
   database : 'middlenote'        //데이터베이스 이름
 });
 connection.connect();       //mysql 연동
@@ -19,7 +19,7 @@ connection.connect();       //mysql 연동
 
 
 router.get('/', function(req, res){ //글 작성 페이지 조회
-    res.render('regist');
+    res.render('regist', {user : 'user'});
 })
 
 

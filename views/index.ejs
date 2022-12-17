@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./css/style.css">
-  <title>index</title>
+  <title>index-ejs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -54,7 +54,7 @@
 
         <div class="container" id="header">
           <div id="logo">
-            <a href="index.html">
+            <a href="/main">
               <img src="./img/logo.jpg" alt="logo">
             </a>
           </div>
@@ -65,8 +65,12 @@
               <li><a href="/product"> ESHOP </a></li>
               <li><a href="/regist" > Trade-Regist </a></li>
               <li><a href="about.html"> ABOUT </a></li>
-              <li><a href="/notice"> NOTICE </a></li>
-              <li><a href="/login"> LOG IN </a></li>
+              <li><a href="/notice"> NOTICE </a></li>  
+              <% if(locals.user){ %>
+              <li id="login-link"><b><%= user %></b></li>
+              <% }else{ %>
+              <li id="login-link"><a href="/login"> LOG IN </a></li>
+              <% } %>
               <li><a href="/mypage"> <span class="glyphicon glyphicon-user"></span></a></li>
             </ul>
           </div>
@@ -108,5 +112,9 @@
           </div>
 
         </div>
+        <script>
+      
+          
+        </script>
 </body>
 </html>

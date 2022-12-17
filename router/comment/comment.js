@@ -10,7 +10,7 @@ var connection = mysql.createConnection({     //mysql connection 생성
   host : 'localhost',
   port : 3306,
   user : 'root',
-  password : 'root',
+  password : 'kksshh1735',
   database : 'middlenote'        //데이터베이스 이름
 });
 connection.connect();       //mysql 연동
@@ -21,25 +21,25 @@ connection.connect();       //mysql 연동
 
 
 router.post('/create', function(req, res){ //댓글 작성
-
-
   var commentData=req.body;
   var userId="'"+commentData.userId+"'";
   var commentContent="'"+commentData.commentContent+"'";
   var productId="'"+commentData.productId+"'";
 
+  if(req.user){
+    var sql=`INSERT INTO comment(userId, productId, commentContent)
+    VALUES(${userId}, ${productId}, ${commentContent})`;   //댓글 입력하는 쿼리
 
-  var sql=`INSERT INTO comment(userId, productId, commentContent)
-  VALUES(${userId}, ${productId}, ${commentContent})`;   //댓글 입력하는 쿼리
-
-  connection.query(sql, function(err, data){
-    if(err) throw err;
-    else{
-      return res.redirect(`/product/detail/${commentData.productId}`);
-    }
-  })
-
-
+    connection.query(sql, function(err, data){
+      if(err) throw err;
+      else{
+        return res.redirect(`/product/detail/${commentData.productId}`);
+      }
+    })
+  }
+  res.write("<script>alert('로그인을 하십시오')</script>");
+  res.write("<script>window.location=\"../product\"</script>");
+  // return res.redirect(`/product/detail/${commentData.productId}`);
 })
 
 

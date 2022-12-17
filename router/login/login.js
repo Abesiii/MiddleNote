@@ -11,7 +11,7 @@ var connection = mysql.createConnection({     //mysql connection 생성
   host : 'localhost',
   port : 3306,
   user : 'root',
-  password : 'root',
+  password : 'kksshh1735',
   database : 'middlenote'        //데이터베이스 이름
 });
 connection.connect();       //mysql 연동
@@ -38,6 +38,7 @@ passport.use('local-login', new localStrategy({
     else{
       if(rows.length){      //회원 아이디, 비밀번호 일치하는 회원을 찾으면 
         console.log('일치하는 회원 찾음');
+        console.log(rows[0].id);
         return done(null, {'id' : rows[0].id});
       }
       else{
@@ -50,23 +51,31 @@ passport.use('local-login', new localStrategy({
 
 //커스텀 콜백
 router.post('/', function(req, res, next){
+  console.log("hey");
   passport.authenticate('local-login', function(err, user, info){
-    if(err) res.status(500).json(err);
+    if(err){              //서버에서 에러가 발생됐을 때(쿼리 문제)
+      console.log("인증 에러");
+      res.status(500).json(err);
+    }
     else{
-      if(!user){
+      if(!user){        //일치하는 회원 찾지 못했을 때
+        console.log("인포 메세지: ", info.message);
         return res.status(401).json(info.message);
       }
-      req.logIn(user, function(err){
-        if(err) return next(err);
-        else{
-          return res.json(user);
-        }
-      })
+      else{            //일치하는 회원 찾았을 때
+        req.logIn(user, function(err){
+          if(err) return next(err);
+          else{
+            console.log("로그인 후 : " + user.id);
+            // console.log(res);
+            return res.status(201).json(user.id);
+          }
+        })
+      }
+      
     }
   })(req, res, next);
 })
-
-
 
 
 router.get('/', function(req, res){
@@ -74,6 +83,14 @@ router.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '../../html/Member-login.html'));
 })
 
+router.get('/logout', function(req, res){
+  console.log('logout실행');
+  req.logout(function(){
+    req.session.save(function(){
+      res.redirect('/main');
+    })
+  });
+})
 
 
 module.exports = router;

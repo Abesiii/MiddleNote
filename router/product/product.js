@@ -12,14 +12,11 @@ var connection = mysql.createConnection({     //mysql connection 생성
   host : 'localhost',
   port : 3306,
   user : 'root',
-  password : 'root',
+  password : 'kksshh1735',
   database : 'middlenote',        //데이터베이스 이름
   multipleStatements: true
 });
 connection.connect();       //mysql 연동
-
-
-
 
 
 router.post('/delete/:productId',function(req,res){   //글 삭제(댓글, 약속 목록 다 사라짐)
@@ -38,31 +35,21 @@ connection.query(sql,function(err,data){
 
 
 router.get('/', function(req, res){ //전체 product조회
+  // var sql1= `SELECT P.productId, P.productName, P.price, T.statusName, P.photoLink,
+  // C.categoryName, C.brandName  
+  // FROM product as P, tradestatus as T, category as C
+  // WHERE P.statusId=T.statusId  AND P.categoryId=C.categoryId
+  // ORDER BY P.productId ASC`;   //글 전체 목록을 조회하는 쿼리 
 
-
-  /*
-
-  var sql1= `SELECT P.productId, P.productName, P.price, T.statusName, P.photoLink,
-  C.categoryName, C.brandName  
- FROM product as P, tradestatus as T, category as C
- WHERE P.statusId=T.statusId  AND P.categoryId=C.categoryId
- ORDER BY P.productId ASC`;   //글 전체 목록을 조회하는 쿼리 */
-
-
- var sql1=`SELECT productId, productName, price, statusName, photoLink,
- categoryName, brandName  
-FROM detailProduct_Information`;    //글 전체 목록을 조회하는 쿼리
-
-
-
-
-  
+  var sql1=`SELECT productId, productName, price, statusName, photoLink,
+  categoryName, brandName  
+  FROM detailProduct_Information`;    //글 전체 목록을 조회하는 쿼리
 
   connection.query(sql1, function(err, rows){
     if(err) throw err;
     else{
       if(rows.length){      
-          res.render('product', {title : 'main', data : rows});
+          res.render('product', {title : 'main', data : rows, user : 'user'});
           //res.sendFile(path.join(__dirname, '../../html/eshop.html'));
           
       }
@@ -70,56 +57,46 @@ FROM detailProduct_Information`;    //글 전체 목록을 조회하는 쿼리
         res.json({message: "400"});
       }
     }
-
   })
 })
 
 router.get('/:brandName', function(req, res){ //브랜드 별 product조회
-
-
   var brandName=req.params.brandName;
-
-  
-  
- /*
-  var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
-  C.brandName, T.statusName, P.photoLink
- FROM product as P, category as C, tradestatus as T
- WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
- AND C.brandName=?`;    //브랜드 별로 제품을 조회하는 쿼리*/
-
-
- var sql1=`SELECT productId, userId, productName, price, categoryName, 
- brandName, statusName, photoLink
-FROM detailProduct_Information
-WHERE brandName=?`    //브랜드 별로 제품을 조회하는 쿼리
  
-   connection.query(sql1,[brandName], function(err, rows){
-     if(err) throw err;
-     else{
-       if(rows.length){      
-           res.render('product', {title: 'sub', data : rows});
-       }
-       else{
+  // var sql1 = `SELECT P.productId, P.userId, P.productName, P.price, C.categoryName, 
+  // C.brandName, T.statusName, P.photoLink
+  // FROM product as P, category as C, tradestatus as T
+  // WHERE P.categoryId=C.categoryId AND P.statusId=T.statusId
+  // AND C.brandName=?`;    //브랜드 별로 제품을 조회하는 쿼리
+
+
+  var sql1=`SELECT productId, userId, productName, price, categoryName, 
+  brandName, statusName, photoLink
+  FROM detailProduct_Information
+  WHERE brandName=?`    //브랜드 별로 제품을 조회하는 쿼리
+
+  connection.query(sql1,[brandName], function(err, rows){
+    if(err) throw err;
+    else{
+      if(rows.length){      
+        res.render('product', {title: 'sub', data : rows});
+      }
+      else{
         res.render('product', { data : rows});
-       }
-     }
- 
-   })
- })
+      }
+    }
+  })
+})
 
 
 router.get('/detail/:productId', function(req, res){ //상세 product 조회 
+  var productId = req.params.productId;
+  var loginUserId = req.user;
   
-
-  var productId=req.params.productId;
-  var loginUserId=1;
-  
-   var sql1 = `SELECT productId, userId, productName, price, categoryName, view, 
-   brandName, volume, description, postTime, statusName, photoLink, nickname, statusId  
-   FROM detailProduct_Information
-   WHERE productId=${productId};`;   //글에 필요한 정보를 조회하는 쿼리
-
+  var sql1 = `SELECT productId, userId, productName, price, categoryName, view, 
+  brandName, volume, description, postTime, statusName, photoLink, nickname, statusId  
+  FROM detailProduct_Information
+  WHERE productId=${productId};`;   //글에 필요한 정보를 조회하는 쿼리
 
   var sql2 = `SELECT  P.productId, C.commentTime, C.commentContent, C.userId, C.commentId, U.nickname
   FROM product as P, comment as C, user as U
@@ -127,17 +104,12 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   AND P.productId=${productId}
   ORDER BY C.commentTime DESC;`;   //해당 글에 달린 댓글 정보 조회(최신순) 
 
-
   var sql3= `SELECT productId, sellerId, buyerId, sellernickname, buyernickname
   FROM detailpromise_information
   WHERE productId=${productId};`;    //약속에 대한 정보(구매자, 판매자 닉네임)
 
   var sql4=`UPDATE product SET view=view+1
   WHERE productID=${productId};`;   //조회수 1증가
-
-
-
-
 
   connection.query(sql1+sql2+sql3+sql4, function(err, data){
 
@@ -173,10 +145,6 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
       return res.redirect("/product");
     }
   })
-  
-
-
-
 })
 
 
@@ -199,34 +167,25 @@ router.post('/search',function(req, res){ //검색 결과 조회
       }
     }
   })
-
 })
 
-
-
-
-
-
-
 function getDate(today){
+  var year = today.getFullYear();
+  var month = ('0' + (today.getMonth() + 1)).slice(-2);
+  var day = ('0' + today.getDate()).slice(-2);
+  var dateString = year + '-' + month  + '-' + day;
 
-var year = today.getFullYear();
-var month = ('0' + (today.getMonth() + 1)).slice(-2);
-var day = ('0' + today.getDate()).slice(-2);
-
-var dateString = year + '-' + month  + '-' + day;
-return dateString;
+  return dateString;
 }
 
 
 function getTime(today){
-
-var hours = ('0' + today.getHours()).slice(-2); 
-var minutes = ('0' + today.getMinutes()).slice(-2);
-var seconds = ('0' + today.getSeconds()).slice(-2); 
-
-var timeString = hours + ':' + minutes  + ':' + seconds;
-return timeString;
+  var hours = ('0' + today.getHours()).slice(-2); 
+  var minutes = ('0' + today.getMinutes()).slice(-2);
+  var seconds = ('0' + today.getSeconds()).slice(-2); 
+  var timeString = hours + ':' + minutes  + ':' + seconds;
+  
+  return timeString;
 }
 
 

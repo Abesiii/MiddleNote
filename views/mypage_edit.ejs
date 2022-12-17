@@ -24,7 +24,7 @@
 <body>
     <div class="container" id="header">
       <div id="logo">
-        <a href="/">
+        <a href="/main">
           <img src="../img/logo.jpg" alt="logo">
         </a>
       </div>
@@ -36,7 +36,9 @@
           <li><a href="/regist" > Trade-Regist </a></li>
           <li><a href="about.html"> ABOUT </a></li>
           <li><a href="/notice"> NOTICE </a></li>
-          <li><a href="/login"> LOG IN </a></li>
+          <% if(locals.user){ %>
+            <li id="login-link"><b><%= user %></b></li>
+            <% } %>
           <li><a href="/mypage"> <span class="glyphicon glyphicon-user"></span></a></li>
         </ul>
       </div>
@@ -48,7 +50,7 @@
     <div class="container form-group">
 
       <div class="text-left" style="padding:30px 0px 30px 0px">
-        <h2>"<%= user[0].nickname %>" 님 환영합니다!</h2>
+        <h2>"<%= user %>" 님 환영합니다!</h2>
 
 
         <div class="row" id="regist-img" style="padding:30px 0px 30px 0px; border-top:3px solid black; border-bottom:0.5px solid #C7C7C7;">
