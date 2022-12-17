@@ -20,7 +20,7 @@ connection.connect();       //mysql 연동
 
 
 
-router.post('/create', function(req, res){ //댓글 작성성
+router.post('/create', function(req, res){ //댓글 작성
 
 
   var commentData=req.body;
@@ -42,6 +42,58 @@ router.post('/create', function(req, res){ //댓글 작성성
 
 })
 
+
+router.post('/delete',function(req,res){    //댓글 삭제
+  var productId=req.body.productId;
+ 
+  var commentId="'"+req.body.commentId+"'";
+
+
+
+  var sql=`DELETE FROM comment 
+  WHERE commentId=${commentId}`;    //댓글 삭제하는 쿼리
+
+  connection.query(sql, function(err, data){
+    if(err) throw err;
+    else{
+      return res.redirect(`/product/detail/${productId}`);
+    }
+  })
+})
+
+router.post('/edit/:commentId',function(req,res){ //댓글 수정 페이지로 넘어가기
+
+  var commentId=req.params.commentId;
+
+  var sql=`SELECT *
+  FROM comment
+  WHERE commentId=${commentId}`;    //해당 댓글 조회하는 쿼리
+
+  connection.query(sql, function(err, data){
+    if(err) throw err;
+    else{
+      res.render('comment_edit', {comment: data});
+    }
+  })
+
+
+})
+
+router.post('/edit',function(req,res){  //댓글 수정
+    var commentId="'"+req.body.commentId+"'";
+    var commentContent="'"+req.body.commentContent+"'";
+    var productId=req.body.productId;
+
+    var sql=`UPDATE comment SET commentContent=${commentContent}
+    WHERE commentId=${commentId}`;    //댓글 내용 수정
+
+    connection.query(sql,function(err, data){
+      if(err) throw err;
+      else{
+        return res.redirect(`/product/detail/${productId}`);
+      }
+    })
+})
 
 
 

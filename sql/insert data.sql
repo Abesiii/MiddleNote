@@ -25,11 +25,13 @@ CREATE TABLE category (
    );
     
 CREATE TABLE notice (
-   noticeId INT,
+    noticeId INT,
     noticeTitle VARCHAR(45),
     noticeContent VARCHAR(300),
-    noticeTime DATETIME,
-    CONSTRAINT PK_noticeId PRIMARY KEY (noticeId)
+    noticeTime VARCHAR(20),
+    userId INT NOT NULL,
+    CONSTRAINT PK_noticeId PRIMARY KEY (noticeId),
+    CONSTRAINT FK_noticeUserId FOREIGN KEY(userId) REFERENCES user(id)
    );
     
 CREATE TABLE tradeStatus (
@@ -50,6 +52,7 @@ CREATE TABLE product (
     postTime DATETIME DEFAULT CURRENT_TIMESTAMP,
     statusId INT NOT NULL,
     photoLink VARCHAR(45),
+    view INT DEFAULT 0,
     CONSTRAINT PK_productId PRIMARY KEY (productId),
     CONSTRAINT FK_productUserId FOREIGN KEY (userId) REFERENCES User(id),
     CONSTRAINT FK_productCategoryId FOREIGN KEY (categoryId) REFERENCES Category(categoryId),
@@ -73,7 +76,7 @@ CREATE TABLE promise (
     CONSTRAINT PK_promiseProductId PRIMARY KEY (productId),
     CONSTRAINT FK_promiseBuyerId FOREIGN KEY (sellerId) REFERENCES user(id),
     CONSTRAINT FK_promiseSellerId FOREIGN KEY (buyerId) REFERENCES user(id),
-    CONSTRAINT FK_promiseProductId FOREIGN KEY (productId) REFERENCES product(productId)
+    CONSTRAINT FK_promiseProductId FOREIGN KEY (productId) REFERENCES product(productId) ON DELETE CASCADE
     );
     
 CREATE TABLE comment (
@@ -84,14 +87,14 @@ CREATE TABLE comment (
     commentContent VARCHAR(300),
     CONSTRAINT PK_commentId PRIMARY KEY (commentId),
     CONSTRAINT FK_commentUserId FOREIGN KEY (userId) REFERENCES User(id),
-    CONSTRAINT FK_commentProductId FOREIGN KEY (productId) REFERENCES Product(productId)
+    CONSTRAINT FK_commentProductId FOREIGN KEY (productId) REFERENCES Product(productId) ON DELETE CASCADE
     );
     
 CREATE TABLE tradeList (
    productId INT,
     userId INT,
     CONSTRAINT PK_tradeListProductId PRIMARY KEY (productId),
-    CONSTRAINT FK_tradeListProductId FOREIGN KEY (productId) REFERENCES Product(productId),
+    CONSTRAINT FK_tradeListProductId FOREIGN KEY (productId) REFERENCES Product(productId) ON DELETE CASCADE,
     CONSTRAINT FK_tradeListUserId FOREIGN KEY (userId) REFERENCES User(id)
     );
     
@@ -100,8 +103,8 @@ CREATE TABLE tradeList (
 -- 글에 필요한 정보를 모두 조회하는 뷰 --    
 CREATE VIEW detailproduct_information
 AS SELECT P.productId,P.productName, P.price, P.userId, P.photoLink, P.volume,
-P.description, P.postTime, P.statusId, P.categoryId, 
-T.statusName, C.categoryName, C.brandName, U.nickname
+P.description, P.postTime, P.statusId, P.categoryId, P.view,
+T.statusName, C.categoryName, C.brandName, U.nickname, U.city
 FROM product AS P, tradestatus AS T, category AS C, user AS U
 WHERE P.statusId=T.statusId AND P.categoryId=C.categoryId
 AND P.userId=U.id
@@ -110,12 +113,22 @@ ORDER BY P.productId ASC;
 
 -- 제품에 대한 간단한 정보를 조회하는 뷰 -- 
 
-CREATE VIEW simpleproduct_information
+CREATE VIEW mypageproduct_information
 AS SELECT PD.productName, PD.price,PD.photoLink,Pd.statusId,
 PM.productId, PM.sellerId, PM.buyerId
 FROM promise as PM 
 INNER JOIN product AS PD
 ON PM.productId=PD.productId;
+
+
+-- 약속에 대한 자세한 정보 조회하는 뷰 --
+CREATE VIEW detailpromise_information
+AS SELECT P.productId, P.sellerId, P.buyerId, S.nickname AS sellernickname, B.nickname AS buyernickname
+FROM promise AS P 
+INNER JOIN user AS S
+ON P.sellerId=S.id
+INNER JOIN user AS B
+ON P.buyerId=B.id;
 
 
 
@@ -144,45 +157,72 @@ VALUES(1, 'PROGRESS'),
  
 
  
+INSERT INTO user(userId, password, userName, nickname, city, gu, dong, detailAddress)
+VALUES('kksshh0612', '51332', '김성호', '휴학예정자', '청주시', '서원구', '1순환로 694번길 15', '7층'),
+('youngjaeee', '6sadth2', '손영재', '알코올중독자', '청주시', '서원구', '내수동로 114번길 60', '302호'),
+('sangwoo0795', '5qew2', '임상우', '예술가', '청주시', '흥덕구', '신율로118번길 1', '202호'),
+('leeseunghyun', 'asfdk1', '이승현', '동방귀신', '청주시', '서원구', '내수동로 111번길 70', '504호'),
+('gyub99', 'a142k', '김규빈', '캥거루족', '청주시', '서원구', '외통수로 15번길 1', '102호'),
+('jannabi', 'agsgdfd', '최정훈', '잔나비', '청주시', '서원구', '장군로 118번길 60', '210호'),
+('kimminju910', '235azd', '김민주', '와무새', '서울시', '서원구', '장군로 121번길 60', '302호'),
+('kwonja', 'agsgdfd', '권성민', '권자몬', '서울시', '서원구', '장군로 118번길 60', '210호'),
+('singwisdom', 'ag1425', '신지혜', '인턴장인', '서울시', '서원구', '장군로 118번길 60', '210호'),
+('windhyerim', '142sd', '풍혜림', 'notorius혜림', '부산시', '서원구', '장군로 118번길 60', '210호'),
+('joshua456', 'agsgdfd', '조수현', '농구거인', '부산시', '서원구', '장군로 118번길 60', '210호'),
+('jonghoon142', '43590', '임종훈', '밤토리', '부산시', '서원구', '장군로 118번길 60', '210호'),
+('wjdgus6843', 'agsgdfd', '김정현', '제주소년', '부산시', '서원구', '장군로 118번길 60', '210호'),
+('sangsoo', 'agsgdfd', '김상수', '상누', '수원시', '서원구', '장군로 118번길 60', '210호'),
+('doyoungpark', 'agsgdfd', '박도영', '동탄불주먹', '수원시', '서원구', '장군로 118번길 60', '210호');
+
+
 INSERT INTO user(id, userId, password, userName, nickname, city, gu, dong, detailAddress)
-VALUES(1, 'kksshh0612', '51332', '김성호', '휴학예정자', '청주시', '서원구', '1순환로 694번길 15', '7층'),
-(2, 'youngjaeee', '6sadth2', '손영재', '알코올중독자', '청주시', '서원구', '내수동로 114번길 60', '302호'),
-(3, 'sangwoo0795', '5qew2', '임상우', '예술가', '청주시', '흥덕구', '신율로118번길 1', '202호'),
-(4, 'leeseunghyun', 'asfdk1', '이승현', '동방귀신', '청주시', '서원구', '내수동로 111번길 70', '504호'),
-(5, 'gyub99', 'a142k', '김규빈', '캥거루족', '청주시', '서원구', '외통수로 15번길 1', '102호'),
-(6, 'kimminju910', '235azd', '김민주', '와무새', '청주시', '서원구', '장군로 121번길 60', '302호'),
-(7, 'kwonja', 'agsgdfd', '권성민', '권자몬', '청주시', '서원구', '장군로 118번길 60', '210호');
+VALUES(999,'admin', 'admin', '관리자', '관리자', '', '', '', '');
 
 
 
 INSERT INTO product (userId, productName, 
 price, categoryId, volume, description, statusId, photoLink)
 VALUES(1, '불가리 뿌르 옴므 오 드 뚜왈렛',  95000,
-1, '50ml', '개봉한지 일주일됐고 한두번밖에 안뿌려 봤어요', 1, NULL),
+1, '50ml', '개봉한지 일주일됐고 한두번밖에 안뿌려 봤어요', 2, NULL),
 
 (2, '뿌르 옴므 오 드 뚜왈렛 스프레이',  127820,
- 1, '100ml', '시원한 향이고 남성적인 향이에요 선물받은거팔아요', 1, NULL),
+ 1, '100ml', '시원한 향이고 남성적인 향이에요 선물받은거팔아요', 2, NULL),
 
 (3, '불가리 맨 테라 에센스 오 드 퍼퓸',  107800,
- 1, '100ml', '개봉 안했습니다 받은지 2주 됐어요', 1, NULL),
+ 1, '100ml', '개봉 안했습니다 받은지 2주 됐어요', 2, NULL),
 
 (4, '블랙베리 앤 베이 코롱',  30000,
- 2, '25ml', '절반정도 썼습니다', 1, NULL),
+ 2, '25ml', '절반정도 썼습니다', 2, NULL),
 
 (5, '우드 세이지 앤 씨솔트 코롱',  42000,
- 2, '30ml', '돈이 필요해서 급하게 싸게 팔아요 네고 안됩니다', 1, NULL),
+ 2, '30ml', '돈이 필요해서 급하게 싸게 팔아요 네고 안됩니다', 2, NULL),
 
 (6, '블랙베리 앤 베이 코롱',  58000,
- 2, '50ml', '미개봉이에요 싸게 팔아요', 1, NULL),
+ 2, '50ml', '미개봉이에요 싸게 팔아요', 2, NULL),
 
-(3, 'CK BE',  25000,
- 3, '50ml', '무난한 향이에요 입문자에게 좋은 것 같습니다', 1, NULL),
+(7, 'CK BE',  25000,
+ 3, '50ml', '무난한 향이에요 입문자에게 좋은 것 같습니다', 2, NULL),
 
-(1, 'CK ONE EDT',  20000,
- 3, '200ml', '사용감 조금 있습니다 싸게 팔게요', 1, NULL),
+(8, 'CK ONE EDT',  20000,
+ 3, '200ml', '사용감 조금 있습니다 싸게 팔게요', 2, NULL),
 
- (4, 'ALL EDT',  15000,
- 3, '200ml', '급처합니다', 1, NULL);
+ (9, 'ALL EDT',  15000,
+ 3, '200ml', '급처합니다', 2, NULL),
+ 
+ (10, '블루 에센스',  20000,
+ 3, '200ml', '사용감 조금 있습니다 싸게 팔게요', 2, NULL),
+
+ (11, '딥디크 도손 EDP',  30000,
+ 3, '200ml', '사용감 조금 있습니다 싸게 팔게요', 2, NULL),
+
+ (12, '존바바토스',  40000,
+ 3, '200ml', '사용감 조금 있습니다 싸게 팔게요', 2, NULL),
+
+ (13, '팔로시코스',  12000,
+ 3, '50ml', '사용감 조금 있습니다 싸게 팔게요', 2, NULL),
+
+ (14, '오리엔탈 스파이스',  20000,
+ 3, '200ml', '사용감 조금 있습니다 싸게 팔게요', 2, NULL);
  
 
 
@@ -202,3 +242,43 @@ VALUES("2022-12-01 12:21:34",1,2, "저 사고 싶어요"),
 ("2022-12-01 11:23:39",7,3, "살래요"),
 ("2022-12-01 11:25:40",7,4, "데이터베이스시스템 짱!"),
 ("2022-12-01 11:25:40",3,7, "그 향수를 내게 넘겨");
+
+
+INSERT INTO notice
+VALUES(1, '노쇼현상이 많이 발생하고 있습니다. 주의하세요','','2022.12.06',999),
+(2, 'UI 업데이트가 적용되었습니다.','','2022.12.06',999),
+(3, '관리자 모집하고 있습니다.','','2022.12.07',999);
+
+
+
+
+INSERT INTO promise
+VALUES(1, 1, 2),
+(2, 2, 4),
+(3, 3, 1),
+(4, 4, 6),
+(5, 5, 3),
+(6, 6, 2),
+(7, 7, 9),
+(8, 8, 7),
+(9, 9, 8),
+(10, 10, 11),
+(11, 11, 13),
+(12, 12, 13),
+(13, 13, 10),
+(14, 14, 15);
+
+
+-- select city, count(*) as tradecount from detailproduct_information
+-- where statusId=2
+-- group by city
+-- order by tradecount desc ;   //도시 별 거래횟수 조회
+
+-- select nickname, count(*) as productcount
+-- from detailproduct_information
+-- group by userId;     //회원별 작성 글 갯수
+
+-- select u.nickname, count(*) 
+-- from user as u, comment as c
+-- where u.id=c.userId
+-- group by c.userId;   //회원별 댓글 수 갯글 max도 만들어야지

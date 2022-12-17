@@ -11,7 +11,8 @@ var login = require('./login/login');
 var product = require('./product/product');
 var regist = require('./regist/regist');
 var comment = require('./comment/comment');
-var promise = require('./promise/promise');
+var mypage = require('./mypage/mypage');
+var notice= require('./notice/notice');
 
 
 
@@ -21,7 +22,10 @@ router.use('/login', login);
 router.use('/product', product);
 router.use('/regist', regist);
 router.use('/comment', comment);
-router.use('/promise', promise);
+router.use('/mypage', mypage);
+router.use('/notice', notice);
+
+
 router.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '../html/index.html'));
 })

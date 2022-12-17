@@ -20,24 +20,20 @@ connection.connect();       //mysql 연동
 
 
 
-/*
-router.get('/', function(req, res){
-  console.log('product.js 실행');
-  var query = connection.query("select * from product", function(err, rows){
-    if(err) throw err;
-    else{
-        console.log(rows);
-    }
-  })
-  res.sendFile(path.join(__dirname, '../../html/eshop.html'));
-})*/
 
 
-router.post('/delete',function(req,res){
-  //console.log("이름은 " + req.query.productId + " 입니다")
- // var productId=req.params.productId;
- console.log(req.query.productId);
- res.send(req.query.productId);
+router.post('/delete/:productId',function(req,res){   //글 삭제(댓글, 약속 목록 다 사라짐)
+var productId="'"+req.params.productId+"'";
+
+var sql=`DELETE FROM product WHERE productId=${productId}`;
+
+connection.query(sql,function(err,data){
+  if(err) throw err;
+  else{
+    res.write("<script>window.location=\`../../product\`</script>");
+  }
+})
+
 })
 
 
@@ -96,7 +92,7 @@ router.get('/:brandName', function(req, res){ //브랜드 별 product조회
  var sql1=`SELECT productId, userId, productName, price, categoryName, 
  brandName, statusName, photoLink
 FROM detailProduct_Information
-WHERE brandName=?`
+WHERE brandName=?`    //브랜드 별로 제품을 조회하는 쿼리
  
    connection.query(sql1,[brandName], function(err, rows){
      if(err) throw err;
@@ -119,39 +115,38 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   var productId=req.params.productId;
   var loginUserId=1;
   
-   var sql1 = `SELECT productId, userId, productName, price, categoryName, 
-   brandName,volume, description, postTime, statusName, photoLink, nickname, statusId  
+   var sql1 = `SELECT productId, userId, productName, price, categoryName, view, 
+   brandName, volume, description, postTime, statusName, photoLink, nickname, statusId  
    FROM detailProduct_Information
    WHERE productId=${productId};`;   //글에 필요한 정보를 조회하는 쿼리
 
 
-  var sql2 = `SELECT  P.productId, C.commentTime, C.commentContent, C.userId, U.nickname
+  var sql2 = `SELECT  P.productId, C.commentTime, C.commentContent, C.userId, C.commentId, U.nickname
   FROM product as P, comment as C, user as U
   where P.productId=C.ProductId AND C.userId=U.id
   AND P.productId=${productId}
   ORDER BY C.commentTime DESC;`;   //해당 글에 달린 댓글 정보 조회(최신순) 
 
-  
-  var sql3= `SELECT P.productId, P.sellerId, P.buyerId, S.nickname AS sellernickname, B.nickname AS buyernickname
-  FROM promise AS P 
-  INNER JOIN user AS S
-  ON P.sellerId=S.id
-  INNER JOIN user AS B
-  ON P.buyerId=B.id
-  WHERE P.productId=${productId}`;    //약속에 대한 정보(구매자, 판매자 닉네임)
+
+  var sql3= `SELECT productId, sellerId, buyerId, sellernickname, buyernickname
+  FROM detailpromise_information
+  WHERE productId=${productId};`;    //약속에 대한 정보(구매자, 판매자 닉네임)
+
+  var sql4=`UPDATE product SET view=view+1
+  WHERE productID=${productId};`;   //조회수 1증가
 
 
 
 
 
-  connection.query(sql1+sql2+sql3, function(err, data){
+  connection.query(sql1+sql2+sql3+sql4, function(err, data){
 
     if(err) throw err;
 
     var sql_data1=data[0];  //글에 대한 정보
     var sql_data2=data[1];  //댓글에 대한 정보
     var sql_data3=data[2];  //약속에 대한 정보
-
+    console.log(sql_data1);
     if(sql_data1.length){ //글이 존재
       var dateString=getDate(sql_data1[0].postTime);     //datetime 파싱
       var timeString=getTime(sql_data1[0].postTime);
@@ -181,6 +176,29 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   
 
 
+
+})
+
+
+router.post('/search',function(req, res){ //검색 결과 조회
+  var searchtext="'%"+req.body.searchtext+"%'";
+  
+  var sql=`SELECT productId, productName, price, statusName, photoLink,
+  categoryName, brandName
+  from detailproduct_information
+  WHERE productName LIKE ${searchtext}`;  //검색 결과 조회하는 쿼리
+
+  connection.query(sql, function(err, data){
+    if(err) throw err;
+    else{
+      if(data.length){
+        res.render('product', {title: 'main', data : data});
+      }
+      else{
+        res.render('product', {title: 'sub', data : data});
+      }
+    }
+  })
 
 })
 

@@ -34,22 +34,23 @@
 
       <div id="menubar" >
         <ul>
-          <li><a href="/"> HOME </a></li>
+          <li><a href="/main" style="color:#C7C7C7"> HOME </a></li>
           <li><a href="/product"> ESHOP </a></li>
-          <li><a href="/regist" style="color:#C7C7C7"> Trade-Regist </a></li>
+          <li><a href="/regist" > Trade-Regist </a></li>
           <li><a href="about.html"> ABOUT </a></li>
+          <li><a href="/notice"> NOTICE </a></li>
           <li><a href="/login"> LOG IN </a></li>
-          <li><a href="/promise"> <span class="glyphicon glyphicon-user"></span></a></li>
+          <li><a href="/mypage"> <span class="glyphicon glyphicon-user"></span></a></li>
         </ul>
       </div>
 
     </div>
 
-  <form action="form-inline">
+  <form action="/mypage/mypage" method="POST">
     <div class="container form-group">
 
       <div class="text-left" style="padding:30px 0px 30px 0px">
-        <h2>"사용자 이름" 님 환영합니다!</h2>
+        <h2>"<%=product[0].nickname %>"님 환영합니다!</h2>
 
 
         <div class="row" id="regist-img" style="padding:30px 0px 30px 0px; border-top:3px solid black; border-bottom:0.5px solid #C7C7C7;">
@@ -61,16 +62,16 @@
               <div class="collapse" id="modifyConfirm">
                 <h4> 본인확인을 위해 비밀번호를 입력해주세요.</h4>
                 <input id="password" name="password" type="password" placeholder="기존 비밀번호 입력" style=" margin: 0px; height: 40px; padding: 0px;">
-                <button type="button" class="btn btn-primary" style="margin-left:10px; margin-bottom:3px; height: 40px;" onclick="location.href='/Mypage_modify.html';">  확인  </button>
+                <button class="btn btn-primary" style="margin-left:10px; margin-bottom:3px; height: 40px;"> 확인  </button>
               </div>
             </div>
-            <button class="join1-button btn btn-info btn-lg" style="margin-top: 10px;" type="button" data-toggle="collapse" data-target="#modifyConfirm" aria-expanded="false"a >개인정보 수정</button>
+            <button class="join1-button btn btn-info btn-lg" style="margin-top: 10px;" type="button" data-toggle="collapse" data-target="#modifyConfirm" aria-expanded="false">개인정보 수정</button>
           </div>
         </div>
-
+      </form>
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3">
-            <h3>작성 글 목록</h3>
+            <h3>작성 글 <%=product.length %> </h3>
           </div>
 
           <div style="clear:both;"></div>
@@ -144,6 +145,7 @@
                   <div class="row">
                   
                   <% for(var i = 0; i<product.length; i++){ %>
+                    
 
                       <% if (product[i].photoLink=='undefined' || product[i].photoLink==null) { %> 
 
@@ -168,7 +170,7 @@
              
                       <% } %>
                     
-                      
+             
                       <% } %>
                           
                       
@@ -192,7 +194,7 @@
 
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
           <div class="col-sm-3">
-            <h3>관심 목록</h3>
+            <h3>관심 목록 </h3>
           </div>
 
           <div style="clear:both;"></div>
@@ -321,7 +323,7 @@
 
         <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
             <div class="col-sm-3">
-              <h3>판매 목록</h3>
+              <h3>판매완료 <%=sell.length %></h3>
             </div>
   
             <div style="clear:both;"></div>
@@ -444,7 +446,7 @@
 
           <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
             <div class="col-sm-3">
-              <h3>구매 목록</h3>
+              <h3>구매완료 <%=buy.length %></h3>
             </div>
   
             <div style="clear:both;"></div>
@@ -563,7 +565,7 @@
 
           <div class="row" style="padding:30px 0px 30px 0px;border-bottom:0.5px solid #C7C7C7;">
             <div class="col-sm-3">
-              <h3>약속 목록</h3>
+              <h3>약속 <%= promise.length %></h3>
             </div>
   
             <div style="clear:both;"></div>
@@ -699,7 +701,7 @@
       </div>
 
     </div>
-  </form>
+  
 
     <div id="footer">
       <div id="footerL">

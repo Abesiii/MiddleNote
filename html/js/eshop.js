@@ -72,6 +72,7 @@ function movetoDetailDefault(product) {
 }
 */
 
+
 function movetoDetailDefault(product) {
 	
 	var jquerythis = $(product);
@@ -86,6 +87,9 @@ function movetoDetailDefault(product) {
 	window.location.href = `http://localhost:3000/product/detail/${productId}`;
 }
 
+
+
+
 function movetoBrandDefault(brand) {
 	
 
@@ -97,6 +101,33 @@ function movetoBrandDefault(brand) {
 }
 
 
+/*
+function addInterestList(this){
+	console.log(this);
 
 
+	var jquerythis = $(product);
+	
+
+	var productId = $(product).children(".productid").text();
+	console.log(productId);
+
+           
+
+}
+*/
+
+function search(){
+	var searchtext=document.getElementById("searchtext").value;
+	console.log(searchtext);
+
+	var sendData = {'searchtext' : searchtext};
+
+	sendData = JSON.stringify(sendData);    //ajax로 서버에 보내기 위해 문자열을 json으로 저장. 
+	var xhr = new XMLHttpRequest();     //ajax로 브라우저와 서버가 상호작용하기 위한 객체 
+	xhr.open('POST', 'http://localhost:3000/product/searches');     //post 형식으로 join.js 호출
+	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.send(sendData);
+
+}
 
