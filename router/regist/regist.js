@@ -19,7 +19,7 @@ connection.connect();       //mysql 연동
 
 
 router.get('/', function(req, res){ //글 작성 페이지 조회
-    res.render('regist');
+    res.render('regist', {user : 'user'});
 })
 
 
