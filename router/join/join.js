@@ -45,7 +45,7 @@ router.post('/', function(req, res){
       if(err) throw err;
       else{
         console.log(`${rows} inserted`);    
-        res.sendFile(path.join(__dirname, '../../html/join.html'));
+        res.redirect('/login');
       }
     })
   }

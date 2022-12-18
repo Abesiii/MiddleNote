@@ -92,7 +92,7 @@ router.get('/:brandName', function(req, res){ //브랜드 별 product조회
 router.get('/detail/:productId', function(req, res){ //상세 product 조회 
   var productId = req.params.productId;
   var loginUserId = req.user;
-  
+
   var sql1 = `SELECT productId, userId, productName, price, categoryName, view, 
   brandName, volume, description, postTime, statusName, photoLink, nickname, statusId  
   FROM detailProduct_Information
@@ -111,40 +111,82 @@ router.get('/detail/:productId', function(req, res){ //상세 product 조회
   var sql4=`UPDATE product SET view=view+1
   WHERE productID=${productId};`;   //조회수 1증가
 
-  connection.query(sql1+sql2+sql3+sql4, function(err, data){
+  if(req.user){
+    var sql5 = "select nickname from user where id=" + loginUserId + ";";
 
-    if(err) throw err;
+    connection.query(sql1+sql2+sql3+sql4+sql5, function(err, data){
 
-    var sql_data1=data[0];  //글에 대한 정보
-    var sql_data2=data[1];  //댓글에 대한 정보
-    var sql_data3=data[2];  //약속에 대한 정보
-    console.log(sql_data1);
-    if(sql_data1.length){ //글이 존재
-      var dateString=getDate(sql_data1[0].postTime);     //datetime 파싱
-      var timeString=getTime(sql_data1[0].postTime);
-      sql_data1[0].dateString = dateString;
-      sql_data1[0].timeString=  timeString;
-
-      if(sql_data2.length){ //댓글이 존재할때
-        for(var i=0; i<sql_data2.length; i++){
-          var dateString=getDate(sql_data2[i].commentTime);     //datetime 파싱
-          var timeString=getTime(sql_data2[i].commentTime);
-          sql_data2[i].dateString = dateString;
-          sql_data2[i].timeString=timeString;
-        }
-        res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3, loginUserId: loginUserId });
-
-      }
-
-      else{ //댓글이 존재하지 않을때
-        res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3, loginUserId: loginUserId});
-      }
+      if(err) throw err;
+      var sql_data1=data[0];  //글에 대한 정보
+      var sql_data2=data[1];  //댓글에 대한 정보
+      var sql_data3=data[2];  //약속에 대한 정보
+      var sql_data4=data[3].nickname;  //유저 닉네임
+      console.log("여기는 여기다 " + sql_data4);
       
-    }
-    else{       //글이 존재하지 않을때
-      return res.redirect("/product");
-    }
-  })
+      if(sql_data1.length){ //글이 존재
+        var dateString=getDate(sql_data1[0].postTime);     //datetime 파싱
+        var timeString=getTime(sql_data1[0].postTime);
+        sql_data1[0].dateString = dateString;
+        sql_data1[0].timeString=  timeString;
+  
+        if(sql_data2.length){ //댓글이 존재할때
+          for(var i=0; i<sql_data2.length; i++){
+            var dateString=getDate(sql_data2[i].commentTime);     //datetime 파싱
+            var timeString=getTime(sql_data2[i].commentTime);
+            sql_data2[i].dateString = dateString;
+            sql_data2[i].timeString=timeString;
+          }
+          res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3, loginUserId: loginUserId, user: sql_data4 });
+  
+        }
+  
+        else{ //댓글이 존재하지 않을때
+          res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3, loginUserId: loginUserId, user: sql_data4 });
+        }
+        
+      }
+      else{       //글이 존재하지 않을때
+        return res.redirect("/product");
+      }
+    })
+  }
+  else{
+    connection.query(sql1+sql2+sql3+sql4, function(err, data){
+
+      if(err) throw err;
+      var sql_data1=data[0];  //글에 대한 정보
+      var sql_data2=data[1];  //댓글에 대한 정보
+      var sql_data3=data[2];  //약속에 대한 정보
+
+      if(sql_data1.length){ //글이 존재
+        var dateString=getDate(sql_data1[0].postTime);     //datetime 파싱
+        var timeString=getTime(sql_data1[0].postTime);
+        sql_data1[0].dateString = dateString;
+        sql_data1[0].timeString=  timeString;
+  
+        if(sql_data2.length){ //댓글이 존재할때
+          for(var i=0; i<sql_data2.length; i++){
+            var dateString=getDate(sql_data2[i].commentTime);     //datetime 파싱
+            var timeString=getTime(sql_data2[i].commentTime);
+            sql_data2[i].dateString = dateString;
+            sql_data2[i].timeString=timeString;
+          }
+          res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3, loginUserId: loginUserId});
+  
+        }
+  
+        else{ //댓글이 존재하지 않을때
+          res.render('product_detail', {data : sql_data1, comment: sql_data2, promise: sql_data3, loginUserId: loginUserId});
+        }
+        
+      }
+      else{       //글이 존재하지 않을때
+        return res.redirect("/product");
+      }
+    })
+  }
+
+  
 })
 
 

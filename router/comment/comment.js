@@ -22,7 +22,7 @@ connection.connect();       //mysql 연동
 
 router.post('/create', function(req, res){ //댓글 작성
   var commentData=req.body;
-  var userId="'"+commentData.userId+"'";
+  var userId=req.user;
   var commentContent="'"+commentData.commentContent+"'";
   var productId="'"+commentData.productId+"'";
 
@@ -37,8 +37,11 @@ router.post('/create', function(req, res){ //댓글 작성
       }
     })
   }
-  res.write("<script>alert('로그인을 하십시오')</script>");
-  res.write("<script>window.location=\"../product\"</script>");
+  else{
+    res.write("<script>alert('PLEASE USE AFTER LOGIN')</script>");
+    res.write("<script>window.location=\"../product\"</script>");
+  }
+  
   // return res.redirect(`/product/detail/${commentData.productId}`);
 })
 

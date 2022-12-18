@@ -49,7 +49,6 @@
           <li><a href="/regist" > Trade-Regist </a></li>
           <li><a href="about.html"> ABOUT </a></li>
           <li><a href="/notice"> NOTICE </a></li>
-          <li><a href="/login"> LOG IN </a></li>
           <li><a href="/mypage"> <span class="glyphicon glyphicon-user"></span></a></li>
         </ul>
       </div>
@@ -331,7 +330,7 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
             <input type="text" class="form-control" id="regist-volume" placeholder="Input comment" name="commentContent" style="height:50px; font-size:20px;" autocomplete="off">
           </div>
           <input type="hidden" name="productId" value="<%= data[0].productId %>">
-          <input type="hidden" name="userId" value="1">
+          <!-- <input type="hidden" name="userId" value="1"> -->
           <div class="col-sm-3 ">
             <button class="btn btn-dark btn-lg" id="btn3">submit</button>
         </div>
@@ -346,8 +345,8 @@ new ImageZoom(document.getElementsByClassName("img-showcase")[0], options);
         
         <% if (comment.length>0) { %>   
         <% for(var i = 0; i<comment.length; i++){ %>
-            <%= comment[i].nickname %> <br>
-            <%= comment[i].commentContent%> <br>
+            <b><%= comment[i].nickname %></b> 
+            <span style="font-size: 1.4em;"><%= comment[i].commentContent%></span> 
             <div class="row">
               <div class="col-sm-3"> 
                 <%= comment[i].dateString %> <%= comment[i].timeString %> 
