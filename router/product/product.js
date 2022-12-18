@@ -12,7 +12,7 @@ var connection = mysql.createConnection({     //mysql connection 생성
   host : 'localhost',
   port : 3306,
   user : 'root',
-  password : 'kksshh1735',
+  password : 'root',
   database : 'middlenote',        //데이터베이스 이름
   multipleStatements: true
 });
@@ -160,6 +160,7 @@ router.post('/search',function(req, res){ //검색 결과 조회
     if(err) throw err;
     else{
       if(data.length){
+        console.log(data);
         res.render('product', {title: 'main', data : data});
       }
       else{

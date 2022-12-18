@@ -10,7 +10,7 @@ var connection = mysql.createConnection({     //mysql connection 생성
   host : 'localhost',
   port : 3306,
   user : 'root',
-  password : 'kksshh1735',
+  password : 'root',
   database : 'middlenote',        //데이터베이스 이름
   multipleStatements: true
 });
@@ -190,7 +190,7 @@ router.post('/mypage', function(req,res){  //마이페이지 이동
             res.render('mypage_edit', {user: data[0].nickname});
         }
         else{
-            res.write("<script>alert('비밀번호가 틀렸습니다.')</script>");
+            res.write("<script>alert('Wrong Password')</script>");
             res.write("<script>window.location=\"../mypage\"</script>");
         }
         
