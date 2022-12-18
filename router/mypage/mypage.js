@@ -56,7 +56,6 @@ router.get('/',function(req,res){   //임시로 마이페이지 조회
                 var sql_data4=data[3];  //작성글 목록 정보
                 var sql_data5=data[4][0].nickname;  //작성글 목록 정보
                 
-                console.log("마이페이지 네디어:" , sql_data5);
     
                 res.render('mypage', {sell: sql_data1, buy: sql_data2, promise:sql_data3, product:sql_data4, user:sql_data5});
         
